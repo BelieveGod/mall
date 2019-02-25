@@ -1,0 +1,68 @@
+li{
+    list-style-type:none;
+}
+.singleli li{
+    margin-top: 6px;
+}
+.mutli li{
+    float: left;
+    margin-right: 6px;
+}
+
+.mutli input[type="checkbox"], .singleli input[type="checkbox"] {
+    display: inline-block;
+    width: auto;
+}
+
+.mutli label, .singleli label{
+    vertical-align: middle;
+    margin: 0px 5px 0px 0px;
+    padding: 3px 15px;
+    border: 1px solid #eee;
+    background-color: #fff;
+    cursor: pointer;
+    color: #006fbc;
+    display: inline-block;
+    margin-left: -18px;
+
+}
+
+.mutliArrow {
+    border: solid 2px #1e99c7;
+    padding: 2px 14px;
+    background: url(../../../image/checkbox_bg.png) no-repeat right bottom;
+}
+
+
+table#skutable {
+    width: 100%;
+    font-family: verdana,arial,sans-serif;
+    font-size:11px;
+    color:#333333;
+    border-width: 1px;
+    border-color: #ccc;
+    border-collapse: collapse;
+}
+table#skutable th {
+    border-width: 1px;
+    padding-left: 8px;
+    padding-right: 8px;
+    align-content: center;
+    height: 30px;
+    border-style: solid;
+    border-color: #ccc;
+}
+table#skutable td {
+    border-width: 1px;
+    padding-left: 8px;
+    padding-right: 8px;
+    align-content: center;
+    height: 30px;
+    border-style: solid;
+    border-color: #ccc;
+}
+table#skutable input {
+    width: 100%;
+    height: 100%;
+    border: 0px;
+}
