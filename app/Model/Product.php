@@ -19,8 +19,8 @@ class Product extends Common
     {
         return json_decode($pictures, true);
     }
-    public static function findProductNameById($id)
+    public static function findProductNameById()
     {
-        return Product::where('product_id', $id)->value('product_name');
+        return Product::where('store_id' , 0)->pluck('product_name' , 'product_id')->toArray();
     }
 }

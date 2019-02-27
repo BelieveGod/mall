@@ -22,7 +22,7 @@ use App\Admin\Extensions\Form\AttrValueBtn;
 use App\Admin\Extensions\Form\Sku;
 use App\Admin\Extensions\Form\UEditor;
 use App\Admin\Extensions\Form\GaodeMap;
-use App\Admin\Extensions\Form\BusinessAddress;
+use App\Admin\Extensions\Form\BusinessAddressBtn;
 use Encore\Admin\Form;
 
 Encore\Admin\Form::forget(['map', 'editor']);
@@ -31,4 +31,4 @@ Form::extend('attrvaluebtn', AttrValueBtn::class);
 Form::extend('sku', Sku::class);
 Form::extend('ueditor', UEditor::class);
 Form::extend('gaodemap' , GaodeMap::class);
-Form::extend('businessaddress' , BusinessAddress::class);
+Form::extend('businessaddress' , BusinessAddressBtn::class);

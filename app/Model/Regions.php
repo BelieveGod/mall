@@ -13,7 +13,14 @@ class Regions extends Model
     {
         return Regions::where('region_grade' , 1)->pluck('region_name','region_id');
     }
+    public static function areaoptions($id)
+    {
+        $province_id = Regions::where('region_id' , $id)->value('parent_id');
 
+        return Regions::where('parent_id' , $province_id)->pluck('region_name','region_id');
+    }
+
+    //保存值为region_id 输出地址
     public static function findAddress($id)
     {
         $county = Regions::where('region_id' , $id)->first();
@@ -23,5 +30,17 @@ class Regions extends Model
         $address = $province->region_name.'省  '.$city->region_name.'  '.$county->region_name;
 
         return $address;
+    }
+
+    //保存值为region_path 输出地址
+    public static function findArea($value)
+    {
+        $arr = explode(',',$value);
+
+        $str = null;
+        foreach ($arr as $val){
+            $str .= Regions::where('region_id' , $val)->value('region_name').' ';
+        }
+        return $str;
     }
 }

@@ -97,7 +97,15 @@ class BusinessAddressController extends Controller
         $grid->created_at('创建时间');
         $grid->updated_at('更新时间');
 
-
+        $grid->disableExport();
+        //去掉行间按钮
+        $grid->actions(function ($actions) {
+            $actions->disableDelete();
+            $actions->disableEdit();
+            $actions->disableView();
+            $actions->append('<a href="/admin/business_address/'.$actions->getKey().'/edit"><span class="label label-info">修改</span></a>');
+            $actions->append('<a href="/admin/business_address/'.$actions->getKey().'"><span class="label bg-light-blue">查看详情</span></a>');
+        });
 
 
 
@@ -145,8 +153,16 @@ class BusinessAddressController extends Controller
 
         $form->text('business_name', '发货人');
         $form->select('province', '省')->options(Regions::province())->load('city', '/admin/api/getregion');
-        $form->select('city', '市')->load('county', '/admin/api/getregion');
-        $form->select('county', '县/区');
+        $form->select('city', '市')->options(function ($city) {
+            if($city){
+                return Regions::areaoptions($city);
+;            }
+        })->load('county', '/admin/api/getregion');
+        $form->select('county', '县/区')->options(function ($county) {
+            if($county) {
+                return Regions::areaoptions($county);
+            }
+        });
         $form->text('address', '详细地址');
         $form->gaodemap('gps' , '地图');
         $states = [
@@ -155,13 +171,17 @@ class BusinessAddressController extends Controller
         ];
 
         $form->switch('status', '设为默认地址')->states($states);
-//        $form->number('store_id', 'Store id');
+        $form->hidden('store_id', '店铺id')->default(0);
 
         //去掉脚部按钮
         $form->footer(function ($footer) {
             $footer->disableViewCheck();
             $footer->disableEditingCheck();
             $footer->disableCreatingCheck();
+        });
+        //删除右上角的按钮
+        $form->tools(function (Form\Tools $tools) {
+            $tools->disableView();
         });
 
         return $form;

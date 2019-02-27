@@ -12,8 +12,8 @@
     <label  class="col-sm-2 control-label"></label>
     <div class="col-sm-8" >
         <div style="border: 1px solid #ccc;padding: 6px;">
-            <div style="color: #707070;font-size: 14px;" class="send-man-bussiness">发货人：  何呵呵1</div>
-            <div style="color: #707070;font-size: 14px;" class="send-address-business">发货地址：广东省 东莞市 东城区 万达广场A区18号</div>
+            <div style="color: #707070;font-size: 14px;" class="send-man-bussiness"></div>
+            <div style="color: #707070;font-size: 14px;" class="send-address-business"></div>
         </div>
 
     </div>
@@ -37,27 +37,29 @@
             </div>
             <div class="singleli" style="width: 98% ;height: 185px; padding: 6px;
                 overflow-y: scroll">
+                @foreach($address as $val)
                 <li>
-                    <input type="checkbox" id="11" class="singleItem" >
-                    <label for="11"  onclick="checkAddressBtn(this)">
-                        <div style="color: #707070;font-size: 14px; ">发货人：何呵呵1</div>
-                        <div style="color: #707070;font-size: 14px; ">发货地址：广东省 东莞市 东城区 万达广场A区18号</div>
+                    <input type="checkbox" id="{{$val['business_address_id']}}" class="singleItem" style="display:none">
+                    <label for="{{$val['business_address_id']}}"  onclick="checkAddressBtn(this)">
+                        <div style="color: #707070;font-size: 14px; ">发货人：{{$val['business_name']}}</div>
+                        <div style="color: #707070;font-size: 14px; ">发货地址：{{$val['address']}}</div>
                     </label>
                 </li>
-                <li>
-                    <input type="checkbox" id="22" class="singleItem" >
-                    <label for="22"  onclick="checkAddressBtn(this)">
-                        <div style="color: #707070;font-size: 14px; ">发货人：何呵呵2</div>
-                        <div style="color: #707070;font-size: 14px; ">发货地址：广东省 东莞市 东城区 万达广场A区19号</div>
-                    </label>
-                </li>
-                <li>
-                    <input type="checkbox" id="33" class="singleItem" >
-                    <label for="33"  onclick="checkAddressBtn(this)">
-                        <div style="color: #707070;font-size: 14px; ">发货人：何呵呵3</div>
-                        <div style="color: #707070;font-size: 14px; ">发货地址：广东省 东莞市 东城区 万达广场A区17号</div>
-                    </label>
-                </li>
+                @endforeach
+                {{--<li>--}}
+                    {{--<input type="checkbox" id="22" class="singleItem" style="display:none">--}}
+                    {{--<label for="22"  onclick="checkAddressBtn(this)">--}}
+                        {{--<div style="color: #707070;font-size: 14px; ">发货人：何呵呵2</div>--}}
+                        {{--<div style="color: #707070;font-size: 14px; ">发货地址：广东省 东莞市 东城区 万达广场A区19号</div>--}}
+                    {{--</label>--}}
+                {{--</li>--}}
+                {{--<li>--}}
+                    {{--<input type="checkbox" id="33" class="singleItem" style="display:none">--}}
+                    {{--<label for="33"  onclick="checkAddressBtn(this)">--}}
+                        {{--<div style="color: #707070;font-size: 14px; ">发货人：何呵呵3</div>--}}
+                        {{--<div style="color: #707070;font-size: 14px; ">发货地址：广东省 东莞市 东城区 万达广场A区17号</div>--}}
+                    {{--</label>--}}
+                {{--</li>--}}
             </div>
             <div style="float: right;margin:8px; ">
                 <span class="btn bg-light-blue" onclick="sureBusinessAddress()">确定</span>

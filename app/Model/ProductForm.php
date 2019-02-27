@@ -2,9 +2,7 @@
 
 namespace App\Model;
 
-use Illuminate\Database\Eloquent\Model;
-
-class ProductForm extends Model
+class ProductForm extends Common
 {
     protected $table = 'product_form';
     protected $primaryKey = 'form_id';
@@ -50,5 +48,9 @@ class ProductForm extends Model
             self::PAY_UNDER_LINE => '货到付款',
         ];
     }
-
+    //pay_time过滤器
+    public function getPayTimeAttribute()
+    {
+        return date('Y-m-d H:i:s',$this->attributes['pay_time']);
+    }
 }
