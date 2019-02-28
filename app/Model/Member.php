@@ -22,4 +22,9 @@ class Member extends Common
         ];
     }
 
+    public static function findMemberNameById()
+    {
+        return Member::pluck('member_name' , 'member_id')->toArray();
+    }
+
 }

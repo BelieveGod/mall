@@ -12,6 +12,7 @@ use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
+use Illuminate\Support\Facades\Auth;
 
 class ProductFormController extends Controller
 {
@@ -83,7 +84,8 @@ class ProductFormController extends Controller
     protected function grid()
     {
         $grid = new Grid(new ProductForm);
-
+        $store_id = Auth::guard('admin')->user()->id;
+        $grid->model()->where('store_id' , $store_id);
 //        $grid->form_id('ID');
         $grid->model()->orderBy('status');
         $grid->form_num('订单号');

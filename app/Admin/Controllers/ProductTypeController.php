@@ -13,6 +13,7 @@ use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductTypeController extends Controller
 {
@@ -92,6 +93,8 @@ class ProductTypeController extends Controller
     protected function grid()
     {
         $grid = new Grid(new ProductType);
+        $store_id = Auth::guard('admin')->user()->id;
+        $grid->model()->where('store_id' , $store_id);
 
         $grid->type_id('类型id');
         $grid->type_name('类型名称');
@@ -136,6 +139,8 @@ class ProductTypeController extends Controller
         $form->text('type_name', '类型名称');
         $form->select('category_id' , '选择分类')->options(Category::parentsId());
         $form->text('sort_order', '排序');
+        $store_id = Auth::guard('admin')->user()->id;
+        $form->hidden('store_id' , '商店id')->default($store_id);
 
         $form->hasMany('productAttr','商品规格属性', function (Form\NestedForm $form) {
             $form->text('attr_name','商品规格');

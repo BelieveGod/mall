@@ -21,6 +21,6 @@ class Product extends Common
     }
     public static function findProductNameById()
     {
-        return Product::where('store_id' , 0)->pluck('product_name' , 'product_id')->toArray();
+        return Product::pluck('product_name' , 'product_id')->toArray();
     }
 }

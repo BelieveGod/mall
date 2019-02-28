@@ -48,9 +48,18 @@ class ProductForm extends Common
             self::PAY_UNDER_LINE => '货到付款',
         ];
     }
+    /**
+     * 查找订单号
+     */
+    public static function findPostIdByProductFormId()
+    {
+        return ProductForm::pluck('post_num' , 'form_id')->toArray();
+    }
+
     //pay_time过滤器
     public function getPayTimeAttribute()
     {
         return date('Y-m-d H:i:s',$this->attributes['pay_time']);
     }
+
 }

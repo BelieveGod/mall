@@ -9,12 +9,14 @@ use App\Model\ProductAttr;
 use App\Model\ProductAttrValue;
 use App\Model\ProductSku;
 use App\Model\ProductType;
+use Encore\Admin\Admin;
 use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -86,6 +88,10 @@ class ProductController extends Controller
     protected function grid()
     {
         $grid = new Grid(new Product);
+
+        $store_id = Auth::guard('admin')->user()->id;
+
+        $grid->model()->where('store_id',$store_id);
 
         $grid->product_id('ID');
         $grid->product_name('商品名称');
@@ -182,7 +188,9 @@ class ProductController extends Controller
                 2 => '最新',
                 3 => '推荐',
             ]);
-            $form->hidden('store_id', '商店id')->default('0');
+            $store_id = Auth::guard('admin')->user()->id;
+//            dd($store_id);
+            $form->hidden('store_id', '商店id')->default($store_id);
             $form->hidden('store_name', '商店名称')->default('0');
             $form->hidden('auditing', '审核')->default('1');
 

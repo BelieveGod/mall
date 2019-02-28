@@ -16,18 +16,21 @@ Route::group([
     $router->resource('categroy', CategoryController::class);//商品分类
     $router->resource('product_type', ProductTypeController::class);//商品类型表
     $router->resource('product',ProductController::class); //添加商品
-    $router->get('/api/showAttr' , 'ProductController@showAttr');
+    $router->resource('product_comment',ProductCommentController::class); //商品评论
+    $router->get('product_comment/eachproductcomment/{id}' , 'ProductCommentController@eachproductcomment');
+    $router->get('/api/showAttr' , 'ProductController@showAttr');//ajax请求获得商品属性
+    $router->get('/api/showaboutcomment' , 'ProductCommentController@showaboutcomment');
     //订单模块
     $router->resource('business_address' , BusinessAddressController::class);//发货地址
     $router->get('api/getregion' , 'RegionsController@getRegion');//选择地区联动
     $router->get('/api/map/{name}/{value?}','GaodeMapController@index');//高德地图
-    $router->resource('productform' , ProductFormController::class);
+    $router->resource('productform' , ProductFormController::class);//订单管理
 
     //商家及用户
-    $router->resource('store' , StoreController::class);
-    $router->resource('member' , MemberController::class);
-    $router->post('store/blacklist', 'StoreController@putblacklist');
-    $router->post('member/blacklist', 'MemberController@putblacklist');
+    $router->resource('store' , StoreController::class);//商家入驻管理
+    $router->resource('member' , MemberController::class);//商城用户管理
+    $router->post('store/blacklist', 'StoreController@putblacklist');//商家黑名单
+    $router->post('member/blacklist', 'MemberController@putblacklist');//用户黑名单管理
     $router->get('/store/blackliststorelist' , 'StoreController@blackliststorelist');
     $router->get('menmber/blackliststorelist' , 'MemberController@blacklistmemberlist');
 });

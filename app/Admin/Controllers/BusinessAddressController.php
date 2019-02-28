@@ -11,6 +11,7 @@ use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
 use http\Env\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BusinessAddressController extends Controller
 {
@@ -82,6 +83,9 @@ class BusinessAddressController extends Controller
     protected function grid()
     {
         $grid = new Grid(new BusinessAddress);
+
+        $store_id = Auth::guard('admin')->user()->id;
+        $grid->model()->where('store_id' , $store_id);
 
         $grid->business_address_id('ID');
         $grid->county('所属地区')->display(function ($id) {
@@ -171,7 +175,8 @@ class BusinessAddressController extends Controller
         ];
 
         $form->switch('status', '设为默认地址')->states($states);
-        $form->hidden('store_id', '店铺id')->default(0);
+        $store_id = Auth::guard('admin')->user()->id;
+        $form->hidden('store_id', '店铺id')->default($store_id);
 
         //去掉脚部按钮
         $form->footer(function ($footer) {

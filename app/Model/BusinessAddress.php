@@ -9,7 +9,7 @@ class BusinessAddress extends Common
 
     public static function findaddressbyid()
     {
-        return BusinessAddress::where('store_id' , 0)->pluck('address' , 'business_address_id')->toArray();
+        return BusinessAddress::pluck('address' , 'business_address_id')->toArray();
     }
 
 }

@@ -4,6 +4,7 @@ namespace App\Admin\Extensions\Form;
 
 use App\Model\BusinessAddress;
 use Encore\Admin\Form\Field;
+use Illuminate\Support\Facades\Auth;
 
 class BusinessAddressBtn extends Field
 {
@@ -16,7 +17,7 @@ class BusinessAddressBtn extends Field
 
     public function render()
     {
-        $store_id = 0;
+        $store_id = Auth::guard('admin')->user()->id;
         $address = BusinessAddress::where('store_id' , $store_id)->get()->toArray();
         parent::addVariables(['address'=>$address]);
 
