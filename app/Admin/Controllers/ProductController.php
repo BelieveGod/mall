@@ -37,21 +37,6 @@ class ProductController extends Controller
     }
 
     /**
-     * Show interface.
-     *
-     * @param mixed $id
-     * @param Content $content
-     * @return Content
-     */
-    public function show($id, Content $content)
-    {
-        return $content
-            ->header('Detail')
-            ->description('description')
-            ->body($this->detail($id));
-    }
-
-    /**
      * Edit interface.
      *
      * @param mixed $id
@@ -96,66 +81,29 @@ class ProductController extends Controller
         $grid->product_id('ID');
         $grid->product_name('商品名称');
         $grid->product_num('库存');
-//        $grid->product_explain('商品说明');
-//        $grid->type_id('商品类型');
-//        $grid->keyword('搜索关键词');
         $grid->prime_cost('商品原价');
         $grid->present_price('商品现价');
-//        $grid->store_id('商店ID');
-//        $grid->store_name('商店名称');
-//        $grid->category_id('分类id');
-//        $grid->category_name('分类名称');
-//        $grid->product_master_img('商品主图');
-//        $grid->product_detail('商品详情');
         $grid->product_freght('运费');
-//        $grid->auditing('审核');
         $isshhow = [
             'on'  => ['value' => 1, 'text' => '是', 'color' => 'primary'],
             'off' => ['value' => 0, 'text' => '否', 'color' => 'default'],
         ];
         $grid->is_show('是否显示')->switch($isshhow);
-        $grid->status('状态')->select([
-            1 => '热门',
-            2 => '最新',
-            3 => '推荐',
-        ]);
+//        $grid->status('状态')->select([
+//            1 => '热门',
+//            2 => '最新',
+//            3 => '推荐',
+//        ]);
 
         $grid->updated_at('更新时间');
         $grid->created_at('创建时间');
 
+        //去掉查看按钮
+        $grid->actions(function ($actions) {
+            $actions->disableView();
+        });
+
         return $grid;
-    }
-
-    /**
-     * Make a show builder.
-     *
-     * @param mixed $id
-     * @return Show
-     */
-    protected function detail($id)
-    {
-        $show = new Show(Product::findOrFail($id));
-
-        $show->product_id('Product id');
-        $show->product_name('Product name');
-        $show->product_num('Product num');
-        $show->product_explain('Product explain');
-        $show->type_id('Type id');
-        $show->keyword('Keyword');
-        $show->prime_cost('Prime cost');
-        $show->present_price('Present price');
-        $show->store_id('Store id');
-        $show->category_id('Category id');
-        $show->category_name('Category name');
-        $show->product_master_img('Product master img');
-        $show->status('Status');
-        $show->product_detail('Product detail');
-        $show->product_freght('Product freght');
-        $show->auditing('Auditing');
-        $show->deleted_at('Deleted at');
-        $show->updated_at('Updated at');
-
-        return $show;
     }
 
     /**
@@ -183,11 +131,11 @@ class ProductController extends Controller
                 'off' => ['value' => 0, 'text' => '否', 'color' => 'danger'],
             ];
             $form->switch('is_show','是否显示')->states($states);
-            $form->select('status','状态')->options([
-                1 => '热门',
-                2 => '最新',
-                3 => '推荐',
-            ]);
+//            $form->select('status','状态')->options([
+//                1 => '热门',
+//                2 => '最新',
+//                3 => '推荐',
+//            ]);
             $store_id = Auth::guard('admin')->user()->id;
 //            dd($store_id);
             $form->hidden('store_id', '商店id')->default($store_id);
@@ -223,8 +171,7 @@ class ProductController extends Controller
             $kucun = \request('kucun');
             $price = \request('price');
             $num = count($sku);
-            $temp = [];
-
+//            $temp = [];
 
             for($i = 0 ; $i<$num ; $i++){
 //                $data = [
@@ -244,14 +191,6 @@ class ProductController extends Controller
                ]);
                 $productsku->save();
             }
-
-//            ProductSku::insert($temp);
-//            var_dump($temp);
-//            var_dump($kucun);
-//            var_dump($sku);
-//            var_dump($sku_attr);
-//            dd();
-
         });
 
 
@@ -318,7 +257,6 @@ class ProductController extends Controller
                 $tmp['count'] = count($sku_val);
                 $data[] = $tmp;
             }
-
 //            var_dump($data);
 //            var_dump($data);
 //            dd();
@@ -328,6 +266,52 @@ class ProductController extends Controller
             return view('admin.form.attrlist',['attr'=>$list]);
         }
 
+    }
+
+    /**
+     * 管理员能见的列表管理
+     */
+    public function adminproductlidt(Content $content)
+    {
+        return $content
+            ->header('Index')
+            ->description('description')
+            ->body($this->adminproductgrid());
+    }
+    protected function adminproductgrid()
+    {
+        $grid = new Grid(new Product);
+
+        $store_id = Auth::guard('admin')->user()->id;
+
+        $grid->model()->where('store_id',$store_id);
+
+        $grid->product_id('ID');
+        $grid->product_name('商品名称');
+        $grid->product_num('库存');
+        $grid->prime_cost('商品原价');
+        $grid->present_price('商品现价');
+        $grid->product_freght('运费');
+        $isshhow = [
+            'on'  => ['value' => 1, 'text' => '是', 'color' => 'primary'],
+            'off' => ['value' => 0, 'text' => '否', 'color' => 'default'],
+        ];
+        $grid->is_show('是否显示')->switch($isshhow);
+        $grid->status('状态')->select([
+            1 => '热门',
+            2 => '最新',
+            3 => '推荐',
+        ]);
+
+        $grid->updated_at('更新时间');
+        $grid->created_at('创建时间');
+
+        //去掉查看按钮
+        $grid->actions(function ($actions) {
+            $actions->disableView();
+        });
+
+        return $grid;
     }
 
 }
