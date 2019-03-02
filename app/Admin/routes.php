@@ -19,7 +19,7 @@ Route::group([
     $router->resource('product_comment',ProductCommentController::class); //商品评论
     $router->get('product_comment/eachproductcomment/{id}' , 'ProductCommentController@eachproductcomment');//查看每条评论的详情
     $router->get('/api/showAttr' , 'ProductController@showAttr');//ajax请求获得商品属性
-    $router->any('adminproductlidt' , 'ProductController@adminproductlidt');//管理员查看所有店铺的商品
+    $router->resource('adminproductlidt' , AdminProductController::class);//管理员查看所有店铺的商品
     $router->get('/api/showaboutcomment' , 'ProductCommentController@showaboutcomment');
     //订单模块
     $router->resource('business_address' , BusinessAddressController::class);//发货地址

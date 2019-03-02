@@ -22,4 +22,10 @@ class Store extends Common
             self::APPLICATION_FAILED => '不通过'
         ];
     }
+
+    //通过商店id商店名称
+    public static function getStoreNameByStoreId()
+    {
+        return Store::pluck('store_name' , 'store_id')->toArray();
+    }
 }

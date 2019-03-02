@@ -302,9 +302,8 @@ class ProductController extends Controller
             2 => '最新',
             3 => '推荐',
         ]);
-
-        $grid->updated_at('更新时间');
         $grid->created_at('创建时间');
+        $grid->updated_at('更新时间');
 
         //去掉查看按钮
         $grid->actions(function ($actions) {
