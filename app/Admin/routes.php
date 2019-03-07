@@ -41,4 +41,6 @@ Route::group([
 
     //网站管理
     $router->resource('menu' , MenuController::class);//菜单栏管理
+    $router->resource('footer' , FooterController::class);//脚部信息管理
+    $router->resource('advertisement' , AdvertisementController::class);//广告图片管理，包括 幻灯片
 });

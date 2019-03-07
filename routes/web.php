@@ -14,3 +14,5 @@
 Route::get('/', function () {
     return view('welcome');
 });
+//首页
+Route::get('home_index' , 'IndexController@index');

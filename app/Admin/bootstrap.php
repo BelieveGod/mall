@@ -23,12 +23,14 @@ use App\Admin\Extensions\Form\Sku;
 use App\Admin\Extensions\Form\UEditor;
 use App\Admin\Extensions\Form\GaodeMap;
 use App\Admin\Extensions\Form\BusinessAddressBtn;
+use App\Admin\Extensions\Form\UploadImg;
 use Encore\Admin\Form;
 
 Encore\Admin\Form::forget(['map', 'editor']);
 
-Form::extend('attrvaluebtn', AttrValueBtn::class);
-Form::extend('sku', Sku::class);
-Form::extend('ueditor', UEditor::class);
-Form::extend('gaodemap' , GaodeMap::class);
-Form::extend('businessaddress' , BusinessAddressBtn::class);
+Form::extend('attrvaluebtn', AttrValueBtn::class);//类似一对多
+Form::extend('sku', Sku::class);//sku按钮
+Form::extend('ueditor', UEditor::class);//输入文本
+Form::extend('gaodemap' , GaodeMap::class);//接入高德地图
+Form::extend('businessaddress' , BusinessAddressBtn::class);//商家地址选择
+Form::extend('uploadImg' , UploadImg::class);//图片上传按钮
