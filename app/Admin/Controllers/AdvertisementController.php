@@ -150,6 +150,13 @@ class AdvertisementController extends Controller
             $footer->disableEditingCheck();
             $footer->disableCreatingCheck();
         });
+        //保存前回调
+        $form->savd(function(Form $form) {
+            $up = \request('up');
+            $ad_img = json_decode();
+            $ad = Advertisement::find($form->model()->ad_id);
+//            $ad->ad_img =
+        });
 
         return $form;
     }

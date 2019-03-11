@@ -11,7 +11,7 @@
     <script type="text/javascript" src="./js/home/slide.js"></script>
     <script src="./js/home/common_js.js" type="text/javascript"></script>
     <script src="./js/home/jquery.foucs.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="./css/home/font-awesome-ie7.min.css">
+    {{--<link rel="stylesheet" href="./css/home/font-awesome-ie7.min.css">--}}
     <title></title>
 </head>
 
@@ -45,7 +45,7 @@
             <div class="nav" id="Navigation">
                 <ul class="Navigation_name">
                     @foreach($menu as $value)
-                    <li class=""><a herf="#">{{$value->menu_name}}</a></li>
+                    <li class=""><a herf="">{{$value->menu_name}}</a></li>
                     @endforeach
                 </ul>
             </div>
@@ -65,6 +65,7 @@
                 <ul>
                     <li><a href="#" target="_blank"><img src="./image/test/1.jpg" /></a></li>
                     <li><a href="#" target="_blank"><img src="./image/test/2.jpg" /></a></li>
+                    <li><a href="#" target="_blank"><img src="./image/test/3.jpg" /></a></li>
                 </ul>
             </div>
             <a class="prev" href="javascript:void(0)"></a>
@@ -196,24 +197,24 @@
                 </div>
                 <ul class="">
                     <li class="advertising">
-                        <div class="AD1"><a href="#"><img src="" /></a></div>
-                        <div class="AD2"><a href="#"><img src="" /></a><a href="#"><img src="" /></a></div>
-                        <div class="AD3"><a href="#"><img src="" /></a></div>
+                        <div class="AD1"><a href="#"><img src="./image/test/2.jpg" /></a></div>
+                        <div class="AD2"><a href="#"><img src="./image/test/1.jpg" /></a><a href="#"><img src="./image/test/2.jpg" /></a></div>
+                        <div class="AD3"><a href="#"><img src="./image/test/2.jpg" /></a></div>
                     </li>
                     <li class="advertising">
-                        <div class="AD1"><a href="#"><img src="" /></a></div>
-                        <div class="AD2"><a href="#"><img src="" /></a><a href="#"><img src="" /></a></div>
-                        <div class="AD3"><a href="#"><img src="" /></a></div>
+                        <div class="AD1"><a href="#"><img src="./image/test/2.jpg" /></a></div>
+                        <div class="AD2"><a href="#"><img src="./image/test/2.jpg" /></a><a href="#"><img src="./image/test/1.jpg" /></a></div>
+                        <div class="AD3"><a href="#"><img src="./image/test/1.jpg" /></a></div>
                     </li>
                     <li class="advertising">
-                        <div class="AD1"><a href="#"><img src="" /></a></div>
-                        <div class="AD2"><a href="#"><img src="" /></a><a href="#"><img src="" /></a></div>
-                        <div class="AD3"><a href="#"><img src="" /></a></div>
+                        <div class="AD1"><a href="#"><img src="./image/test/2.jpg" /></a></div>
+                        <div class="AD2"><a href="#"><img src="./image/test/2.jpg" /></a><a href="#"><img src="./image/test/2.jpg" /></a></div>
+                        <div class="AD3"><a href="#"><img src="./image/test/2.jpg" /></a></div>
                     </li>
                     <li class="advertising">
-                        <div class="AD1"><a href="#"><img src="" /></a></div>
-                        <div class="AD2"><a href="#"><img src="" /></a><a href="#"><img src="" /></a></div>
-                        <div class="AD3"><a href="#"><img src="" /></a></div>
+                        <div class="AD1"><a href="#"><img src="./image/test/2.jpg" /></a></div>
+                        <div class="AD2"><a href="#"><img src="./image/test/2.jpg" /></a><a href="#"><img src="./image/test/2.jpg" /></a></div>
+                        <div class="AD3"><a href="#"><img src="./image/test/1.jpg" /></a></div>
                     </li>
                 </ul>
             </div>
@@ -228,7 +229,15 @@
             <div class="title_img"></div>
             <div class="title_link_name">
                 <a href="#">火龙果</a>
-                <a href="#">香蕉</a><a href="#">红心蜜柚</a><a href="#">柠檬</a><a href="#">火龙果</a><a href="#">猕猴桃</a><a href="#">红心蜜 </a><a href="#">柠檬火龙果</a><a href="#">西瓜 </a><a href="#">红心蜜柚</a>
+                <a href="#">香蕉</a>
+                <a href="#">红心蜜柚</a>
+                <a href="#">柠檬</a>
+                <a href="#">火龙果</a>
+                <a href="#">猕猴桃</a>
+                <a href="#">红心蜜 </a>
+                <a href="#">柠檬火龙果</a>
+                <a href="#">西瓜 </a>
+                <a href="#">红心蜜柚</a>
             </div>
         </div>
     </div> <!--幻灯片样式-->
@@ -261,7 +270,7 @@
                     </li>
                     <li class="hero">
                         <a href="#" target="_blank" title="第三张图的说明">
-                            <img src="./image/test/1.jpg" class="thumb" alt="" />
+                            <img src="./image/test/3.jpg" class="thumb" alt="" />
                         </a>
                         <div class="p_title_name">
                             <div class="p_recommend_info">
@@ -270,17 +279,17 @@
                             </div>
                         </div>
                     </li>
-                    <li class="hero">
-                        <a href="#" target="_blank" title="第4张图的说明">
-                            <img src="./image/test/2.jpg" class="thumb" alt="" />
-                        </a>
-                        <div class="p_title_name">
-                            <div class="p_recommend_info">
-                                <h3>南岭荔枝水嫩香甜礼盒装</h3>
-                                <p>新鲜包邮价：￥<b class="p_recommend_price">999</b>元</p>
-                            </div>
-                        </div>
-                    </li>
+                    {{--<li class="hero">--}}
+                        {{--<a href="#" target="_blank" title="第4张图的说明">--}}
+                            {{--<img src="./image/test/2.jpg" class="thumb" alt="" />--}}
+                        {{--</a>--}}
+                        {{--<div class="p_title_name">--}}
+                            {{--<div class="p_recommend_info">--}}
+                                {{--<h3>南岭荔枝水嫩香甜礼盒装</h3>--}}
+                                {{--<p>新鲜包邮价：￥<b class="p_recommend_price">999</b>元</p>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</li>--}}
                 </ul>
             </div>
             <div class="helper">

@@ -46,4 +46,5 @@ Route::group([
 
     //Api 图片上传
     $router->post('api/uploadImg' , 'UploadImgController@upload');
+    $router->get('api/deletedImg' , 'UploadImgController@deletedImg');
 });

@@ -5,6 +5,7 @@ namespace App\Admin\Controllers;
 use App\Admin\Extensions\Form\GaodeMap;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class UploadImgController extends Controller
 {
@@ -12,15 +13,22 @@ class UploadImgController extends Controller
         $file = request()->file('img');
 
         if($file->isValid()){
-//            $url_path = '/uploads/'.time();
             $clientName = $file->getClientOriginalName();
             $entension = $file->getClientOriginalExtension();
-            $newName = strtotime(date("Y-m-d")).'/'.md5(date("Y-m-d H:i:s") . $clientName) . "." . $entension;
+            $newName = strtotime(date("Y-m-d")).'/'.md5(date("Y-m-d H:i:s")) . "." . $entension;
             $filePath = $file->storeAs('uploadImg', $newName);
-//            $path = $file->move($url_path, $newName);
-//            $filePath = storage_path().'/app/'. $filePath;
-            $filePath = '/../storage/app/'. $filePath;
+            $filePath = '/../storage/'. $filePath;
             return $filePath;
         }
+    }
+
+    public function deletedImg(Request $request)
+    {
+        $filePath = $request->get('del');
+        $fileName = substr($filePath,12);
+        Storage::delete($fileName);
+//        var_dump($filePath);
+//        dd($filePath);
+        return '图片删除成功';
     }
 }
