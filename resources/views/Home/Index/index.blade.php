@@ -20,26 +20,26 @@
 <div class="top_header">
     <em class="left_img"></em>
     <div class="header clearfix" id="header">
-        <a href="#" class="logo_img"><img src="images/logo.png" /></a>
+        <a href="#" class="logo_img"><img src="./image/test/3.jpg" style="width: 375px;height: 95px"/></a>
         <div class="header_Section">
             <div class="shortcut">
                 <ul>
-                    <li  class="hd_menu_tit"><em class="login_img"></em><a href="#">登录</a></li>
-                    <li  class="hd_menu_tit"><em  class="registered_img"></em><a href="#">注册</a></li>
+                    <li  class="hd_menu_tit"><em class="login_img"></em><a href="/login">登录</a></li>
+                    <li  class="hd_menu_tit"><em  class="registered_img"></em><a href="/register">注册</a></li>
                     <li  class="hd_menu_tit"><em class="Collect_img"></em><a href="#">收藏夹</a></li>
                     <li  class="hd_menu_tit"><em class="cart_img"></em><a href="#">购物车（0）</a></li>
-                    <li  class="hd_menu_tit list_name" data-addclass="hd_menu_hover"><a href="#">网站导航</a><em class="navigation_img"></em>
+                    {{--<li  class="hd_menu_tit list_name" data-addclass="hd_menu_hover"><a href="#">网站导航</a><em class="navigation_img"></em>--}}
 
-                        <div class="hd_menu_list">
-                            <span class="wire"></span>
-                            <ul>
-                                <li><a href="#">常见问题</a></li>
-                                <li><a href="#">在线退换货</a></li>
-                                <li><a href="#">在线投诉</a></li>
-                                <li><a href="#">配送范围</a></li>
-                            </ul>
-                        </div>
-                    </li>
+                        {{--<div class="hd_menu_list">--}}
+                            {{--<span class="wire"></span>--}}
+                            {{--<ul>--}}
+                                {{--<li><a href="#">常见问题</a></li>--}}
+                                {{--<li><a href="#">在线退换货</a></li>--}}
+                                {{--<li><a href="#">在线投诉</a></li>--}}
+                                {{--<li><a href="#">配送范围</a></li>--}}
+                            {{--</ul>--}}
+                        {{--</div>--}}
+                    {{--</li>--}}
                 </ul>
             </div>
             <div class="nav" id="Navigation">
@@ -63,9 +63,9 @@
             </div>
             <div class="bd">
                 <ul>
-                    <li><a href="#" target="_blank"><img src="./image/test/1.jpg" /></a></li>
-                    <li><a href="#" target="_blank"><img src="./image/test/2.jpg" /></a></li>
-                    <li><a href="#" target="_blank"><img src="./image/test/3.jpg" /></a></li>
+                    @foreach($ad_st as $value)
+                    <li><a href="{{$value['http']}}" target="_blank"><img src="./uploads/{{$value['ad_img']}}" /></a></li>
+                    @endforeach
                 </ul>
             </div>
             <a class="prev" href="javascript:void(0)"></a>
@@ -93,86 +93,29 @@
             <script type="text/javascript" src="./js/home/slider.js"></script>
             <div id="center">
                 <div id="slider">
+                    @foreach($ad_nd as $value)
                     <div class="slide">
                         <a href="#" title="" target="_blank">
-                            <img class="diapo" border="0" src="./image/test/1.jpg" style="opacity: 1; visibility: visible;">
+                            <img class="diapo" border="0" src="./uploads/{{$value['ad_img']}}" style="opacity: 1; visibility: visible;">
                         </a>
                         <div class="backgroundText_name" >
                             <div class="product_info">
-                                <h2>杨千fa</h2>
-                                <h5>产地：</h5>
-                                <p>原价：<b>￥</b></p>
+                                <h2>{{$value['product']['product_name']}}</h2>
+                                <h5>产地：{{$value['product']['product_origin']}}</h5>
+                                <p>原价：<b>￥{{$value['product']['prime_cost']}}</b></p>
                             </div>
                             <div class="product_price">
                                 <a href="#" class="price_btn">
                                     <p class="left_title_p"></p>
-                                    <p class="zj_bf"><em>￥</em>29.90</p>
+                                    <p class="zj_bf"><em>￥</em>{{$value['product']['present_price']}}</p>
                                     <p class="right_buf"></p>
                                 </a>
                             </div>
                         </div>
                         <div class="text"></div>
                     </div>
-                    <div class="slide" >
-                        <a href="#" title="" target="_blank">
-                            <img class="diapo" border="0" src="./image/test/2.jpg" style="opacity: 0.7; visibility: visible;">
-                        </a>
-                        <div class="backgroundText_name" >
-                            <div class="product_info">
-                                <h2>陈医生</h2>
-                                <h5>产地：</h5>
-                                <p>原价：<b>￥</b></p>
-                            </div>
-                            <div class="product_price">
-                                <a href="#" class="price_btn">
-                                    <p class="left_title_p"></p>
-                                    <p class="zj_bf"><em>￥</em>29.90</p>
-                                    <p class="right_buf"></p>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="text"></div>
-                    </div>
-                    <div class="slide" >
-                        <a href="#" title="" target="_blank">
-                            <img class="diapo" border="0" src="./image/test/1.jpg" style="opacity: 0.7; visibility: visible;">
-                        </a>
-                        <div class="backgroundText_name" >
-                            <div class="product_info">
-                                <h2>杨千fa</h2>
-                                <h5>产地：</h5>
-                                <p>原价：<b>￥</b></p>
-                            </div>
-                            <div class="product_price">
-                                <a href="#" class="price_btn">
-                                    <p class="left_title_p"></p>
-                                    <p class="zj_bf"><em>￥</em>29.90</p>
-                                    <p class="right_buf"></p>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="text"></div>
-                    </div>
-                    <div class="slide">
-                        <a href="#" title="豪宅别墅设计" target="_blank">
-                            <img class="diapo" border="0" src="./image/test/2.jpg" style="opacity: 0.7; visibility: visible;">
-                        </a>
-                        <div class="backgroundText_name" >
-                            <div class="product_info">
-                                <h2>陈医生</h2>
-                                <h5>产地：</h5>
-                                <p>原价：<b>￥</b></p>
-                            </div>
-                            <div class="product_price">
-                                <a href="#" class="price_btn">
-                                    <p class="left_title_p"></p>
-                                    <p class="zj_bf"><em>￥</em>29.90</p>
-                                    <p class="right_buf"></p>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="text"></div>
-                    </div>
+                    @endforeach
+
                 </div>
             </div>
             <script type="text/javascript">
@@ -246,50 +189,19 @@
             <div class="title_img"></div>
             <div class="hero-wrap">
                 <ul class="heros clearfix">
+                    @foreach($ad_rd as $value)
                     <li class="hero">
-                        <a href="#" target="_blank" title="第一张图的说明">
-                            <img src="./image/test/1.jpg" class="thumb" alt="" />
+                        <a href="#" target="_blank" title="{{$value['dec']}}">
+                            <img src="./uploads/{{$value['ad_img']}}" class="thumb" alt="" />
                         </a>
                         <div class="p_title_name">
                             <div class="p_recommend_info">
-                                <h3>南岭荔枝水嫩香甜礼盒装</h3>
-                                <p>新鲜包邮价：￥<b class="p_recommend_price">999</b>元</p>
+                                <h3>{{$value['product']['product_name']}}</h3>
+                                <p>新鲜价：￥<b class="p_recommend_price">{{$value['product']['present_price']}}</b>元</p>
                             </div>
                         </div>
                     </li>
-                    <li class="hero">
-                        <a href="#" target="_blank" title="第二张图的说明">
-                            <img src="./image/test/2.jpg" class="thumb" alt="" />
-                        </a>
-                        <div class="p_title_name">
-                            <div class="p_recommend_info">
-                                <h3>南岭荔枝水嫩香甜礼盒装</h3>
-                                <p>新鲜包邮价：￥<b class="p_recommend_price">999</b>元</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="hero">
-                        <a href="#" target="_blank" title="第三张图的说明">
-                            <img src="./image/test/3.jpg" class="thumb" alt="" />
-                        </a>
-                        <div class="p_title_name">
-                            <div class="p_recommend_info">
-                                <h3>南岭荔枝水嫩香甜礼盒装</h3>
-                                <p>新鲜包邮价：￥<b class="p_recommend_price">999</b>元</p>
-                            </div>
-                        </div>
-                    </li>
-                    {{--<li class="hero">--}}
-                        {{--<a href="#" target="_blank" title="第4张图的说明">--}}
-                            {{--<img src="./image/test/2.jpg" class="thumb" alt="" />--}}
-                        {{--</a>--}}
-                        {{--<div class="p_title_name">--}}
-                            {{--<div class="p_recommend_info">--}}
-                                {{--<h3>南岭荔枝水嫩香甜礼盒装</h3>--}}
-                                {{--<p>新鲜包邮价：￥<b class="p_recommend_price">999</b>元</p>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</li>--}}
+                    @endforeach
                 </ul>
             </div>
             <div class="helper">

@@ -118,6 +118,7 @@ class ProductController extends Controller
 //        $form->tab('基本信息', function ($form) {
             $form->select('category_id' , '选择分类')->options(Category::parentsId());
             $form->text('product_name', '商品名称');
+            $form->text('product_origin' , '商品产地');
             $form->number('product_num', '商品库存');
             $form->text('product_explain', '商品说明');
             $form->text('keyword', '搜索关键词');

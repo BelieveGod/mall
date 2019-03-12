@@ -16,3 +16,6 @@ Route::get('/', function () {
 });
 //首页
 Route::get('home_index' , 'IndexController@index');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

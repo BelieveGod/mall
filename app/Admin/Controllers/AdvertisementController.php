@@ -67,14 +67,31 @@ class AdvertisementController extends Controller
     {
         $grid = new Grid(new Advertisement);
 
+        $grid->model()->orderBy('is_show','desc');
         $grid->ad_id('id');
-        $grid->ad_img('图片');
-        $grid->is_show('是否显示');
-        $grid->used('图片使用位置');
+        $grid->ad_img('图片')->gallery(['width' => 50, 'height' => 50]);
+        $grid->used('图片使用位置')->using(Advertisement::advertisementUsed());
+        $states = [
+            'on'  => ['value' => 1, 'text' => '是', 'color' => 'success'],
+            'off' => ['value' => 0, 'text' => '否', 'color' => 'danger'],
+        ];
+        $grid->is_show('是否显示')->switch($states);
+        $grid->sort('排序')->editable('text');
         $grid->dec('描述');
-        $grid->sort('排序');
         $grid->created_at('创建时间');
         $grid->updated_at('修改时间');
+
+        //删除多余的按钮
+        $grid->actions(function ($actions) {
+            $actions->disableView();
+        });
+        $grid->disableExport();
+
+        //搜索功能
+        $grid->filter(function($filter){
+            $filter->disableIdFilter();
+            $filter->equal('used', '图片使用位置')->select(Advertisement::advertisementUsed());
+        });
 
         return $grid;
     }
