@@ -30,21 +30,6 @@ class AdvertisementController extends Controller
     }
 
     /**
-     * Show interface.
-     *
-     * @param mixed $id
-     * @param Content $content
-     * @return Content
-     */
-    public function show($id, Content $content)
-    {
-        return $content
-            ->header('Detail')
-            ->description('description')
-            ->body($this->detail($id));
-    }
-
-    /**
      * Edit interface.
      *
      * @param mixed $id
@@ -82,47 +67,18 @@ class AdvertisementController extends Controller
     {
         $grid = new Grid(new Advertisement);
 
-        $grid->ad_id('Ad id');
-        $grid->ad_img('Ad img');
-        $grid->is_show('Is show');
-        $grid->used('Used');
-        $grid->dec('Dec');
-        $grid->title('Title');
-        $grid->old_price('Old price');
-        $grid->now_price('Now price');
-        $grid->sort('Sort');
-        $grid->created_at('Created at');
-        $grid->updated_at('Updated at');
-        $grid->deleted_at('Deleted at');
+        $grid->ad_id('id');
+        $grid->ad_img('图片');
+        $grid->is_show('是否显示');
+        $grid->used('图片使用位置');
+        $grid->dec('描述');
+        $grid->sort('排序');
+        $grid->created_at('创建时间');
+        $grid->updated_at('修改时间');
 
         return $grid;
     }
 
-    /**
-     * Make a show builder.
-     *
-     * @param mixed $id
-     * @return Show
-     */
-    protected function detail($id)
-    {
-        $show = new Show(Advertisement::findOrFail($id));
-
-        $show->ad_id('Ad id');
-        $show->ad_img('Ad img');
-        $show->is_show('Is show');
-        $show->used('Used');
-        $show->dec('Dec');
-        $show->title('Title');
-        $show->old_price('Old price');
-        $show->now_price('Now price');
-        $show->sort('Sort');
-        $show->created_at('Created at');
-        $show->updated_at('Updated at');
-        $show->deleted_at('Deleted at');
-
-        return $show;
-    }
 
     /**
      * Make a form builder.
@@ -132,8 +88,8 @@ class AdvertisementController extends Controller
     protected function form()
     {
         $form = new Form(new Advertisement);
-
-        $form->uploadImg('ad_img', '上传图片');
+        $form->image('ad_img' , '上传图片')->move('advertisement/images')
+            ->uniqueName()->removable();
         $form->text('dec', '图片描述');
         $states = [
             'on'  => ['value' => 1, 'text' => '是', 'color' => 'success'],
@@ -142,20 +98,13 @@ class AdvertisementController extends Controller
         $form->switch('is_show', '是否显示')->states($states);
         $form->text('sort', '排序')->help('数字越大排序越后');
         $form->select('used', '显示的位置')->options(Advertisement::advertisementUsed());
-        $form->select('product_id' , '对应商品')->options(Product::findProductNameById());
+        $form->select('product_id' , '对应商品')->options(Product::findProductNameById())->help('如果图片与商品无关，此项可以为空');
         //去掉脚部多余的按钮
         $form->footer(function ($footer) {
             $footer->disableReset();
             $footer->disableViewCheck();
             $footer->disableEditingCheck();
             $footer->disableCreatingCheck();
-        });
-        //保存前回调
-        $form->savd(function(Form $form) {
-            $up = \request('up');
-            $ad_img = json_decode();
-            $ad = Advertisement::find($form->model()->ad_id);
-//            $ad->ad_img =
         });
 
         return $form;
