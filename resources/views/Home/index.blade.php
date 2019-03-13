@@ -1,59 +1,6 @@
-<!DOCTYPE>
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="author" content="order by dede58.com"/>
-    <link href="./css/home/css.css" rel="stylesheet" type="text/css" />
-    <link href="./css/home/common.css" rel="stylesheet" type="text/css" />
-    <link href="./css/home/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <script src="./js/home/jquery.min.1.8.2.js" type="text/javascript"></script>
-    <script src="./js/home/jquery.SuperSlide.2.1.1.js" type="text/javascript"></script>
-    <script type="text/javascript" src="./js/home/slide.js"></script>
-    <script src="./js/home/common_js.js" type="text/javascript"></script>
-    <script src="./js/home/jquery.foucs.js" type="text/javascript"></script>
-    {{--<link rel="stylesheet" href="./css/home/font-awesome-ie7.min.css">--}}
-    <title></title>
-</head>
+@extends('Home.common')
 
-<body>
-<!--顶部样式-->
-<div class="top_header">
-    <em class="left_img"></em>
-    <div class="header clearfix" id="header">
-        <a href="#" class="logo_img"><img src="./image/test/3.jpg" style="width: 375px;height: 95px"/></a>
-        <div class="header_Section">
-            <div class="shortcut">
-                <ul>
-                    <li  class="hd_menu_tit"><em class="login_img"></em><a href="/login">登录</a></li>
-                    <li  class="hd_menu_tit"><em  class="registered_img"></em><a href="/register">注册</a></li>
-                    <li  class="hd_menu_tit"><em class="Collect_img"></em><a href="#">收藏夹</a></li>
-                    <li  class="hd_menu_tit"><em class="cart_img"></em><a href="#">购物车（0）</a></li>
-                    {{--<li  class="hd_menu_tit list_name" data-addclass="hd_menu_hover"><a href="#">网站导航</a><em class="navigation_img"></em>--}}
-
-                        {{--<div class="hd_menu_list">--}}
-                            {{--<span class="wire"></span>--}}
-                            {{--<ul>--}}
-                                {{--<li><a href="#">常见问题</a></li>--}}
-                                {{--<li><a href="#">在线退换货</a></li>--}}
-                                {{--<li><a href="#">在线投诉</a></li>--}}
-                                {{--<li><a href="#">配送范围</a></li>--}}
-                            {{--</ul>--}}
-                        {{--</div>--}}
-                    {{--</li>--}}
-                </ul>
-            </div>
-            <div class="nav" id="Navigation">
-                <ul class="Navigation_name">
-                    @foreach($menu as $value)
-                    <li class=""><a herf="">{{$value->menu_name}}</a></li>
-                    @endforeach
-                </ul>
-            </div>
-            <script>$("#Navigation").slide({titCell:".Navigation_name li"});</script>
-        </div>
-    </div>
-    <em class="right_img"></em>
-</div>
+@section('common')
 <!--幻灯片效果-->
 <div class="AD_bg_img">
     <div class="slider">
@@ -218,33 +165,6 @@
         $.foucs({ direction: 'right' });
     </script>
 </div>
-<!--底部样式-->
-<div class="footer">
-    <div class="footer_img_bg"></div>
-    <div class="footerbox">
-        <div class="footer_info">
-            <div class="footer_left">
-                <a href="#"><img src="" /></a>
-                <p class="erwm">
-                    <img src=""  width="80px" height="80px"/>
-                    <img src=""  width="80px" height="80px"/>
-                <p>
-            </div>
-            <div class="helper_right clearfix">
-                @foreach($footer as $value)
-                <dl>
-                    <dt><em class="guide"></em>{{$value['parents']}}</dt>
-                    @foreach($value['child'] as $val)
-                    <dd><a href="#">{{$val}}</a></dd>
-                    @endforeach
-                </dl>
-                @endforeach
-            </div>
-        </div>
-    </div>
-    <div class=" Copyright ">
+@endsection
 
-    </div>
-</div>
-</body>
-</html>
+

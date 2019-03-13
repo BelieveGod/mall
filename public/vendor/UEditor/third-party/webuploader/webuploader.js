@@ -4,7 +4,7 @@
 /**
  * @fileOverview 让内部各个部件的代码可以用[amd](https://github.com/amdjs/amdjs-api/wiki/AMD)模块定义方式组织起来。
  *
- * AMD API 内部的简单不完全实现，请忽略。只有当WebUploader被合并成一个文件的时候才会引入。
+ * AMD Api 内部的简单不完全实现，请忽略。只有当WebUploader被合并成一个文件的时候才会引入。
  */
 (function( root, factory ) {
     var modules = {},
@@ -1366,7 +1366,7 @@
         /**
          * @event dndAccept
          * @param {DataTransferItemList} items DataTransferItem
-         * @description 阻止此事件可以拒绝某些类型的文件拖入进来。目前只有 chrome 提供这样的 API，且只能通过 mime-type 验证。
+         * @description 阻止此事件可以拒绝某些类型的文件拖入进来。目前只有 chrome 提供这样的 Api，且只能通过 mime-type 验证。
          * @for  Uploader
          */
         return Uploader.register({

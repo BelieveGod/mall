@@ -107,6 +107,7 @@ class AdvertisementController extends Controller
         $form = new Form(new Advertisement);
         $form->image('ad_img' , '上传图片')->move('advertisement/images')
             ->uniqueName()->removable();
+//        $form->uploadImg('ad_img' , '上传图片');
         $form->text('dec', '图片描述');
         $states = [
             'on'  => ['value' => 1, 'text' => '是', 'color' => 'success'],

@@ -16,6 +16,8 @@ Route::get('/', function () {
 });
 //首页
 Route::get('home_index' , 'IndexController@index');
+//登陆
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
+//用户信息
+Route::get('userInfo' , 'UserInfoController@index');
