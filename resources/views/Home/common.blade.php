@@ -74,6 +74,9 @@
                         $('#Navigation').find('.on').removeClass('on');
                         $(this).addClass('on');
                     });
+                    $(this).on('mouseout' , function () {
+                        $('#Navigation').find('.on').removeClass('on');
+                    });
                 });
             </script>
         </div>

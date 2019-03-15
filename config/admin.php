@@ -50,7 +50,7 @@ return [
 
         'prefix' => 'admin',
 
-        'namespace' => 'App\\Admin\\Controller',
+        'namespace' => 'App\\Admin\\Controllers',
 
         'middleware' => ['web', 'admin'],
     ],

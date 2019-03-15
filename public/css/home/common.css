@@ -135,7 +135,7 @@ li:after{
 /************************************菜单栏样式属性**********************************/
 .nav{ margin-top:10px;}
 .nav .Navigation_name{}
-.nav .Navigation_name li{ float:left; padding:0px 28px; height:80px; line-height:40px;}
+.nav .Navigation_name li{ float:left; padding:0px 28px; height:45px; line-height:40px;}
 .nav .Navigation_name li.on{ background: #85c12e; border-top:5px solid #F90; line-height:32px;}
 .nav .Navigation_name li.on a{ color:#FFF}
 .nav .Navigation_name li a{ font-size:14px; color:#999; cursor:pointer}

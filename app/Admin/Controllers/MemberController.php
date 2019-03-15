@@ -5,6 +5,7 @@ namespace App\Admin\Controllers;
 use App\Admin\Extensions\Tools\BlacklistMember;
 use App\Model\Member;
 use App\Http\Controllers\Controller;
+use App\User;
 use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -40,26 +41,15 @@ class MemberController extends Controller
      */
     public function show($id, Content $content)
     {
+        $member_id = Member::where('users_id' , $id)->value('member_id');
         return $content
             ->header('Detail')
             ->description('description')
-            ->body($this->detail($id));
+            ->body($this->detail($member_id));
+
+
     }
 
-    /**
-     * Edit interface.
-     *
-     * @param mixed $id
-     * @param Content $content
-     * @return Content
-     */
-//    public function edit($id, Content $content)
-//    {
-//        return $content
-//            ->header('Edit')
-//            ->description('description')
-//            ->body($this->form()->edit($id));
-//    }
 
     /**
      * Create interface.
@@ -82,27 +72,39 @@ class MemberController extends Controller
      */
     protected function grid()
     {
-        $grid = new Grid(new Member);
+        $grid = new Grid(new User);
 
-        $grid->model()->where('blacklist','!=',1);
+        //SELECT * FROM mall_users as a LEFT JOIN mall_member as b on a.id = b.users_id
+        $grid->model()->leftJoin('member','member.users_id','=','users.id')
+            ->select(['name','member_pic','member_name','id','vip','member_sex','email','blacklist']);
 
-        $grid->member_id('用户ID');
-        $grid->member_nickname('用户昵称');
-        $grid->member_name('真实姓名');
+        $grid->id('用户ID');
+        $grid->name('用户昵称');
+        $grid->email('注册邮箱');
+        $grid->member_pic('头像')->display(function ($pic) {
+            if($pic){
+                return '<img src="/../storage/'.$pic.'" width="30px" height="30px"  />';
+            }
+        });
         $grid->member_sex('性别')->using(Member::getMemberSexList());
         $states = [
             'on'  => ['value' => 1, 'text' => '是', 'color' => 'primary'],
             'off' => ['value' => 0, 'text' => '否', 'color' => 'default'],
         ];
         $grid->vip('会员')->switch($states);
-        $grid->created_at('注册时间');
-        $grid->updated_at('更新时间');
+//        $grid->created_at('注册时间');
+//        $grid->updated_at('更新时间');
 
+        //去掉多余的按钮
+        $grid->disableCreateButton();
         $grid->actions(function ($actions) {
             $actions->disableDelete();
             $actions->disableEdit();
             $actions->disableView();
-            $actions->prepend('<a href="/admin/member/'.$actions->getKey().'"><span class="label label-info">查看详情</span></a>');
+            $member = Member::where('users_id' , $actions->getKey())->value('member_id');
+            if($member){
+                $actions->prepend('<a href="/admin/member/'.$actions->getKey().'"><span class="label label-info">查看详情</span></a>');
+            }
         });
 
         $grid->tools(function ($tools) {
@@ -110,9 +112,6 @@ class MemberController extends Controller
                 $batch->add('关进小黑屋', new BlacklistMember(1));
             });
         });
-
-
-
         return $grid;
     }
 
@@ -126,22 +125,24 @@ class MemberController extends Controller
     {
         $show = new Show(Member::findOrFail($id));
 
-        $show->member_id('用户ID');
-        $show->member_nickname('用户昵称');
+//        $show->member_id('用户ID');
+//        $show->member_nickname('用户昵称');
         $show->member_name('真实姓名');
         $show->member_tel('联系电话');
-        $show->member_email('邮箱');
+//        $show->member_email('邮箱');
 //        $show->member_password('Member password');
         $show->member_pic('头像')->unescape()->as(function ($pic) {
             if($pic){
-                return '<img src="/uploads/'.$pic.'" />';
+                return '<img src="/../storage/'.$pic.'" />';
             }else{
                 return '还没有上传头像！';
             }
 
         });
         $show->member_sex('性别')->using(Member::getMemberSexList());
-        $show->member_birth('生日');
+        $show->member_birth('生日')->as(function ($birth){
+            return date('Y-m-d' , $birth);
+        });
         $show->created_at('注册时间');
         $show->updated_at('更新时间');
 

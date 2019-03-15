@@ -18,5 +18,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 //用户个人详细信息
-Route::post('/up_user_info' , 'UserInfoController@upUserInfo');
-Route::post('/uploadImg' , 'UserInfoController@uploadImg');
+Route::post('/up_user_info' , 'UserInfoController@upUserInfo');//个人信息
+Route::post('/uploadImg' , 'UserInfoController@uploadImg');//图片上传
+Route::post('/postReset' , 'UserInfoController@postReset');//修改密码

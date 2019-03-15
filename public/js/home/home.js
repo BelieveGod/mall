@@ -13,11 +13,8 @@ function uploadImg(obj)
         processData : false,
         contentType : false,
         success : function(response){
-            var html = '<input type="hidden" value="'+response+'" name="upload_img">';
-            $('#uploadImg').children().remove();
-            $('#uploadImg').append(html);
+            $('#uploadImgPath').val(response);
             $(obj).parent().find('img').attr('src',response);
-            // console.log(response);
         },
         error : function(){ }
     });
