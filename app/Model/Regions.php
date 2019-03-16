@@ -43,4 +43,16 @@ class Regions extends Model
         }
         return $str;
     }
+
+    //只找东莞的镇区
+    public static function findDongGuan()
+    {
+        $pid = 441;
+        return Regions::where('parent_id' , $pid)->pluck('region_name' , 'region_id')->toArray();
+    }
+    //根据id找某个名字
+    public static function finNameById($id)
+    {
+        return Regions::where('region_id' , $id)->value('region_name');
+    }
 }

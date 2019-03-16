@@ -6,6 +6,7 @@ namespace App\Api\Controllers;
 use App\Model\Member;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Validator;
 
 class UserInfoController
@@ -50,7 +51,7 @@ class UserInfoController
         }
     }
 
-    //重置密码
+    //todo 重置密码
     public function postReset(Request $request)
     {
         $oldPassword = $request->input('oldPassword');
@@ -67,11 +68,11 @@ class UserInfoController
         ];
         $validator = \Illuminate\Support\Facades\Validator::make($data, $rules, $messages);
         $user = Auth::user();
-//        $validator->after(function($validator) use ($oldPassword, $user) {
-//            if (!\Hash::check($oldPassword, $user->password)) {
-//                $validator->errors()->add('oldPassword', '原密码错误');
-//            }
-//        });
+        $validator->after(function($validator) use ($oldPassword, $user) {
+            if (!\Hash::check($oldPassword, $user->password)) {
+                $validator->errors()->add('oldPassword', '原密码错误');
+            }
+        });
         if ($validator->fails()) {
             return back()->withErrors($validator);  //返回一次性错误
         }

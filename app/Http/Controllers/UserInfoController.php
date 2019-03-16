@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Model\Advertisement;
 use App\Model\Member;
+use App\Model\Regions;
+use App\Model\UserAddress;
 use Illuminate\Support\Facades\Auth;
 
 class UserInfoController extends HomeController
@@ -22,5 +24,23 @@ class UserInfoController extends HomeController
     public function resetPassword()
     {
         return view('Home.resetPassword',['userInfo'=>$this->userInfo()]);
+    }
+    //我的积分
+    public  function userIntegral()
+    {
+        return view('Home.userIntegral',['userInfo'=>$this->userInfo()]);
+    }
+    //收货地址
+    public function userAddress()
+    {
+        $address = Regions::findDongGuan();
+        $addlist = UserAddress::where('user_id' , Auth::user()->id)->get()->toArray();
+        $list = [];
+        foreach ($addlist as $value)
+        {
+            $value['region'] = Regions::finNameById($value['region']);
+            $list[] = $value;
+        }
+        return view('Home.userAddress' , ['userInfo'=>$this->userInfo(),'address'=>$address,'list'=>$list]);
     }
 }

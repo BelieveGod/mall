@@ -21,3 +21,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('/up_user_info' , 'UserInfoController@upUserInfo');//个人信息
 Route::post('/uploadImg' , 'UserInfoController@uploadImg');//图片上传
 Route::post('/postReset' , 'UserInfoController@postReset');//修改密码
+Route::post('/addAddress' , 'UserAddressController@addAddress');//添加地址
