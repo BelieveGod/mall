@@ -1,16 +1,17 @@
 <!DOCTYPE>
 <html>
 <head>
+    {{--{{asset('/resources/assets/home/css/css/bootstrap.css')}}--}}
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="author" content="order by dede58.com"/>
-    <link href="./css/home/css.css" rel="stylesheet" type="text/css" />
-    <link href="./css/home/common.css" rel="stylesheet" type="text/css" />
-    <link href="./css/home/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <script src="./js/home/jquery.min.1.8.2.js" type="text/javascript"></script>
-    <script src="./js/home/jquery.SuperSlide.2.1.1.js" type="text/javascript"></script>
-    <script type="text/javascript" src="./js/home/slider.js"></script>
-    <script src="./js/home/common_js.js" type="text/javascript"></script>
-    <script src="./js/home/jquery.foucs.js" type="text/javascript"></script>
+    <link href="/css/home/css.css" rel="stylesheet" type="text/css" />
+    <link href="/css/home/common.css" rel="stylesheet" type="text/css" />
+    <link href="/css/home/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <script src="/js/home/jquery.min.1.8.2.js" type="text/javascript"></script>
+    <script src="/js/home/jquery.SuperSlide.2.1.1.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/js/home/slider.js"></script>
+    <script src="/js/home/common_js.js" type="text/javascript"></script>
+    <script src="/js/home/jquery.foucs.js" type="text/javascript"></script>
     {{--<link rel="stylesheet" href="./css/home/font-awesome-ie7.min.css">--}}
     <title></title>
 </head>
@@ -42,7 +43,7 @@
 
                     @endguest
                     <li  class="hd_menu_tit"><em class="Collect_img"></em><a href="#">收藏夹</a></li>
-                    <li  class="hd_menu_tit"><em class="cart_img"></em><a href="#">购物车（0）</a></li>
+                    <li  class="hd_menu_tit"><em class="cart_img"></em><a href="/shoppingCart">购物车（0）</a></li>
                     {{--<li  class="hd_menu_tit list_name" data-addclass="hd_menu_hover"><a href="#">网站导航</a><em class="navigation_img"></em>--}}
 
                     {{--<div class="hd_menu_list">--}}
@@ -60,7 +61,7 @@
             <div class="nav" id="Navigation">
                 <ul class="Navigation_name">
                     <li class=""><a href="/home_index">首页</a></li>
-                    <li class=""><a href="">所有商品</a></li>
+                    <li class=""><a href="/productList">所有商品</a></li>
                     <li class=""><a href="">活动专区</a></li>
                     <li class=""><a href="">文章话题</a></li>
                     <li class=""><a href="/userInfo">会员中心</a></li>

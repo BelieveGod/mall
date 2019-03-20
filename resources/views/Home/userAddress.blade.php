@@ -12,33 +12,33 @@
                     <ul>
                         <li>
                             <label class="user_title_name">收件人姓名：</label>
-                            <input name="name" type="text" class="add_text">
+                            <input name="name" type="text" class="add_text" value="{{isset($user_address['name'])?$user_address['name']:null}}">
                         </li>
                         <li>
                             <label class="user_title_name">手 机 号：</label>
-                            <input name="tell" type="text" class="add_text">
+                            <input name="tell" type="text" class="add_text" value="{{isset($user_address['tell'])?$user_address['tell']:null}}">
                         </li>
                         <li>
                             <label class="user_title_name">镇&nbsp;&nbsp;区：</label>
                             <select style="" class="add_text" name="region">
                                 <option>请选择</option>
                                 @foreach($address as $key=>$value)
-                                    <option value="{{$key}}">{{$value}}</option>
+                                    <option value="{{$key}}" {{isset($user_address['region'])&&$user_address['region']==$key?'selected':null}}>{{$value}}</option>
                                 @endforeach
                             </select>
                         </li>
                         <li>
                             <label class="user_title_name">详细地址：</label>
-                            <input name="address" type="text" class="add_text">
+                            <input name="address" type="text" class="add_text" value="{{isset($user_address['address'])?$user_address['address']:null}}" >
                         </li>
                         <li>
                             <label class="user_title_name">设默认地址：</label>
-                            <input type="checkbox" id="chk" name="status">
+                            <input type="checkbox" id="chk" name="status" {{isset($user_address['status'])&&$user_address['status']==1?'checked':null}}>
                             <label for="chk"></label>
                         </li>
                     </ul>
                     <input type="hidden" value="{{Auth::user()->id}}" name="user_id"/>
-                    <input type="hidden" value="{{isset($list['id'])?$list['id']:null}}" name="id"/>
+                    <input type="hidden" value="{{isset($user_address['user_address_id'])?$user_address['user_address_id']:null}}" name="id"/>
                     <div class="operating_btn">
                         <button name="up" type="submit" class="submit—btn">确&nbsp;&nbsp;&nbsp;定</button>
                     </div>
@@ -46,6 +46,7 @@
             </form>
         </div>
         <!--地址列表-->
+        @if(!$user_address)
         <div class="Address_List">
             <div class="title_name"><span class="name">用户地址列表</span></div>
             <div class="list">
@@ -64,17 +65,19 @@
                         <td>{{$value['region']}}</td>
                         <td>{{$value['tell']}}</td>
                         <td>{{$value['address']}}</td>
+                        <td style="color: #F60;">
+                            {{$value['status']==1?'默认':null}}
+                        </td>
                         <td>
-                            <input type="checkbox"  name="status" {{$value['status']==1?'checked':null}}>
-                            <label for="chk"></label></td>
-                        <td><a href="#">修改</a><a href="#">删除</a></td>
+                            <a href="userAddress/{{$value['user_address_id']}}">修改</a>
+                            <a href="/api/deletedAddress/{{$value['user_address_id']}}">删除</a>
+                        </td>
                     </tr>
                     @endforeach
-
-
                 </table>
             </div>
         </div>
+        @endif
     </div>
 </div>
 @endsection
