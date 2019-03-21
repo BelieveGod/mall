@@ -480,6 +480,7 @@
 .user .user_left .Section li a:hover{ color:#FFF; background:#ff7a22}
 .user .user_left .Section li em{ display:block; width:5px; height:20px; background:#ddd; float:left; margin-left:20px; margin-top:15px; margin-right:30px}
 .user .user_right{ width:950px; float:left;}
+.user .call_user_right{ width:950px; margin: 50px auto;}
 .user .user_Borders{ border:1px solid #ddd;} 
 .user .user_Borders .title_name,
 .Address_List .title_name{ height:45px; line-height:45px; border-bottom:1px solid #ddd;}
@@ -487,6 +488,7 @@
 .Address_List .title_name .name{ padding:10px 10px; border-bottom:3px solid #ff7a22; font-size:16px; margin-left:20px}
 .user .about_user_info{ font-family:"新宋体"; margin-top:20px; margin-bottom:50px;}
 .user .about_user_info .user_layout{ width:500px; margin:0 auto}
+.user .about_user_info .call_user_layout{ margin-left: 30px}
 .user .about_user_info li{ height:40px; margin-bottom:20px; position:relative}
 .user .about_user_info li .add_text{ height:34px; border:1px solid #ddd; padding:0px 10px;; width:270px;}
 .user .about_user_info .user_title_name{ color:#666; float:left; width:80px; line-height:34px;}
@@ -652,3 +654,5 @@
 /********************************************************************************************************/
 /*#chkList tr input {display: none;}*/
 /*#chkList tr input + label {position: relative;display: inline-block;width: 60px;height: 20px;border-radius: 10px;background-color: #bbb;}*/
+
+/********************************************************************************************************/

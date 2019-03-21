@@ -40,7 +40,7 @@
             </form>
         </div>
 
-        <div class="login_img"><img src="./image/test/4.jpg"  style="width: 600px;height: 442px;"/></div>
+        <div class="login_img"><img src="/image/home/login_img.png"  style="width: 600px;height: 442px;"/></div>
     </div>
 </div>
 @endsection

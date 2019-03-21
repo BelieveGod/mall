@@ -53,7 +53,7 @@
             </div>
             </form>
         </div>
-        <div class="register_img"><img src="./image/test/4.jpg" style="width:650px ;height: 452px;"/></div>
+        <div class="register_img"><img src="/image/home/Register_img.png" style="width:650px ;height: 452px;"/></div>
     </div>
 </div>
 {{--<div class="container">--}}

@@ -31,5 +31,12 @@ Route::get('userAddress/{id?}' , 'UserInfoController@userAddress');//收货地�
 Route::get('shoppingCart' , 'ShoppingCartController@index');
 
 //商品列表
-Route::get('productList' , 'ProductListController@index');
+Route::get('product' , 'ProductController@index');//所有商品
+Route::get('productList' , 'ProductListController@index');//商品详情
+
+//活动中心
+Route::get('groupBuy' , 'GroupBuyController@index');//商品详情
+
+//联系我们
+Route::get('callAboutUs' , 'CallAboutUsController@index');//商品详情
 

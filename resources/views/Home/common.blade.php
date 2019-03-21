@@ -42,7 +42,7 @@
                         </li>
 
                     @endguest
-                    <li  class="hd_menu_tit"><em class="Collect_img"></em><a href="#">收藏夹</a></li>
+                    <li  class="hd_menu_tit"><em class="Collect_img"></em><a href="/userCollect">收藏夹</a></li>
                     <li  class="hd_menu_tit"><em class="cart_img"></em><a href="/shoppingCart">购物车（0）</a></li>
                     {{--<li  class="hd_menu_tit list_name" data-addclass="hd_menu_hover"><a href="#">网站导航</a><em class="navigation_img"></em>--}}
 
@@ -61,11 +61,11 @@
             <div class="nav" id="Navigation">
                 <ul class="Navigation_name">
                     <li class=""><a href="/home_index">首页</a></li>
-                    <li class=""><a href="/productList">所有商品</a></li>
-                    <li class=""><a href="">活动专区</a></li>
+                    <li class=""><a href="/product">所有商品</a></li>
+                    <li class=""><a href="/groupBuy">活动专区</a></li>
                     <li class=""><a href="">文章话题</a></li>
                     <li class=""><a href="/userInfo">会员中心</a></li>
-                    <li class=""><a href="">联系我们</a></li>
+                    <li class=""><a href="/callAboutUs">联系我们</a></li>
                 </ul>
             </div>
             <script>

@@ -50,6 +50,7 @@ li:after{
 	line-height: 0;
 }
 .top,.header, .mian ,#user,.Menu_style,.footerbox, .Inside_pages,.user_style{max-width: 1280px; margin:0 auto;}
+.top,.header, .mian ,#user,.Menu_style,.footerbox, .call_Inside_pages,.user_style{margin:0 auto;}
 .Narrow{ width:1000px; margin:0 auto}
 .Bread_crumbs{ background-color:#f1f1f1; height:50px; line-height:50px; font-size:14px; color:#999; }
 .Search{position:relative;}
