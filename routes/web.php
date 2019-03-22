@@ -38,5 +38,6 @@ Route::get('productList' , 'ProductListController@index');//商品详情
 Route::get('groupBuy' , 'GroupBuyController@index');//商品详情
 
 //联系我们
-Route::get('callAboutUs' , 'CallAboutUsController@index');//商品详情
+Route::get('callAboutUs' , 'CallAboutUsController@index');//联系我们
+Route::get('mySuggest' , 'CallAboutUsController@mySuggest');//我的建议
 

@@ -6,7 +6,7 @@
                 onchange="addAttrName()" id="typeId" >
             <option value=""></option>
             @foreach ($type as $val)
-                <option value="{{$val['type_id']}}" {{ $val['type_id'] == old($column, $value) ?'selected':'' }}>{{$val['type_name']}}</option>
+                <option value="{{$val['type_id']}}"  {{ $val['type_id'] == old($column, $value) ?'selected':'' }}>{{$val['type_name']}}</option>
             @endforeach
         </select>
     </div>
@@ -19,7 +19,7 @@
         var checked = $('#typeId').find('option:selected').text();
         var checked_id = $('#typeId').find('option:selected').val();
         var data = {};
-        // console.log(type_id);
+        console.log(checked_id);
         if(checked){
             var product_id = "{{$product_id}}";
             data.type_id = checked_id;

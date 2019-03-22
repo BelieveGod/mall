@@ -23,3 +23,6 @@ Route::post('/uploadImg' , 'UserInfoController@uploadImg');//图片上传
 Route::post('/postReset' , 'UserInfoController@postReset');//修改密码
 Route::post('/addAddress' , 'UserAddressController@addAddress');//添加地址
 Route::get('/deletedAddress/{id}' , 'UserAddressController@deletedUserAddress');//删除地址
+
+//联系我们
+Route::post('/upSuggest' , 'SuggestController@upSuggest');//意见反馈

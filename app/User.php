@@ -26,4 +26,10 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    //根据user_id获取用户名字
+    public static function findNameByUserId()
+    {
+        return User::pluck('name' , 'id')->toArray();
+    }
 }

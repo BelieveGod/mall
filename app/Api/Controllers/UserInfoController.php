@@ -7,7 +7,10 @@ use App\Model\Member;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Validator;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
+
 
 class UserInfoController
 {
@@ -54,31 +57,44 @@ class UserInfoController
     //todo 重置密码
     public function postReset(Request $request)
     {
-        $oldPassword = $request->input('oldPassword');
+        $oldPassword = $request->input('oldpassword');
         $password = $request->input('password');
         $data = $request->all();
+        $credentials = $request->only(['oldpassword', 'password']);
         $rules = [
-            'oldPassword'=>'required|between:6,20',
-            'password'=>'required|between:6,20|confirmed',
+//            'oldPassword'=>'required|between:6,20',
+//            'password'=>'required|between:6,20|confirmed',
+            'oldpassword'=>'required',
+            'password'=>'required',
         ];
         $messages = [
-            'required' => '密码不能为空',
+            'oldPassword.required' => '密码不能为空',
             'between' => '密码必须是6~20位之间',
-            'confirmed' => '新密码和确认密码不匹配'
+            'password.confirmed' => '新密码和确认密码不匹配'
         ];
-        $validator = \Illuminate\Support\Facades\Validator::make($data, $rules, $messages);
-        $user = Auth::user();
-        $validator->after(function($validator) use ($oldPassword, $user) {
-            if (!\Hash::check($oldPassword, $user->password)) {
-                $validator->errors()->add('oldPassword', '原密码错误');
-            }
-        });
+        $validator = Validator::make($credentials, $rules);
+//        if($validator->fails()){
+//            return Redirect::back()->withErrors($validator)->withInput(Input::get());
+//        }
+//        $user = Auth::user();
+//        $validator->after(function($validator) use ($oldPassword, $user) {
+//            if (!Hash::check($oldPassword, $user->password)) {
+//                $validator->errors()->add('oldpassword', '原密码错误');
+//            }
+//        });
+//        if ($validator->fails()) {
+//            return back()->withErrors($validator);
+//        }
         if ($validator->fails()) {
-            return back()->withErrors($validator);  //返回一次性错误
+//            $errors = $validator->errors()->getMessages();
+//            dd($errors);
+            return back()->withErrors($validator)->withInput();
         }
-        $user->password = bcrypt($password);
-        $user->save();
-        Auth::logout();  //更改完这次密码后，退出这个用户
-        return redirect('/');
+
+
+        echo '111';
+//        $user->password = bcrypt($password);
+//        $user->save();
+//        return redirect( '/userInfo');
     }
 }

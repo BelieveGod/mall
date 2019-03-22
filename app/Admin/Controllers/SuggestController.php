@@ -4,6 +4,7 @@ namespace App\Admin\Controllers;
 
 use App\Model\Suggest;
 use App\Http\Controllers\Controller;
+use App\User;
 use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Facades\Admin;
 use Encore\Admin\Form;
@@ -60,8 +61,8 @@ class SuggestController extends Controller
         $grid = new Grid(new Suggest);
 
         $grid->suggest_id('id');
-        $grid->used_name('反馈用户');
-        $grid->suggest_type('反馈类型');
+        $grid->user_id('反馈用户')->using(User::findNameByUserId());
+        $grid->suggest_type('反馈类型')->using(Suggest::suggestType());
         $grid->suggest_attr('反馈分类');
         $grid->created_at('创建时间');
 
@@ -89,12 +90,10 @@ class SuggestController extends Controller
         $show = new Show(Suggest::findOrFail($id));
 
         $show->suggest_id('id');
-        $show->suggest_type('反馈类型');
+        $show->suggest_type('反馈类型')->using(Suggest::suggestType());
         $show->suggest_attr('反馈分类');
         $show->text('反馈内容');
-        $show->suggest_pic('反馈图片');
-        $show->used_id('用户id');
-        $show->used_name('用户名称');
+        $show->user_id('用户名称')->using(User::findNameByUserId());
         $show->created_at('反馈时间');
 //        $show->updated_at('Updated at');
 //        $show->deleted_at('Deleted at');

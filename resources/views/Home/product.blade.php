@@ -21,9 +21,9 @@
             <div class="title_name"><a href="/productList"><img src="/image/home/sg_pro_img_12.png" /></a></div>
             <div class="title_info">
                 <p class="title_x_name">[健康水果小知识]</p>
-                <p class="x_info">水果是指多汁且大多数有甜味可直接生吃的植物果实，不但含有丰富的营养且能够帮助消化。水果是对部分可以食用的植物果实和种子的统称。水果有降血压、减缓衰老、减肥瘦身、皮肤保养、 明目、抗癌、降低胆固醇补充维生素等保健作用。</p>
+                <p class="x_info"></p>
             </div>
-            <div class="title_img"><img src="/image/home/sg_pro_img_17.png" /></div>
+            {{--<div class="title_img"><img src="/image/home/sg_pro_img_17.png" /></div>--}}
         </div>
         <div class="list_style">
             <ul class="clearfix">

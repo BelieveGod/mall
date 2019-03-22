@@ -13,12 +13,12 @@ class Sku extends Field
 
 
     protected static $css = [
-        'http://mall.org/css/admin/form/attrname.css',
+        '/css/admin/form/attrname.css',
     ];
 //
     protected static $js = [
-        './js/admin/form/sku.js',
-        './js/admin/form/labelauty.js',
+        '/js/admin/form/sku.js',
+        '/js/admin/form/labelauty.js',
     ];
 
     public function render()

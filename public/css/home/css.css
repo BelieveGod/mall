@@ -487,6 +487,8 @@
 .user .user_Borders .title_name .name,
 .Address_List .title_name .name{ padding:10px 10px; border-bottom:3px solid #ff7a22; font-size:16px; margin-left:20px}
 .user .about_user_info{ font-family:"新宋体"; margin-top:20px; margin-bottom:50px;}
+.user .call_about_user_info{ font-family:"新宋体"; margin-top:20px; margin-bottom:50px;}
+.user .call_about_user_info li{ margin-bottom:20px; position:relative}
 .user .about_user_info .user_layout{ width:500px; margin:0 auto}
 .user .about_user_info .call_user_layout{ margin-left: 30px}
 .user .about_user_info li{ height:40px; margin-bottom:20px; position:relative}
