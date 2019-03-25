@@ -72,7 +72,7 @@ class UserInfoController
             'between' => '密码必须是6~20位之间',
             'password.confirmed' => '新密码和确认密码不匹配'
         ];
-        $validator = Validator::make($credentials, $rules);
+        $validator = Validator::make($credentials, $rules)->validate();
 //        if($validator->fails()){
 //            return Redirect::back()->withErrors($validator)->withInput(Input::get());
 //        }
