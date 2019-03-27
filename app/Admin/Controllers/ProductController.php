@@ -115,13 +115,13 @@ class ProductController extends Controller
     {
         $form = new Form(new Product);
 
-//        $form->tab('基本信息', function ($form) {
             $form->select('category_id' , '选择分类')->options(Category::parentsId());
             $form->text('product_name', '商品名称');
             $form->text('product_origin' , '商品产地');
             $form->number('product_num', '商品库存');
             $form->text('product_explain', '商品说明');
             $form->text('keyword', '搜索关键词');
+            $form->text('unit' , '计算单位');
             $form->currency('prime_cost', '商品原价')->symbol('￥');
             $form->currency('present_price', '商品现价')->symbol('￥');
             $form->currency('product_freght', '运费')->symbol('￥');
@@ -142,14 +142,8 @@ class ProductController extends Controller
             $form->hidden('store_id', '商店id')->default($store_id);
             $form->hidden('store_name', '商店名称')->default('0');
             $form->hidden('auditing', '审核')->default('1');
-
-//        })->tab('商品主图', function ($form) {
             $form->multipleImage('product_master_img', '商品主图')->removable();
-
-//        })->tab('价格及库存',function ($form){
-//            $form->select('type_id', '商品类型');
-            $form->sku('type_id','商品类型');
-//        });
+//            $form->sku('type_id','商品类型');
 
         //保存前回调
         $form->saved(function (Form $form) {
@@ -157,41 +151,50 @@ class ProductController extends Controller
             $category_id = $form->category_id;
             $product_id = $form->model()->product_id;
             $category_name = Category::where('category_id',$category_id)->value('category_name');
-            $type_id = \request('type_id');
+            //保存冗余字段方便查询
+            $category_top_id = '';
+            $category_id_chain = '';
+            Category::findTheTopPid($category_id , $category_top_id , $category_id_chain);
             Product::where('product_id',$product_id)
-                ->update(['category_name' => $category_name , 'type_id' => $type_id]);
+                ->update([
+                    'category_name' => $category_name ,
+                    'category_top_id' => $category_top_id,
+                    'category_id_chain' => trim($category_id_chain,'/'),
+                    ]);
 
-            $attr = ProductAttr::where('type_id' , $type_id)->get()->toArray();
-            $sku_attr = '';
-            foreach ($attr as $value){
-                $sku_attr .= $value['attr_id'].'_';
-            }
-            $sku_attr = substr($sku_attr,0,-1);
-
-            $sku = \request('sku');
-            $kucun = \request('kucun');
-            $price = \request('price');
-            $num = count($sku);
-//            $temp = [];
-
-            for($i = 0 ; $i<$num ; $i++){
-//                $data = [
-//                    'product_id' => $product_id,
-//                    'price' => $price[$i],
+            //商品分类属性（暂时删除）
+//            $type_id = \request('type_id');
+//            $attr = ProductAttr::where('type_id' , $type_id)->get()->toArray();
+//            $sku_attr = '';
+//            foreach ($attr as $value){
+//                $sku_attr .= $value['attr_id'].'_';
+//            }
+//            $sku_attr = substr($sku_attr,0,-1);
+//
+//            $sku = \request('sku');
+//            $kucun = \request('kucun');
+//            $price = \request('price');
+//            $num = count($sku);
+////            $temp = [];
+//
+//            for($i = 0 ; $i<$num ; $i++){
+////                $data = [
+////                    'product_id' => $product_id,
+////                    'price' => $price[$i],
+////                    'num' => $kucun[$i],
+////                    'sku_attr' => $sku_attr,
+////                    'sku_val' => $sku[$i],
+////                ];
+//               $productsku = ProductSku::updateOrCreate([
+//                   'product_id' => $product_id,
+//                   'sku_attr' => $sku_attr,
+//                   'sku_val' => $sku[$i],
+//                   ],[
+//                   'price' => $price[$i],
 //                    'num' => $kucun[$i],
-//                    'sku_attr' => $sku_attr,
-//                    'sku_val' => $sku[$i],
-//                ];
-               $productsku = ProductSku::updateOrCreate([
-                   'product_id' => $product_id,
-                   'sku_attr' => $sku_attr,
-                   'sku_val' => $sku[$i],
-                   ],[
-                   'price' => $price[$i],
-                    'num' => $kucun[$i],
-               ]);
-                $productsku->save();
-            }
+//               ]);
+//                $productsku->save();
+//            }
         });
 
 

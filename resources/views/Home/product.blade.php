@@ -7,14 +7,14 @@
             <div class="Inside_pages clearfix">
                 <div class="left">
                     <ul>
-                        <li><a href="/productList/2">新鲜水果</a></li>
-                        <li><a href="/productList/3">有机蔬菜</a></li>
-                        <li><a href="/productList/4">畜牧水产</a></li>
-                        <li><a href="/productList/5">粮油米面</a></li>
-                        <li><a href="/productList/6">农副加工</a></li>
-                        <li><a href="/productList/7">苗木花草</a></li>
-                        <li><a href="/productList/8">农资农机</a></li>
-                        <li><a href="/productList/9">种子种苗</a></li>
+                        <li><a href="#first">新鲜水果</a></li>
+                        <li><a href="#vertable">有机蔬菜</a></li>
+                        <li><a href="#chicken">畜牧水产</a></li>
+                        <li><a href="#rice">粮油米面</a></li>
+                        <li><a href="#jiagong">农副加工</a></li>
+                        <li><a href="#flower">苗木花草</a></li>
+                        <li><a href="#nongzi">农资农机</a></li>
+                        <li><a href="#seed">种子种苗</a></li>
                     </ul>
                 </div>
             </div>
@@ -68,78 +68,20 @@
             </div>
             <div class="list_style">
                 <ul class="clearfix">
+                    @foreach($fruit as $value)
                     <li class="clearfix">
                         <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
+                            <a href="/productDetailed"><img src="/uploads/{{isset($value['product_master_img'][0])?$value['product_master_img'][0]:null}}" width="210px" height="215px"/></a>
+                            <p class="title_p_name">{{isset($value['product_name'])?$value['product_name']:null}}</p>
+                            <p class="title_Profile">产地：{{isset($value['product_origin'])?$value['product_origin']:null}}</p>
+                            <p class="price">
+                                <del class="del_old_price">￥{{isset($value['prime_cost'])?$value['prime_cost']:null}}</del>
+                                <b>￥</b>{{isset($value['present_price'])?$value['present_price']:null}}<span style="font-size: 14px;">/{{isset($value['unit'])?$value['unit']:null}}</span>
+                            </p>
                             <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
                         </div>
                     </li>
-                    <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li>
+                    @endforeach
                 </ul>
             </div>
         </div>
@@ -158,75 +100,20 @@
             </div>
             <div class="list_style">
                 <ul class="clearfix">
-                    <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li> <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li> <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li> <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li>
+                    @foreach($vertable as $value)
+                        <li class="clearfix">
+                            <div class="product_lists clearfix">
+                                <a href="/productDetailed"><img src="/uploads/{{isset($value['product_master_img'][0])?$value['product_master_img'][0]:null}}" width="210px" height="215px"/></a>
+                                <p class="title_p_name">{{isset($value['product_name'])?$value['product_name']:null}}</p>
+                                <p class="title_Profile">产地：{{isset($value['product_origin'])?$value['product_origin']:null}}</p>
+                                <p class="price">
+                                    <del class="del_old_price">￥{{isset($value['prime_cost'])?$value['prime_cost']:null}}</del>
+                                    <b>￥</b>{{isset($value['present_price'])?$value['present_price']:null}}<span style="font-size: 14px;">/{{isset($value['unit'])?$value['unit']:null}}</span>
+                                </p>
+                                <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
+                            </div>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
         </div>
@@ -245,75 +132,20 @@
             </div>
             <div class="list_style">
                 <ul class="clearfix">
-                    <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li> <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li> <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li> <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li>
+                    @foreach($chicken as $value)
+                        <li class="clearfix">
+                            <div class="product_lists clearfix">
+                                <a href="/productDetailed"><img src="/uploads/{{isset($value['product_master_img'][0])?$value['product_master_img'][0]:null}}" width="210px" height="215px"/></a>
+                                <p class="title_p_name">{{isset($value['product_name'])?$value['product_name']:null}}</p>
+                                <p class="title_Profile">产地：{{isset($value['product_origin'])?$value['product_origin']:null}}</p>
+                                <p class="price">
+                                    <del class="del_old_price">￥{{isset($value['prime_cost'])?$value['prime_cost']:null}}</del>
+                                    <b>￥</b>{{isset($value['present_price'])?$value['present_price']:null}}<span style="font-size: 14px;">/{{isset($value['unit'])?$value['unit']:null}}</span>
+                                </p>
+                                <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
+                            </div>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
         </div>
@@ -332,75 +164,20 @@
             </div>
             <div class="list_style">
                 <ul class="clearfix">
-                    <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li> <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li> <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li> <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li>
+                    @foreach($rice as $value)
+                        <li class="clearfix">
+                            <div class="product_lists clearfix">
+                                <a href="/productDetailed"><img src="/uploads/{{isset($value['product_master_img'][0])?$value['product_master_img'][0]:null}}" width="210px" height="215px"/></a>
+                                <p class="title_p_name">{{isset($value['product_name'])?$value['product_name']:null}}</p>
+                                <p class="title_Profile">产地：{{isset($value['product_origin'])?$value['product_origin']:null}}</p>
+                                <p class="price">
+                                    <del class="del_old_price">￥{{isset($value['prime_cost'])?$value['prime_cost']:null}}</del>
+                                    <b>￥</b>{{isset($value['present_price'])?$value['present_price']:null}}<span style="font-size: 14px;">/{{isset($value['unit'])?$value['unit']:null}}</span>
+                                </p>
+                                <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
+                            </div>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
         </div>
@@ -419,75 +196,20 @@
             </div>
             <div class="list_style">
                 <ul class="clearfix">
-                    <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li> <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li> <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li> <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li>
+                    @foreach($jiagong as $value)
+                        <li class="clearfix">
+                            <div class="product_lists clearfix">
+                                <a href="/productDetailed"><img src="/uploads/{{isset($value['product_master_img'][0])?$value['product_master_img'][0]:null}}" width="210px" height="215px"/></a>
+                                <p class="title_p_name">{{isset($value['product_name'])?$value['product_name']:null}}</p>
+                                <p class="title_Profile">产地：{{isset($value['product_origin'])?$value['product_origin']:null}}</p>
+                                <p class="price">
+                                    <del class="del_old_price">￥{{isset($value['prime_cost'])?$value['prime_cost']:null}}</del>
+                                    <b>￥</b>{{isset($value['present_price'])?$value['present_price']:null}}<span style="font-size: 14px;">/{{isset($value['unit'])?$value['unit']:null}}</span>
+                                </p>
+                                <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
+                            </div>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
         </div>
@@ -506,75 +228,20 @@
             </div>
             <div class="list_style">
                 <ul class="clearfix">
-                    <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li> <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li> <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li> <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li>
+                    @foreach($flower as $value)
+                        <li class="clearfix">
+                            <div class="product_lists clearfix">
+                                <a href="/productDetailed"><img src="/uploads/{{isset($value['product_master_img'][0])?$value['product_master_img'][0]:null}}" width="210px" height="215px"/></a>
+                                <p class="title_p_name">{{isset($value['product_name'])?$value['product_name']:null}}</p>
+                                <p class="title_Profile">产地：{{isset($value['product_origin'])?$value['product_origin']:null}}</p>
+                                <p class="price">
+                                    <del class="del_old_price">￥{{isset($value['prime_cost'])?$value['prime_cost']:null}}</del>
+                                    <b>￥</b>{{isset($value['present_price'])?$value['present_price']:null}}<span style="font-size: 14px;">/{{isset($value['unit'])?$value['unit']:null}}</span>
+                                </p>
+                                <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
+                            </div>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
         </div>
@@ -593,75 +260,20 @@
             </div>
             <div class="list_style">
                 <ul class="clearfix">
-                    <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li> <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li> <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li> <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li>
+                    @foreach($nongzi as $value)
+                        <li class="clearfix">
+                            <div class="product_lists clearfix">
+                                <a href="/productDetailed"><img src="/uploads/{{isset($value['product_master_img'][0])?$value['product_master_img'][0]:null}}" width="210px" height="215px"/></a>
+                                <p class="title_p_name">{{isset($value['product_name'])?$value['product_name']:null}}</p>
+                                <p class="title_Profile">产地：{{isset($value['product_origin'])?$value['product_origin']:null}}</p>
+                                <p class="price">
+                                    <del class="del_old_price">￥{{isset($value['prime_cost'])?$value['prime_cost']:null}}</del>
+                                    <b>￥</b>{{isset($value['present_price'])?$value['present_price']:null}}<span style="font-size: 14px;">/{{isset($value['unit'])?$value['unit']:null}}</span>
+                                </p>
+                                <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
+                            </div>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
         </div>
@@ -680,75 +292,20 @@
             </div>
             <div class="list_style">
                 <ul class="clearfix">
-                    <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li> <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li> <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li> <li class="clearfix">
-                        <div class="product_lists clearfix">
-                            <a href="/productDetailed"><img src="/image/test/2.jpg" width="210px" height="215px"/></a>
-                            <p class="title_p_name">浦江多汁红提</p>
-                            <p class="title_Profile">绿色有机天然无污染</p>
-                            <p class="price"><b>￥</b>13.5<span style="float: right ; color: #848484 ; font-size: 12px;margin-top: 10px;">1分钟前</span></p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
-                        </div>
-                    </li>
+                    @foreach($seed as $value)
+                        <li class="clearfix">
+                            <div class="product_lists clearfix">
+                                <a href="/productDetailed"><img src="/uploads/{{isset($value['product_master_img'][0])?$value['product_master_img'][0]:null}}" width="210px" height="215px"/></a>
+                                <p class="title_p_name">{{isset($value['product_name'])?$value['product_name']:null}}</p>
+                                <p class="title_Profile">产地：{{isset($value['product_origin'])?$value['product_origin']:null}}</p>
+                                <p class="price">
+                                    <del class="del_old_price">￥{{isset($value['prime_cost'])?$value['prime_cost']:null}}</del>
+                                    <b>￥</b>{{isset($value['present_price'])?$value['present_price']:null}}<span style="font-size: 14px;">/{{isset($value['unit'])?$value['unit']:null}}</span>
+                                </p>
+                                <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
+                            </div>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
         </div>

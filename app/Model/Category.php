@@ -12,6 +12,9 @@ class Category extends Common
     protected $table = 'category';
     protected $primaryKey = 'category_id';
 
+    const DISPLAY = 1; //显示
+    const UN_DISPLAY = 0; //不显示
+
     //模型树
     public function __construct(array $attributes = [])
     {
@@ -61,6 +64,31 @@ class Category extends Common
             }
         }
 
+    }
+
+    //home 商品导航 已知顶级id
+    public static function findCategoryByPid($id)
+    {
+        $menu = Category::where([['pid' , $id],['is_show' , self::DISPLAY]])->pluck('category_name' , 'category_id')->toArray();
+        $data = [];
+        $temp = [];
+        foreach ($menu as $key=>$value){
+            $temp['type'] = $value;
+            $temp['cvn'] = Category::where([['pid' , $key],['is_show' , self::DISPLAY]])->pluck('category_name' , 'category_id')->toArray();
+            $data[] = $temp;
+        }
+        return $data;
+    }
+
+    // 递归 找最顶级的父id
+    public static function findTheTopPid($id , &$top_id , &$str='')
+    {
+        $category = Category::where('category_id' , $id)->first()->toArray();
+        $top_id = $category['category_id'];
+        $str .= $category['category_id'].'/';
+        if($category['pid'] != 1 ){
+            self::findTheTopPid($category['pid'] , $top_id , $str);
+        }
     }
 
 

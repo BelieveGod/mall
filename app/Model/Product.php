@@ -45,4 +45,34 @@ class Product extends Common
     {
         return Product::where('product_id' , $id)->first()->toArray();
     }
+
+    /**
+     * 更具url的id查找商品 乱序显示
+     * @param $id
+     * @param int $limit
+     * @return mixed
+     */
+    public static function findProductUrlByTopId($id , $limit = 0)
+    {
+        //todo 优化查询 多带点查询条件
+        if($limit){
+            $product =  Product::where([['category_top_id' , $id] , ['is_show' , self::DISPLAY]])->limit($limit)->get()->toArray();
+            shuffle($product);
+        }else{
+            //一页显示20个商品
+            $product =  Product::where([['category_top_id' , $id] , ['is_show' , self::DISPLAY]])->paginate(8);
+        }
+        //todo 乱序显示商品
+//        shuffle($product);
+        return $product;
+    }
+    public static function findProductUrlById($id)
+    {
+        //一页显示20个商品
+        $product =  Product::where([['category_id' , $id] , ['is_show' , self::DISPLAY]])->get()->toArray();
+        //乱序显示商品
+        shuffle($product);
+        return $product;
+
+    }
 }

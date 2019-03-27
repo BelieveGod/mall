@@ -137,8 +137,9 @@
 .Inside_pages .list_style li .product_lists{ border:1px solid #ddd; margin:10px; padding:10px; position:relative}
 .Inside_pages .list_style li .product_lists:hover{ border:1px solid #70b701}
 .Inside_pages .list_style a{ display:block; text-align:center;}
-.Inside_pages .list_style .title_p_name{ font-size:18px; color:#390; margin:10px 0px;}
-.Inside_pages .list_style .title_Profile{ font-size:14px; color:#666}
+.Inside_pages .list_style .title_p_name{ font-size:18px; color:#390; margin:10px 0px;max-width: 10em;
+	overflow: hidden;white-space: nowrap;text-overflow: ellipsis; }
+.Inside_pages .list_style .title_Profile{ font-size:10px; color:#999}
 .Inside_pages .list_style .price{ margin:10px 0px; font-size:24px; color:#F60 ;}
 .Inside_pages .list_style .price b{ font-size:14px; font-weight:normal ;}
 .Inside_pages .list_style .price del{ font-size:12px; font-weight:normal;color: #CCCCCC}
@@ -155,11 +156,11 @@
 	 right:20px;
 }
 .Inside_pages .list_style a.Collect:hover{background:url(/image/home/Complex_img.png) no-repeat; background-position:right -17px;}
-.fruits_Forum .title_style{ background:url("/image/home/sg_pro_img_05.png") no-repeat; background-position:right; height:350px;}
+.fruits_Forum .title_style{ background:url("/image/home/product_bg.jpg") no-repeat; background-position:right; height:350px;}
 .fruits_Forum .title_style .title_name{left:0px; background:url("/image/home/sg_pro_img_08.png") no-repeat;}
 .fruits_Forum .title_style .title_img{right:0px; width:271px; height:232px; }
 .fruits_Forum .title_style .title_name img{ top:50px; left:40px; position:absolute}
-.vegetables_Forum .title_style{ background:url("/image/home/Product_bg_05.png") no-repeat}
+.vegetables_Forum .title_style{ background:url("/image/home/product_bg.jpg") no-repeat}
 .vegetables_Forum .title_style .title_name{right:0px; background:url(/image/home/vegetables_img_35.png) no-repeat}
 .vegetables_Forum .title_style .title_img{left:0px; width:430px; height:190px; }
 .vegetables_Forum .title_style .title_name img{ top:50px; left:80px; position:absolute}
@@ -658,3 +659,26 @@
 /*#chkList tr input + label {position: relative;display: inline-block;width: 60px;height: 20px;border-radius: 10px;background-color: #bbb;}*/
 
 /********************************************************************************************************/
+.pro_crumbs{background: #70b701 ; color: #fff ; }
+.pro_crumbs ul li {list-style: none;float: left;margin-right: 30px;padding-left: 20px;padding-right: 20px;}
+.pro_crumbs ul li a{color: #fff;}
+.pro_crumbs ul li:hover{background:#ff7a22}
+.fixDiv{
+	position:fixed;
+	top:0;
+	opacity: 0.8;
+}
+/********************************************************************************************************/
+.con_list li {border-bottom:dashed 1px #CCCCCC; position:relative}
+.con_list_first_li{background: #70b701 ;color: #fff;font-size: 22px;text-align: center;padding: 10px 0;cursor:pointer;}
+.con_list_child{display: none; margin: 5px 0px;}
+.con_list_child li {float: left;margin-top: 10px ; border: none; padding: 0 10px; }
+.con_list_child li a{color: #F60 }
+.con_list_child li a:hover{color: #70b701; }
+.con_list li div{padding: 10px; font-size: 16px ; cursor:pointer; color: #8c8c8c}
+.con_list li div:hover{background: #70b701;color: #fff;}
+.con_list li div span{float: right;font-size: 12px;}
+
+/************************************************************************************************************/
+.pagination{margin-bottom:50px; margin-left: 10px;}
+.pagination li{display:block; padding:10px; border:1px solid #ddd; color:#999; float:left; margin-right:10px; width:20px; text-align:center; font-size:14px}
