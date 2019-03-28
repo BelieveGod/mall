@@ -47,7 +47,7 @@ class Product extends Common
     }
 
     /**
-     * 更具url的id查找商品 乱序显示
+     * 更具url的id查找商品 乱序显示 查找所有商品时带分页
      * @param $id
      * @param int $limit
      * @return mixed
@@ -57,22 +57,27 @@ class Product extends Common
         //todo 优化查询 多带点查询条件
         if($limit){
             $product =  Product::where([['category_top_id' , $id] , ['is_show' , self::DISPLAY]])->limit($limit)->get()->toArray();
-            shuffle($product);
+//            shuffle($product);
         }else{
             //一页显示20个商品
-            $product =  Product::where([['category_top_id' , $id] , ['is_show' , self::DISPLAY]])->paginate(8);
+            $product =  Product::where([['category_top_id' , $id] , ['is_show' , self::DISPLAY]])->paginate(4);
         }
         //todo 乱序显示商品
-//        shuffle($product);
         return $product;
     }
     public static function findProductUrlById($id)
     {
         //一页显示20个商品
-        $product =  Product::where([['category_id' , $id] , ['is_show' , self::DISPLAY]])->get()->toArray();
-        //乱序显示商品
-        shuffle($product);
+        $product =  Product::where([['category_id' , $id] , ['is_show' , self::DISPLAY]])->paginate(4);
+        //todo 乱序显示商品
         return $product;
 
+    }
+    //查找销量前五的商品 同类型的
+    public static function findProductTypeSalesVolumeTop($id , $limit=0)
+    {
+        $category_id = Product::where('product_id' , $id)->value('category_id');
+        $topProduct = Product::where([['category_id' , $category_id] , ['is_show' , self::DISPLAY]])->orderBy('sales_volume' , 'desc')->limit($limit)->get()->toArray();
+        return $topProduct;
     }
 }

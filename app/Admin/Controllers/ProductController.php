@@ -125,6 +125,11 @@ class ProductController extends Controller
             $form->currency('prime_cost', '商品原价')->symbol('￥');
             $form->currency('present_price', '商品现价')->symbol('￥');
             $form->currency('product_freght', '运费')->symbol('￥');
+
+            //todo
+            $form->embeds('extra', '附加信息', function ($form) {
+
+            });
             $form->ueditor('product_detail', '商品详情');
 
             $states = [

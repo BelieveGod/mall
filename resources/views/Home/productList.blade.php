@@ -86,7 +86,9 @@
                     @foreach($product as $value)
                     <li class="clearfix">
                         <div class="product_lists clearfix">
-                            <a href=""><img src="/uploads/{{isset($value['product_master_img'][0])?$value['product_master_img'][0]:null}}" width="210px" height="215px"/></a>
+                            <a href="/productDetailed/{{isset($value['product_id'])?$value['product_id']:null}}">
+                                <img src="/uploads/{{isset($value['product_master_img'][0])?$value['product_master_img'][0]:null}}" width="210px" height="215px"/>
+                            </a>
                             <p class="title_p_name">{{isset($value['product_name'])?$value['product_name']:null}}</p>
                             <p class="title_Profile">产地：{{isset($value['product_origin'])?$value['product_origin']:null}}</p>
                             <p class="price">
@@ -99,15 +101,7 @@
                     @endforeach
                 </ul>
                 <!--分页-->
-                <div class="productList_pages_Collect clearfix">
-                    <a href="" class="on">《</a>
-                    <a href="?page=1">1</a>
-                    <a href="?page=2">2</a>
-                    <a href="?page=3">3</a>
-                    <a href="?page=4">4</a>
-                    <a href="">》</a>
-                </div>
-                {{$product->links()}}
+                {{$product->links('Home.pagination.pages')}}
 
             </DIV>
         </div>
