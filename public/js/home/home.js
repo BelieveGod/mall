@@ -30,3 +30,19 @@ function removeImg(obj)
     });
 
 }
+
+function updatenum(obj)
+{
+    var action = $(obj).attr('class');
+    if(action === 'jia'){
+        num = $(obj).parent().find('input').val();
+        $(obj).parent().find('input').val(parseInt(num)+1);
+    }else{
+        num = $(obj).parent().find('input').val();
+        //商品件数不可能为负数，所以小于1就不可以减
+        if(num > 1){
+            $(obj).parent().find('input').val(parseInt(num)-1);
+        }
+    }
+}
+

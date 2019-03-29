@@ -8,6 +8,10 @@ class Product extends Common
     protected $table = 'product';
     protected $primaryKey = 'product_id';
 
+    protected $casts = [
+        'about_product' => 'json',
+    ];
+
     const DISPLAY = 1; //显示
     const UN_DISPLAY = 0; //不显示
 
@@ -60,7 +64,7 @@ class Product extends Common
 //            shuffle($product);
         }else{
             //一页显示20个商品
-            $product =  Product::where([['category_top_id' , $id] , ['is_show' , self::DISPLAY]])->paginate(4);
+            $product =  Product::where([['category_top_id' , $id] , ['is_show' , self::DISPLAY]])->paginate(20);
         }
         //todo 乱序显示商品
         return $product;
@@ -68,7 +72,7 @@ class Product extends Common
     public static function findProductUrlById($id)
     {
         //一页显示20个商品
-        $product =  Product::where([['category_id' , $id] , ['is_show' , self::DISPLAY]])->paginate(4);
+        $product =  Product::where([['category_id' , $id] , ['is_show' , self::DISPLAY]])->paginate(20);
         //todo 乱序显示商品
         return $product;
 

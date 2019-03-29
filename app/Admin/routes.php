@@ -21,6 +21,7 @@ Route::group([
     $router->get('/api/showAttr' , 'ProductController@showAttr');//ajax请求获得商品属性
     $router->resource('adminproductlidt' , AdminProductController::class);//管理员查看所有店铺的商品
     $router->get('/api/showaboutcomment' , 'ProductCommentController@showaboutcomment');
+    $router->resource('about_product', AboutProductController::class);//商品说明
     //订单模块
     $router->resource('business_address' , BusinessAddressController::class);//发货地址
     $router->get('api/getregion' , 'RegionsController@getRegion');//选择地区联动

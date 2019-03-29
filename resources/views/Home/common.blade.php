@@ -58,6 +58,7 @@
                     {{--</li>--}}
                 </ul>
             </div>
+            <div id="msg">已成功加入购物车！</div>
             <div class="nav" id="Navigation">
                 <ul class="Navigation_name">
                     <li class=""><a href="/home_index">首页</a></li>

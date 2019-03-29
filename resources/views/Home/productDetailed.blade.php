@@ -1,6 +1,7 @@
 @extends('Home.common')
 
 @section('common')
+    <script src="/js/home/home.js" type="text/javascript"></script>
 <!--导航-->
 <div class="Bread_crumbs pro_crumbs" style="background: #70b701 ; color: #fff">
     <div class="Inside_pages clearfix">
@@ -21,7 +22,10 @@
 <!--位置-->
 <div class="Bread_crumbs">
     <div class="Inside_pages clearfix">
-        <div class="left">当前位置：<a href="#">首页</a>&gt;<a href="#">素菜馆</a></div>
+        <div class="left">当前位置：
+            <a href="/product">所有商品</a>&gt;
+            <a href="/productList/{{$product['category_top_id']['category_id']}}">{{$product['category_top_id']['category_name']}}</a>
+        </div>
         <div class="right Search">
             <form>
                 <input name="" type="text"  class="Search_Box"/>
@@ -146,30 +150,41 @@
                 </div>
                 <!--购买信息-->
                 <div class="Buying_info">
-                    <div class="product_name"><h2>{{$product['product_name']}}</h2><span>产地：{{$product['product_origin']}}</span></div>
+                    <div class="product_name"><h2>{{isset($product['product_name'])?$product['product_name']:null}}</h2><span>产地：{{isset($product['product_origin'])?$product['product_origin']:null}}</span></div>
                     <div class="product_price">
-                        <div class="price"><label>商城价：</label>￥234.00 <b>元/箱</b></div>
+                        <div class="price"><label>优惠价：</label>￥{{isset($product['present_price'])?$product['present_price']:null}} <b>元/{{isset($product['unit'])?$product['unit']:null}}</b></div>
                         <div class="jyScore-fra"><span><em style="width:60px;"></em></span><b>4.5</b><a href="#">共有16条评论</a></div>
                     </div>
                     <div class="productDL">
-                        <dl><dt>品种：</dt><dd class="left"><div class="item  selected"><b></b><a href="#none" title="金晕">芹川</a></div> <div class="item"><b></b><a href="#none" title="芹川">芹川</a></div></dd></dl>
-                        <dl><dt>包装：</dt><dd class="left">
-                                <div class="item  selected"><b></b><a href="#none" title="小礼盒">小礼盒</a></div>
-                                <div class="item"><b></b><a href="#none" title="普通包装">普通包装</a></div>
-                                <div class="item"><b></b><a href="#none" title="大礼盒">大礼盒</a></div></dd></dl>
-                        <dl><dt>数量：</dt><dd class="left">
-                                <div class="Numbers">
-                                    <a href="javascript:void(0);" onclick="updatenum('del');" class="jian  ">-</a>
-                                    <input id="number" name="number" type="text" value="1" class="number_text">
-                                    <a href="javascript:void(0);" onclick="updatenum('del');" class="jia  ">+</a>
+                        <dl style="height: 100px;">
+                            <dt style="float: left;width: 80px;">产品说明：</dt>
+                            <dd class="left"style="float: left;width: 400px;">
+                                @foreach($product['about_product'] as $key=>$value)
+                                <div class="item" style="width: 132px;">
+                                    <b></b>
+                                    <a href="#none" >{{$key}}：{{$value}}</a>
                                 </div>
-                            </dd><dd class="left Quantity">(库存：30000)</dd></dl>
+                                @endforeach
+
+                            </dd>
+                        </dl>
+
+                        <dl style="padding-top: 30px;">
+                            <dt>数量：</dt>
+                            <dd class="left">
+                                <div class="Numbers">
+                                    <a href="javascript:void(0);" onclick="updatenum(this)" class="jian">-</a>
+                                    <input id="number" name="number" type="text" value="1" class="number_text">
+                                    <a href="javascript:void(0);" onclick="updatenum(this)" class="jia">+</a>
+                                </div>
+                            </dd><dd class="left Quantity">(库存：30000)</dd>
+                        </dl>
                     </div>
                     <div class="product_Quantity">销量：3440</div>
                     <div class="operating">
-                        <a href="#" class="buy_btn"></a>
-                        <a href="#" class="Join_btn"></a>
-                        <a href="#" class="Collect_btn"></a>
+                        <a href="javascript:void(0);" class="buy_btn "></a>
+                        <a href="javascript:void(0);" class="Join_btn"></a>
+                        <a href="javascript:void(0);" class="Collect_btn"></a>
                     </div>
                 </div>
             </div>
@@ -214,6 +229,8 @@
                         });
                     });
                 });
+
+
 
             </script>
 

@@ -39,6 +39,7 @@ class UserInfoController extends HomeController
     //我的收藏
     public function userCollect()
     {
+        
         return view('Home.userCollect' , ['userInfo'=>$this->userInfo()]);
     }
     //收货地址

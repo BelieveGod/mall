@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Model\AboutProduct;
 use App\Model\Category;
 use App\Model\Product;
 use App\Http\Controllers\Controller;
@@ -119,7 +120,7 @@ class ProductController extends Controller
             $form->text('product_name', '商品名称');
             $form->text('product_origin' , '商品产地');
             $form->number('product_num', '商品库存');
-            $form->text('product_explain', '商品说明');
+            $form->text('product_explain', '购买说明');
             $form->text('keyword', '搜索关键词');
             $form->text('unit' , '计算单位');
             $form->currency('prime_cost', '商品原价')->symbol('￥');
@@ -127,8 +128,9 @@ class ProductController extends Controller
             $form->currency('product_freght', '运费')->symbol('￥');
 
             //todo
-            $form->embeds('extra', '附加信息', function ($form) {
-
+            $form->embeds('about_product', '商品说明', function ($form) {
+                $form->tags('attr_name', '商品规格')->options(AboutProduct::findAboutProductName());
+                $form->tags('data','规格说明')->help('必须与上面的商品规格一一对应，输完一个说明按回车，最多显示9个商品说明');
             });
             $form->ueditor('product_detail', '商品详情');
 
