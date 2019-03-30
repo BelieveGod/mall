@@ -26,3 +26,11 @@ Route::get('/deletedAddress/{id}' , 'UserAddressController@deletedUserAddress');
 
 //联系我们
 Route::post('/upSuggest' , 'SuggestController@upSuggest');//意见反馈
+
+//收藏夹
+Route::post('/addCollect' , 'UserCollectController@addCollect');//加入收藏夹
+Route::post('/delCollect' , 'UserCollectController@delCollect');//删除收藏夹的商品
+
+//购物车
+Route::post('/addShoppingCart' , 'UserCollectController@addCollect');//加入购物车
+Route::post('/delShoppingCart' , 'UserCollectController@delCollect');//删除购物车

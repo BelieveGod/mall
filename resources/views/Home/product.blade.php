@@ -1,6 +1,7 @@
 @extends('Home.common')
 
 @section('common')
+    <script src="/js/fly-master/dist/jquery.fly.min.js"></script>
     <div class="banner" style="z-index: 999; width: 100%">
         <!--导航-->
         <div class="Bread_crumbs pro_crumbs" style="background: #70b701 ; color: #fff">
@@ -48,6 +49,35 @@
 
             })
         })
+
+        //加入购物车样式
+        $(function() {
+            var offset = $("#end").offset();
+            // console.log(offset);
+            $(".addcar").click(function(event){
+                var addcar = $(this);
+                var img = addcar.parent().parent().find('img').attr('src');
+                console.log(img);
+                var flyer = $('<img class="u-flyer" src="'+img+'">');
+                flyer.fly({
+                    start: {
+                        left: event.pageX, //开始位置（必填）#fly元素会被设置成position: fixed
+                        top: event.pageY //开始位置（必填）
+                    },
+                    end: {
+                        left: offset.left+10, //结束位置（必填）
+                        top: offset.top+10, //结束位置（必填）
+                        width: 0, //结束时宽度
+                        height: 0 //结束时高度
+                    },
+                    onEnd: function(){ //结束回调
+                        $("#msg").show().animate({width: '250px'}, 200).fadeOut(1000); //提示信息
+                        addcar.css("cursor","default").removeClass('orange').unbind('click');
+                        this.destory(); //移除dom
+                    }
+                });
+            });
+        });
     </script>
 
     <!--产品-->
@@ -80,7 +110,10 @@
                                 <del class="del_old_price">￥{{isset($value['prime_cost'])?$value['prime_cost']:null}}</del>
                                 <b>￥</b>{{isset($value['present_price'])?$value['present_price']:null}}<span style="font-size: 14px;">/{{isset($value['unit'])?$value['unit']:null}}</span>
                             </p>
-                            <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
+                            <p class="btn_style">
+                                <a href="javascript:void(0);" class="buy_btn"></a>
+                                <a href="javascript:void(0);" class="Join_btn  addcar orange "></a>
+                            </p>
                         </div>
                     </li>
                     @endforeach
@@ -114,7 +147,10 @@
                                     <del class="del_old_price">￥{{isset($value['prime_cost'])?$value['prime_cost']:null}}</del>
                                     <b>￥</b>{{isset($value['present_price'])?$value['present_price']:null}}<span style="font-size: 14px;">/{{isset($value['unit'])?$value['unit']:null}}</span>
                                 </p>
-                                <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
+                                <p class="btn_style">
+                                    <a href="javascript:void(0);" class="buy_btn"></a>
+                                    <a href="javascript:void(0);" class="Join_btn  addcar orange "></a>
+                                </p>
                             </div>
                         </li>
                     @endforeach
@@ -148,7 +184,10 @@
                                     <del class="del_old_price">￥{{isset($value['prime_cost'])?$value['prime_cost']:null}}</del>
                                     <b>￥</b>{{isset($value['present_price'])?$value['present_price']:null}}<span style="font-size: 14px;">/{{isset($value['unit'])?$value['unit']:null}}</span>
                                 </p>
-                                <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
+                                <p class="btn_style">
+                                    <a href="javascript:void(0);" class="buy_btn"></a>
+                                    <a href="javascript:void(0);" class="Join_btn  addcar orange "></a>
+                                </p>
                             </div>
                         </li>
                     @endforeach
@@ -182,7 +221,10 @@
                                     <del class="del_old_price">￥{{isset($value['prime_cost'])?$value['prime_cost']:null}}</del>
                                     <b>￥</b>{{isset($value['present_price'])?$value['present_price']:null}}<span style="font-size: 14px;">/{{isset($value['unit'])?$value['unit']:null}}</span>
                                 </p>
-                                <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
+                                <p class="btn_style">
+                                    <a href="javascript:void(0);" class="buy_btn"></a>
+                                    <a href="javascript:void(0);" class="Join_btn  addcar orange "></a>
+                                </p>
                             </div>
                         </li>
                     @endforeach
@@ -216,7 +258,10 @@
                                     <del class="del_old_price">￥{{isset($value['prime_cost'])?$value['prime_cost']:null}}</del>
                                     <b>￥</b>{{isset($value['present_price'])?$value['present_price']:null}}<span style="font-size: 14px;">/{{isset($value['unit'])?$value['unit']:null}}</span>
                                 </p>
-                                <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
+                                <p class="btn_style">
+                                    <a href="javascript:void(0);" class="buy_btn"></a>
+                                    <a href="javascript:void(0);" class="Join_btn  addcar orange "></a>
+                                </p>
                             </div>
                         </li>
                     @endforeach
@@ -250,7 +295,10 @@
                                     <del class="del_old_price">￥{{isset($value['prime_cost'])?$value['prime_cost']:null}}</del>
                                     <b>￥</b>{{isset($value['present_price'])?$value['present_price']:null}}<span style="font-size: 14px;">/{{isset($value['unit'])?$value['unit']:null}}</span>
                                 </p>
-                                <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
+                                <p class="btn_style">
+                                    <a href="javascript:void(0);" class="buy_btn"></a>
+                                    <a href="javascript:void(0);" class="Join_btn  addcar orange "></a>
+                                </p>
                             </div>
                         </li>
                     @endforeach
@@ -284,7 +332,10 @@
                                     <del class="del_old_price">￥{{isset($value['prime_cost'])?$value['prime_cost']:null}}</del>
                                     <b>￥</b>{{isset($value['present_price'])?$value['present_price']:null}}<span style="font-size: 14px;">/{{isset($value['unit'])?$value['unit']:null}}</span>
                                 </p>
-                                <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
+                                <p class="btn_style">
+                                    <a href="javascript:void(0);" class="buy_btn"></a>
+                                    <a href="javascript:void(0);" class="Join_btn  addcar orange "></a>
+                                </p>
                             </div>
                         </li>
                     @endforeach
@@ -318,12 +369,20 @@
                                     <del class="del_old_price">￥{{isset($value['prime_cost'])?$value['prime_cost']:null}}</del>
                                     <b>￥</b>{{isset($value['present_price'])?$value['present_price']:null}}<span style="font-size: 14px;">/{{isset($value['unit'])?$value['unit']:null}}</span>
                                 </p>
-                                <p class="btn_style"><a href="javascript;('')" class="buy_btn"></a><a href="javascript;('')" class="Join_btn"></a></p>
+                                <p class="btn_style">
+                                    <a href="javascript:void(0);" class="buy_btn"></a>
+                                    <a href="javascript:void(0);" class="Join_btn  addcar orange "></a>
+                                </p>
                             </div>
                         </li>
                     @endforeach
                 </ul>
             </div>
         </div>
+
+        <div class="cailan" >
+            <img src="/image/test/6.jpg" width="100px" id="end" />
+        </div>
+
     </div>
 @endsection

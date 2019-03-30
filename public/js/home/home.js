@@ -34,11 +34,14 @@ function removeImg(obj)
 function updatenum(obj)
 {
     var action = $(obj).attr('class');
+    var num = $(obj).parent().find('input').val();
+    //todo 输入件数不能为空或者负数 (或者直接在input框里判断更为合理)
+    if(!num || num < 0){
+        num = 0;
+    }
     if(action === 'jia'){
-        num = $(obj).parent().find('input').val();
         $(obj).parent().find('input').val(parseInt(num)+1);
     }else{
-        num = $(obj).parent().find('input').val();
         //商品件数不可能为负数，所以小于1就不可以减
         if(num > 1){
             $(obj).parent().find('input').val(parseInt(num)-1);

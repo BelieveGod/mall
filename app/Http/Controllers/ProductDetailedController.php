@@ -6,10 +6,10 @@ namespace App\Http\Controllers;
 use App\Model\Category;
 use App\Model\Product;
 
-class ProductDetailedController extends Controller
+class ProductDetailedController extends HomeController
 {
     //
-    public function index($id)
+    public function detailed($id)
     {
         //查出该商品的对应类型的销量前5个商品
         $topProduct = Product::findProductTypeSalesVolumeTop($id , 5);

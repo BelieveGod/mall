@@ -6,6 +6,7 @@ use App\Model\Advertisement;
 use App\Model\Member;
 use App\Model\Regions;
 use App\Model\UserAddress;
+use App\Model\UserCollect;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -39,8 +40,11 @@ class UserInfoController extends HomeController
     //我的收藏
     public function userCollect()
     {
-        
-        return view('Home.userCollect' , ['userInfo'=>$this->userInfo()]);
+        $user_id = Auth::user()->id;
+        $collect = UserCollect::findAllUserCollect($user_id);
+
+//        dd($collect);
+        return view('Home.userCollect' , ['userInfo'=>$this->userInfo() , 'collect'=>$collect]);
     }
     //收货地址
     public function userAddress($id=0)

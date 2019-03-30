@@ -29,7 +29,10 @@
                         <li  class="hd_menu_tit"><em class="login_img"></em><a href="/login">登录</a></li>
                         <li  class="hd_menu_tit"><em  class="registered_img"></em><a href="/register">注册</a></li>
                     @else
-                        <li  class="hd_menu_tit"><em class="login_img"></em><a href="">{{ Auth::user()->name }}，您好！</a></li>
+                        <li  class="hd_menu_tit" >
+                            <em class="login_img" id="top_cullom_user_id" attr="{{ Auth::user()->id }}"></em>
+                            <a href="" >{{ Auth::user()->name }}，您好！</a>
+                        </li>
                         <li class="hd_menu_tit">
                             <a href="{{ route('logout') }}"
                                 onclick="event.preventDefault();

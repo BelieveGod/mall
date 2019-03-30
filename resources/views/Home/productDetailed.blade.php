@@ -2,6 +2,7 @@
 
 @section('common')
     <script src="/js/home/home.js" type="text/javascript"></script>
+    <script src="/js/fly-master/dist/jquery.fly.min.js"></script>
 <!--导航-->
 <div class="Bread_crumbs pro_crumbs" style="background: #70b701 ; color: #fff">
     <div class="Inside_pages clearfix">
@@ -181,9 +182,11 @@
                         </dl>
                     </div>
                     <div class="product_Quantity">销量：3440</div>
+                    <div class="add_collect">加入收藏夹</div>
                     <div class="operating">
                         <a href="javascript:void(0);" class="buy_btn "></a>
-                        <a href="javascript:void(0);" class="Join_btn"></a>
+                        <a href="javascript:void(0);" class="Join_btn  addcar orange "></a>
+                        {{--<a href="/addCollect/{{$product['product_id']}}" class="Collect_btn"></a>--}}
                         <a href="javascript:void(0);" class="Collect_btn"></a>
                     </div>
                 </div>
@@ -214,6 +217,7 @@
                     $('#shbz').css('display' , 'block');
                 }
 
+                //评论 图片放大
                 $(function(){
                     $('.tab-con').find('.comment-item').each(function(){
                         $(this).find('.pic-list').find('a').each(function(){
@@ -231,6 +235,50 @@
                 });
 
 
+                $(function() {
+                    var offset = $("#end").offset();
+                    // console.log(offset);
+                    //加入购物车样式
+                    $(".addcar").click(function(event){
+                        var addcar = $(this);
+                        var img = addcar.parent().parent().parent().find('img').attr('src');
+                        console.log(img);
+                        var flyer = $('<img class="u-flyer" src="'+img+'">');
+                        flyer.fly({
+                            start: {
+                                left: event.pageX, //开始位置（必填）#fly元素会被设置成position: fixed
+                                top: event.pageY //开始位置（必填）
+                            },
+                            end: {
+                                left: offset.left+10, //结束位置（必填）
+                                top: offset.top+10, //结束位置（必填）
+                                width: 0, //结束时宽度
+                                height: 0 //结束时高度
+                            },
+                            onEnd: function(){ //结束回调
+                                $("#msg").show().animate({width: '250px'}, 200).fadeOut(1000); //提示信息
+                                addcar.css("cursor","default").removeClass('orange').unbind('click');
+                                this.destory(); //移除dom
+                            }
+                        });
+                    });
+
+                    //加入收藏
+
+                    $('.Collect_btn').click(function(){
+                        var user_id = $('#top_cullom_user_id').attr('attr');
+                        //判断用户是否已经登陆
+                        var data = {};
+                        data.product_id = "{{$product['product_id']}}";
+                        data.user_id = user_id;
+                        console.log(data);
+                        $.post('/api/addCollect' , data , function(res){
+                            if(res){
+                                $('.add_collect').show().animate({bottom: '140px'}, 200).fadeOut(1000); //提示信息
+                            }
+                        });
+                    });
+                });
 
             </script>
 
@@ -422,6 +470,9 @@
                 <p> 基地直供:</p>
                 <p>供应商是果园基地种植户，不经中间商直接发货</p>
             </div>
+        </div>
+        <div class="cailan" >
+            <img src="/image/test/6.jpg" width="100px" id="end" />
         </div>
     </div>
 </div>

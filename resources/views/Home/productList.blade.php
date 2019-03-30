@@ -87,8 +87,24 @@
                     // console.log(offset);
                     $(".addcar").click(function(event){
                         var addcar = $(this);
+                        //判断用户是否已经登陆
+                        var user_id = $('#top_cullom_user_id').attr('attr');
+                        if(!user_id){
+                            //todo 登陆完成后返回当前页面
+                            window.location.href =  '/login';
+                            return 'login';
+                        }
+                        //ajax 将数据存入数据库
+                        var data = {};
+                        data.user_id = user_id;
+                        data.product_id = addcar.attr('attr');
+                        // console.log(data);
+                        $.post('/api/addShoppingCart' , data , function(){
+
+                        });
+                        //加入购物车的样式
                         var img = addcar.parent().parent().find('img').attr('src');
-                        console.log(img);
+                        // console.log(img);
                         var flyer = $('<img class="u-flyer" src="'+img+'">');
                         flyer.fly({
                             start: {
@@ -128,7 +144,7 @@
                             </p>
                             <p class="btn_style">
                                 <a href="javascript:void(0);" class="buy_btn"></a>
-                                <a href="javascript:void(0);" class="Join_btn addcar orange "></a>
+                                <a href="javascript:void(0);" class="Join_btn addcar orange" attr="{{isset($value['product_id'])?$value['product_id']:null}}"></a>
                             </p>
                         </div>
                     </li>
