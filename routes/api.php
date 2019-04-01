@@ -32,5 +32,5 @@ Route::post('/addCollect' , 'UserCollectController@addCollect');//加入收藏�
 Route::post('/delCollect' , 'UserCollectController@delCollect');//删除收藏夹的商品
 
 //购物车
-Route::post('/addShoppingCart' , 'UserCollectController@addCollect');//加入购物车
-Route::post('/delShoppingCart' , 'UserCollectController@delCollect');//删除购物车
+Route::post('/addShoppingCart' , 'ShoppingCartController@addShoppingCart');//加入购物车
+Route::post('/delShoppingCart' , 'ShoppingCartController@delShoppingCart');//删除购物车

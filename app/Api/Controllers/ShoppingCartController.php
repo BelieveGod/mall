@@ -9,18 +9,33 @@ use Illuminate\Http\Request;
 class ShoppingCartController
 {
     //加入购物车
-    public function addShoppingCart(Request $request)
+    public function addShoppingCart()
     {
-        $product_id = $request->post('product_id');
-        $user_id = $request->post('user_id');
-        $num = $request->post('num');
+        $product_id = \request('product_id');
+        $user_id = \request('user_id');
+        $num = \request('num');
+        $store_id = \request('store_id');
 
-        $shoppingCart = new ShoppingCart();
-        $shoppingCart->product_id = $product_id;
-        $shoppingCart->user_id = $user_id;
-        $shoppingCart->num = $num;
+        //先判断数据库中 该该用户的购物车是否已经有该商品
+        $inShoppingCart = ShoppingCart::where([['user_id' , $user_id] , ['product_id' , $product_id]])->first();
+        if($inShoppingCart){
+            //如果商品存在 则商品数量加1
+            $shoppingCart = ShoppingCart::find($inShoppingCart->shopping_cart_id);
+            $shoppingCart->num = $inShoppingCart->num + 1;
+        }else{
+            //该商品不存在 创建该商品
+            $shoppingCart = new ShoppingCart;
+            $shoppingCart->product_id = $product_id;
+            $shoppingCart->user_id = $user_id;
+            $shoppingCart->num = $num;
+            $shoppingCart->store_id = $store_id;
+        }
         $shoppingCart->save();
-
+        //如果数据存在的就不要再添加了(因为num这个字是不变的,不能用该方法)
+//        $shoppingCart = ShoppingCart::updateOrCreate(
+//            ['user_id' => $user_id, 'product_id' => $product_id]
+//            ,['num' => (int)$num + 1]
+//        );
         return 'success';
     }
 

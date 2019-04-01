@@ -56,6 +56,25 @@
             // console.log(offset);
             $(".addcar").click(function(event){
                 var addcar = $(this);
+                //判断用户是否已经登陆
+                var user_id = $('#top_cullom_user_id').attr('attr');
+                if(!user_id){
+                    //todo 登陆完成后返回当前页面
+                    window.location.href =  '/login';
+                    return 'login';
+                }
+                //ajax 将数据存入数据库
+                var data = {};
+                data.user_id = user_id;
+                data.product_id = addcar.attr('attr');
+                data.num = 1;
+                data.store_id = addcar.attr('store_id');
+                $.post('/api/addShoppingCart' , data , function(res){
+                    if(res){
+                        console.log(res);
+                    }
+                });
+                //加入购物车样式
                 var img = addcar.parent().parent().find('img').attr('src');
                 console.log(img);
                 var flyer = $('<img class="u-flyer" src="'+img+'">');
@@ -112,7 +131,13 @@
                             </p>
                             <p class="btn_style">
                                 <a href="javascript:void(0);" class="buy_btn"></a>
-                                <a href="javascript:void(0);" class="Join_btn  addcar orange "></a>
+                                {{--<a href="javascript:void(0);" class="Join_btn  addcar orange "></a>--}}
+                                {{--判断是否已经登陆 如果没有登陆 不能加入购物车--}}
+                                @guest
+                                    <a  href="/addShoppingCartLogin/0" class="Join_btn orange"></a>
+                                @else
+                                    <a href="javascript:void(0);" class="Join_btn addcar orange" attr="{{isset($value['product_id'])?$value['product_id']:null}}" store_id ="{{isset($value['store_id'])?$value['store_id']:null}}"></a>
+                                @endguest
                             </p>
                         </div>
                     </li>
@@ -149,7 +174,13 @@
                                 </p>
                                 <p class="btn_style">
                                     <a href="javascript:void(0);" class="buy_btn"></a>
-                                    <a href="javascript:void(0);" class="Join_btn  addcar orange "></a>
+                                    {{--<a href="javascript:void(0);" class="Join_btn  addcar orange "></a>--}}
+                                    {{--判断是否已经登陆 如果没有登陆 不能加入购物车--}}
+                                    @guest
+                                        <a  href="/addShoppingCartLogin/0" class="Join_btn orange"></a>
+                                    @else
+                                        <a href="javascript:void(0);" class="Join_btn addcar orange" attr="{{isset($value['product_id'])?$value['product_id']:null}}" store_id ="{{isset($value['store_id'])?$value['store_id']:null}}"></a>
+                                    @endguest
                                 </p>
                             </div>
                         </li>
@@ -186,7 +217,13 @@
                                 </p>
                                 <p class="btn_style">
                                     <a href="javascript:void(0);" class="buy_btn"></a>
-                                    <a href="javascript:void(0);" class="Join_btn  addcar orange "></a>
+                                    {{--<a href="javascript:void(0);" class="Join_btn  addcar orange "></a>--}}
+                                    {{--判断是否已经登陆 如果没有登陆 不能加入购物车--}}
+                                    @guest
+                                        <a  href="/addShoppingCartLogin/0" class="Join_btn orange"></a>
+                                    @else
+                                        <a href="javascript:void(0);" class="Join_btn addcar orange" attr="{{isset($value['product_id'])?$value['product_id']:null}}" store_id ="{{isset($value['store_id'])?$value['store_id']:null}}"></a>
+                                    @endguest
                                 </p>
                             </div>
                         </li>
@@ -223,7 +260,13 @@
                                 </p>
                                 <p class="btn_style">
                                     <a href="javascript:void(0);" class="buy_btn"></a>
-                                    <a href="javascript:void(0);" class="Join_btn  addcar orange "></a>
+                                    {{--<a href="javascript:void(0);" class="Join_btn  addcar orange "></a>--}}
+                                    {{--判断是否已经登陆 如果没有登陆 不能加入购物车--}}
+                                    @guest
+                                        <a  href="/addShoppingCartLogin/0" class="Join_btn orange"></a>
+                                    @else
+                                        <a href="javascript:void(0);" class="Join_btn addcar orange" attr="{{isset($value['product_id'])?$value['product_id']:null}}" store_id ="{{isset($value['store_id'])?$value['store_id']:null}}"></a>
+                                    @endguest
                                 </p>
                             </div>
                         </li>
@@ -260,7 +303,13 @@
                                 </p>
                                 <p class="btn_style">
                                     <a href="javascript:void(0);" class="buy_btn"></a>
-                                    <a href="javascript:void(0);" class="Join_btn  addcar orange "></a>
+                                    {{--<a href="javascript:void(0);" class="Join_btn  addcar orange "></a>--}}
+                                    {{--判断是否已经登陆 如果没有登陆 不能加入购物车--}}
+                                    @guest
+                                        <a  href="/addShoppingCartLogin/0" class="Join_btn orange"></a>
+                                    @else
+                                        <a href="javascript:void(0);" class="Join_btn addcar orange" attr="{{isset($value['product_id'])?$value['product_id']:null}}" store_id ="{{isset($value['store_id'])?$value['store_id']:null}}"></a>
+                                    @endguest
                                 </p>
                             </div>
                         </li>
@@ -297,7 +346,13 @@
                                 </p>
                                 <p class="btn_style">
                                     <a href="javascript:void(0);" class="buy_btn"></a>
-                                    <a href="javascript:void(0);" class="Join_btn  addcar orange "></a>
+                                    {{--<a href="javascript:void(0);" class="Join_btn  addcar orange "></a>--}}
+                                    {{--判断是否已经登陆 如果没有登陆 不能加入购物车--}}
+                                    @guest
+                                        <a  href="/addShoppingCartLogin/0" class="Join_btn orange"></a>
+                                    @else
+                                        <a href="javascript:void(0);" class="Join_btn addcar orange" attr="{{isset($value['product_id'])?$value['product_id']:null}}" store_id ="{{isset($value['store_id'])?$value['store_id']:null}}"></a>
+                                    @endguest
                                 </p>
                             </div>
                         </li>
@@ -334,7 +389,13 @@
                                 </p>
                                 <p class="btn_style">
                                     <a href="javascript:void(0);" class="buy_btn"></a>
-                                    <a href="javascript:void(0);" class="Join_btn  addcar orange "></a>
+                                    {{--<a href="javascript:void(0);" class="Join_btn  addcar orange "></a>--}}
+                                    {{--判断是否已经登陆 如果没有登陆 不能加入购物车--}}
+                                    @guest
+                                        <a  href="/addShoppingCartLogin/0" class="Join_btn orange"></a>
+                                    @else
+                                        <a href="javascript:void(0);" class="Join_btn addcar orange" attr="{{isset($value['product_id'])?$value['product_id']:null}}" store_id ="{{isset($value['store_id'])?$value['store_id']:null}}"></a>
+                                    @endguest
                                 </p>
                             </div>
                         </li>
@@ -371,7 +432,13 @@
                                 </p>
                                 <p class="btn_style">
                                     <a href="javascript:void(0);" class="buy_btn"></a>
-                                    <a href="javascript:void(0);" class="Join_btn  addcar orange "></a>
+                                    {{--<a href="javascript:void(0);" class="Join_btn  addcar orange "></a>--}}
+                                    {{--判断是否已经登陆 如果没有登陆 不能加入购物车--}}
+                                    @guest
+                                        <a  href="/addShoppingCartLogin/0" class="Join_btn orange"></a>
+                                    @else
+                                        <a href="javascript:void(0);" class="Join_btn addcar orange" attr="{{isset($value['product_id'])?$value['product_id']:null}}" store_id ="{{isset($value['store_id'])?$value['store_id']:null}}"></a>
+                                    @endguest
                                 </p>
                             </div>
                         </li>
@@ -381,7 +448,9 @@
         </div>
 
         <div class="cailan" >
-            <img src="/image/test/6.jpg" width="100px" id="end" />
+            <a href="javascript:void(0);">
+                <img src="/image/test/6.jpg" width="100px" id="end" />
+            </a>
         </div>
 
     </div>

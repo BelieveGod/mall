@@ -98,9 +98,12 @@
                         var data = {};
                         data.user_id = user_id;
                         data.product_id = addcar.attr('attr');
-                        // console.log(data);
-                        $.post('/api/addShoppingCart' , data , function(){
-
+                        data.num = 1;
+                        data.store_id = addcar.attr('store_id');
+                        $.post('/api/addShoppingCart' , data , function(res){
+                            if(res){
+                                console.log(res);
+                            }
                         });
                         //加入购物车的样式
                         var img = addcar.parent().parent().find('img').attr('src');
@@ -144,7 +147,12 @@
                             </p>
                             <p class="btn_style">
                                 <a href="javascript:void(0);" class="buy_btn"></a>
-                                <a href="javascript:void(0);" class="Join_btn addcar orange" attr="{{isset($value['product_id'])?$value['product_id']:null}}"></a>
+                                {{--判断是否已经登陆 如果没有登陆 不能加入购物车--}}
+                                @guest
+                                    <a  href="/addShoppingCartLogin/{{$menu_title['category_id']}}" class="Join_btn orange"></a>
+                                @else
+                                    <a href="javascript:void(0);" class="Join_btn addcar orange" attr="{{isset($value['product_id'])?$value['product_id']:null}}" store_id ="{{isset($value['store_id'])?$value['store_id']:null}}"></a>
+                                @endguest
                             </p>
                         </div>
                     </li>
@@ -158,7 +166,9 @@
     </div>
 
     <div class="cailan" >
-        <img src="/image/test/6.jpg" width="100px" id="end" />
+        <a href="javascript:void(0);">
+            <img src="/image/test/6.jpg" width="100px" id="end" />
+        </a>
     </div>
 
 @endsection

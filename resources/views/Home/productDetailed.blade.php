@@ -185,7 +185,7 @@
                     <div class="add_collect">加入收藏夹</div>
                     <div class="operating">
                         <a href="javascript:void(0);" class="buy_btn "></a>
-                        <a href="javascript:void(0);" class="Join_btn  addcar orange "></a>
+                        <a href="javascript:void(0);" class="Join_btn  addcar orange " attr="{{isset($product['product_id'])?$product['product_id']:null}}" store_id ="{{isset($product['store_id'])?$product['store_id']:null}}"></a>
                         {{--<a href="/addCollect/{{$product['product_id']}}" class="Collect_btn"></a>--}}
                         <a href="javascript:void(0);" class="Collect_btn"></a>
                     </div>
@@ -228,7 +228,6 @@
                                 $(this).addClass('current');
                                 $(this).parent().next().css('display' , 'block');
                                 $(this).parent().next().find('img').attr('src' , src);
-
                             });
                         });
                     });
@@ -241,6 +240,20 @@
                     //加入购物车样式
                     $(".addcar").click(function(event){
                         var addcar = $(this);
+                        //判断用户是否已经登陆
+                        var user_id = $('#top_cullom_user_id').attr('attr');
+                        //ajax 将数据存入数据库
+                        var data = {};
+                        data.user_id = user_id;
+                        data.product_id = addcar.attr('attr');
+                        data.num = 1;
+                        data.store_id = addcar.attr('store_id');
+                        $.post('/api/addShoppingCart' , data , function(res){
+                            if(res){
+                                console.log(res);
+                            }
+                        });
+                        //加入购物车样式
                         var img = addcar.parent().parent().parent().find('img').attr('src');
                         console.log(img);
                         var flyer = $('<img class="u-flyer" src="'+img+'">');
@@ -472,7 +485,10 @@
             </div>
         </div>
         <div class="cailan" >
-            <img src="/image/test/6.jpg" width="100px" id="end" />
+            <a href="javascript:void(0);">
+                <img src="/image/test/6.jpg" width="100px" id="end" />
+            </a>
+
         </div>
     </div>
 </div>

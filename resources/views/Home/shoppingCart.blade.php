@@ -203,6 +203,7 @@
             </div>
         </div>
         <script>
+            //马上付款的样式固定在底部
             $(function(){
                 var banOffTop=$(".cart_operating_style").offset().top;//获取到距离顶部的垂直距离
                 console.log(banOffTop);
@@ -217,7 +218,6 @@
                     }else{
                         $(".cart_operating_style").removeClass("shopping_cart_fixDiv");
                     }
-
                 })
             })
         </script>

@@ -22,7 +22,7 @@
     <em class="left_img"></em>
     <div class="header clearfix" id="header">
         <a href="/home_index" class="logo_img"><img src="" style="width: 375px;height: 95px"/></a>
-        <div class="header_Section">
+        <div class="header_Section" style="width: 760px;">
             <div class="shortcut">
                 <ul>
                     @guest
@@ -69,6 +69,7 @@
                     <li class=""><a href="/groupBuy">活动专区</a></li>
                     <li class=""><a href="">文章话题</a></li>
                     <li class=""><a href="/userInfo">会员中心</a></li>
+                    <li class=""><a href="/applyAdmin">我要供应</a></li>
                     <li class=""><a href="/callAboutUs">联系我们</a></li>
                 </ul>
             </div>

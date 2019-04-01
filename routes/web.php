@@ -28,7 +28,8 @@ Route::get('userCollect' , 'UserInfoController@userCollect');//我的收藏
 Route::get('userAddress/{id?}' , 'UserInfoController@userAddress');//收货地址
 
 //购物车
-Route::get('shoppingCart' , 'ShoppingCartController@index');
+Route::get('shoppingCart' , 'ShoppingCartController@index');//显示购物车样式
+Route::get('addShoppingCartLogin/{id}' , 'ShoppingCartController@addShoppingCartLogin');//显示购物车样式
 
 //商品列表
 Route::get('product' , 'ProductController@index');//所有商品
@@ -41,5 +42,8 @@ Route::get('groupBuy' , 'GroupBuyController@index');//商品详情
 //联系我们
 Route::get('callAboutUs' , 'CallAboutUsController@index');//联系我们
 Route::get('mySuggest' , 'CallAboutUsController@mySuggest');//我的建议
+
+//商家入驻申请
+Route::get('applyAdmin' , 'ApplyAdminController@index');//商家提交申请
 
 
