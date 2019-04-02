@@ -34,3 +34,8 @@ Route::post('/delCollect' , 'UserCollectController@delCollect');//删除收藏�
 //购物车
 Route::post('/addShoppingCart' , 'ShoppingCartController@addShoppingCart');//加入购物车
 Route::post('/delShoppingCart' , 'ShoppingCartController@delShoppingCart');//删除购物车
+
+//商家申请供应
+//Route::post('/addApply' , 'ApplyAdminController@addApply');//提交申请 放到web里面
+Route::post('/applyAdminUploadImg' , 'ApplyAdminController@uploadImg');//图片上传
+Route::get('/applyAdminDeletedImg' , 'ApplyAdminController@deletedImg');//删除图片

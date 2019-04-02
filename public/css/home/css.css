@@ -495,6 +495,7 @@
 .user .about_user_info .call_user_layout{ margin-left: 30px}
 .user .about_user_info li{ height:40px; margin-bottom:20px; position:relative}
 .user .about_user_info li .add_text{ height:34px; border:1px solid #ddd; padding:0px 10px;; width:270px;}
+.user .about_user_info li .add_text_denger{ height:34px; border:1px solid #de3530; padding:0px 10px;; width:270px;}
 .user .about_user_info .user_title_name{ color:#666; float:left; width:80px; line-height:34px;}
 .user .about_user_info li .sex{ display:block; float:left; margin-top:7px; margin-right:5px; color:#666; position:relative; width:50px}
 .user .about_user_info li em{ color:#F00; padding:0px 5px; position:absolute;}
@@ -750,6 +751,9 @@
 .cailan {position:fixed;bottom:350px; right:35px; z-index:10000;}
 .add_collect{position: absolute;right: 120px ;bottom: 120px; color: #70b701;font-size: 16px;display: none}
 .shopping_cart_fixDiv{position:fixed;bottom:0;}
+
+/*********************************************************************************************/
+.find_apply_admin thead td{ line-height:40px; height:40px; padding:0px; text-align:center; background: #ECECEC}
 
 
 

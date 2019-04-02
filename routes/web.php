@@ -45,5 +45,8 @@ Route::get('mySuggest' , 'CallAboutUsController@mySuggest');//我的建议
 
 //商家入驻申请
 Route::get('applyAdmin' , 'ApplyAdminController@index');//商家提交申请
+Route::post('web/api/addApply' , 'ApiValidatorController@addApply');//提交申请
+Route::get('applySuccess' , 'ApplyAdminController@applySuccess');//商家提交申请成功页面
+Route::get('findApplyAdmin' , 'ApplyAdminController@findApplyAdmin');//商家查询申请结果
 
 

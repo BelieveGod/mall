@@ -13,4 +13,14 @@ class ApplyAdminController extends Controller
     {
         return view('Home.applyAdmin');
     }
+
+    public function applySuccess()
+    {
+        return view('Home.applySuccess');
+    }
+
+    public function findApplyAdmin()
+    {
+        return view('Home.findApplyAdmin');
+    }
 }
