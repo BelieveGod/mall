@@ -48,5 +48,6 @@ Route::get('applyAdmin' , 'ApplyAdminController@index');//商家提交申请
 Route::post('web/api/addApply' , 'ApiValidatorController@addApply');//提交申请
 Route::get('applySuccess' , 'ApplyAdminController@applySuccess');//商家提交申请成功页面
 Route::get('findApplyAdmin' , 'ApplyAdminController@findApplyAdmin');//商家查询申请结果
+Route::get('updatedApplyAdmin/{id?}' , 'ApplyAdminController@updatedApplyAdmin');//商家修改
 
 

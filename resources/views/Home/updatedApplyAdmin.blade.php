@@ -11,13 +11,13 @@
                         <a href="/findApplyAdmin" style="float:right">查看申请结果》</a>
                     </div>
                     <div class="about_user_info">
-                        <form id="form1" name="form1" method="post" action="/web/api/addApply" enctype="multipart/form-data">
+                        <form id="form1" name="form1" method="post" action="" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <div class="call_user_layout">
                                 <ul style="width: 50% ;float: left">
                                     <li>
                                         <label class="user_title_name">商家昵称：</label>
-                                        <input type="text" class="{{ $errors->has('business_nickname') ? ' add_text_denger' : 'add_text' }}" autocomplete="off" name="business_nickname" value="{{ old('business_nickname') }}" placeholder="请输入昵称"/>
+                                        <input type="text" class="{{ $errors->has('business_nickname') ? ' add_text_denger' : 'add_text' }}" autocomplete="off" name="business_nickname" value="{{isset($store->business_nickname)?$store->business_nickname:null}}" placeholder="请输入昵称"/>
                                         @if ($errors->has('business_nickname'))
                                             <span>
                                                 <strong style="color: #de3530">{{ $errors->first('business_nickname') }}</strong>
@@ -26,28 +26,16 @@
                                     </li>
                                     <li>
                                         <label class="user_title_name">店铺名称：</label>
-                                        <input type="text"  class="{{ $errors->has('store_name') ? ' add_text_denger' : 'add_text' }}" autocomplete="off" placeholder="请输入店铺名称" value="{{ old('store_name') }}" name="store_name"/>
+                                        <input type="text"  class="{{ $errors->has('store_name') ? ' add_text_denger' : 'add_text' }}" autocomplete="off" placeholder="请输入店铺名称" value="{{isset($store->store_name)?$store->store_name:null}}" name="store_name"/>
                                         @if ($errors->has('store_name'))
                                             <span>
                                                 <strong style="color: #de3530">{{ $errors->first('store_name') }}</strong>
                                             </span>
                                         @endif
                                     </li>
-                                    {{--<li>--}}
-                                        {{--<label class="user_title_name">所属省份：</label>--}}
-                                        {{--<input type="text"  class="add_text" placeholder="请输入省份" name="suggest_attr"/>--}}
-                                    {{--</li>--}}
-                                    {{--<li>--}}
-                                        {{--<label class="user_title_name">所属市：</label>--}}
-                                        {{--<input type="text"  class="add_text" placeholder="请输入所属市" name="suggest_attr"/>--}}
-                                    {{--</li>--}}
-                                    {{--<li>--}}
-                                        {{--<label class="user_title_name">所属区/县：</label>--}}
-                                        {{--<input type="text"  class="add_text" placeholder="请输入所属区/县" name="suggest_attr"/>--}}
-                                    {{--</li>--}}
                                     <li>
                                         <label class="user_title_name">注册地址：</label>
-                                        <input type="text"  class="{{ $errors->has('address') ? ' add_text_denger' : 'add_text' }}" autocomplete="off" placeholder="请输入注册的详细地址" value="{{ old('address') }}" name="address"/>
+                                        <input type="text"  class="{{ $errors->has('address') ? ' add_text_denger' : 'add_text' }}" autocomplete="off" placeholder="请输入注册的详细地址" value="{{isset($store->address)?$store->address:null}}" name="address"/>
                                         @if ($errors->has('address'))
                                             <span>
                                                 <strong style="color: #de3530">{{ $errors->first('address') }}</strong>
@@ -60,7 +48,7 @@
 
                                     <li>
                                         <label class="user_title_name">注册实名：</label>
-                                        <input type="text"  class="{{ $errors->has('business_name') ? ' add_text_denger' : 'add_text' }}" placeholder="请输入真实姓名" name="business_name" value="{{ old('business_name') }}" autocomplete="off"/>
+                                        <input type="text"  class="{{ $errors->has('business_name') ? ' add_text_denger' : 'add_text' }}" placeholder="请输入真实姓名" name="business_name" value="{{isset($store->business_name)?$store->business_name:null}}" autocomplete="off"/>
                                         @if ($errors->has('business_name'))
                                             <span>
                                                 <strong style="color: #de3530">{{ $errors->first('business_name') }}</strong>
@@ -69,7 +57,7 @@
                                     </li>
                                     <li>
                                         <label class="user_title_name">注册电话：</label>
-                                        <input type="text"  class="{{ $errors->has('business_tel') ? ' add_text_denger' : 'add_text' }}" placeholder="请输入电话号码" name="business_tel" value="{{ old('business_tel') }}" autocomplete="off"/>
+                                        <input type="text"  class="{{ $errors->has('business_tel') ? ' add_text_denger' : 'add_text' }}" placeholder="请输入电话号码" name="business_tel" value="{{isset($store->business_tel)?$store->business_tel:null}}" autocomplete="off"/>
                                         @if ($errors->has('business_tel'))
                                             <span>
                                                 <strong style="color: #de3530">{{ $errors->first('business_tel') }}</strong>
@@ -78,7 +66,7 @@
                                     </li>
                                     <li>
                                         <label class="user_title_name">身份证号码：</label>
-                                        <input type="text"  class="{{ $errors->has('identity_card') ? ' add_text_denger' : 'add_text' }}" placeholder="请输入身份证号码" name="identity_card" value="{{ old('identity_card') }}" autocomplete="off"/>
+                                        <input type="text"  class="{{ $errors->has('identity_card') ? ' add_text_denger' : 'add_text' }}" placeholder="请输入身份证号码" name="identity_card" value="{{isset($store->identity_card)?$store->identity_card:null}}" autocomplete="off"/>
                                         @if ($errors->has('identity_card'))
                                             <span>
                                                 <strong style="color: #de3530">{{ $errors->first('identity_card') }}</strong>
@@ -88,7 +76,7 @@
 
                                     <li>
                                         <label class="user_title_name">邮政编码：</label>
-                                        <input type="text"  class="{{ $errors->has('post_num') ? ' add_text_denger' : 'add_text' }}" placeholder="请输入邮政编码" name="post_num" value="{{ old('post_num') }}" autocomplete="off"/>
+                                        <input type="text"  class="{{ $errors->has('post_num') ? ' add_text_denger' : 'add_text' }}" placeholder="请输入邮政编码" name="post_num" value="{{isset($store->post_num)?$store->post_num:null}}" autocomplete="off"/>
                                         @if ($errors->has('post_num'))
                                             <span>
                                                 <strong style="color: #de3530">{{ $errors->first('post_num') }}</strong>
@@ -104,6 +92,8 @@
                                     </li>
                                     <li class="append-upload-img">
                                         <label class="user_title_name" style="width: 80px">&nbsp;</label>
+                                        @if(isset($store->adminImg))
+
                                         @if(old('adminImg'))
                                             @foreach(old('adminImg') as $val)
                                                 <div style="float: left;margin-right: 8px;padding: 3px;background-color: #848484;margin-bottom: 8px;position: relative">

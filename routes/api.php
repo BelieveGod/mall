@@ -39,3 +39,4 @@ Route::post('/delShoppingCart' , 'ShoppingCartController@delShoppingCart');//删
 //Route::post('/addApply' , 'ApplyAdminController@addApply');//提交申请 放到web里面
 Route::post('/applyAdminUploadImg' , 'ApplyAdminController@uploadImg');//图片上传
 Route::get('/applyAdminDeletedImg' , 'ApplyAdminController@deletedImg');//删除图片
+Route::get('/findTheResultByTel' , 'ApplyAdminController@findTheResultByTel');//查询申请结果
