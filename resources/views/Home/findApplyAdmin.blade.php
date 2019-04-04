@@ -60,7 +60,7 @@
                             '<td>'+ res[i]['action_status'] +'</td>\n' +
                             '<td>'+ res[i]['created_at'] +'</td>\n' +
                             '<td>'+ res[i]['memo'] +'</td>\n' ;
-                        if(res[i]['action_status'] == '不通过'){
+                        if(res[i]['action_status'] == '不通过' && res[i]['lock'] != 1){
                             html += '<td><a href="/updatedApplyAdmin/'+ res[i]['store_form_id'] +'">修改</a></td>';
                         }else{
                             html += '<td></td>';

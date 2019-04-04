@@ -27,8 +27,16 @@ class ApplyAdminController extends Controller
     //修改 重新写修改页面 Q.Q
     public function updatedApplyAdmin($id=0)
     {
-        $store = Store::where('store_id' , $id)->first();
-        dd($store);
+        $store = Store::where('store_id' , $id)->first()->toArray();
+        //数据处理
+        foreach ($store as $k=>$v){
+            switch ($k){
+                case 'business_pic':
+                    $store[$k] = json_decode($v, true);
+                    break;
+            }
+        }
+//        dd($store);
         return view('Home.updatedApplyAdmin' ,['store'=>$store]);
     }
 
