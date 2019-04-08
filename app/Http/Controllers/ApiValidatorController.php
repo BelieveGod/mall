@@ -75,10 +75,10 @@ class ApiValidatorController extends Controller
         $store->save();
 
         //写入申请日志
-//        $store_log = new StoreLog;
-//        $store_log->store_form_id = $store->store_id;
-//        $store_log->action_status = Store::PENDING_APPLICATION;
-//        $store_log->save();
+        $store_log = new StoreLog;
+        $store_log->store_form_id = $store->store_id;
+        $store_log->action_status = Store::PENDING_APPLICATION;
+        $store_log->save();
 
         //商家修改提交资料 修改日志 上锁 禁止修改
         if(!$business_tel){

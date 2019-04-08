@@ -49,3 +49,33 @@ function updatenum(obj)
     }
 }
 
+function shopUpdatenum(obj)
+{
+    var data = {};
+    var action = $(obj).attr('class');
+    var num = $(obj).parent().find('input').val();
+    var price = $(obj).parent().parent().parent().find('.title_width2').find('i').text();
+    data.shoppingCart_id = $(obj).parent().attr('shoppingCart_id');
+    // console.log(price);
+    //todo 输入件数不能为空或者负数 (或者直接在input框里判断更为合理)
+    if(!num || num < 0){
+        num = 0;
+    }
+    if(action === 'jia'){
+        data.type = '+';
+        $.post('/api/changeNumber',data,function(res){
+            $(obj).parent().find('input').val(parseInt(num)+1);
+            $(obj).parent().parent().next().find('span').text(res * Math.round(price));
+        });
+    }else{
+        //商品件数不可能为负数，所以小于1就不可以减
+        if(num > 1){
+            data.type = '-';
+            $.post('/api/changeNumber',data,function(res){
+                $(obj).parent().find('input').val(parseInt(num)-1);
+                $(obj).parent().parent().next().find('span').text(res * Math.round(price));
+            });
+        }
+    }
+}
+

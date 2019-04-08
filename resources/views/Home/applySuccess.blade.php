@@ -15,15 +15,14 @@
                             <li></li>
                             <li></li>
                             <li style="color: #848484;text-align: center">
-                                申请成功，你的申请编号为：
-                                <u style="color: #3ab1e6;font-size: 18px;">189177201</u>
+                                申请成功，请等待工作人员联系，或1-2个工作日后在相关入口查询。
+                                <u><a href="/home_index" style="color: #3ab1e6;font-size: 12px;">往商城》</a></u>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 
 

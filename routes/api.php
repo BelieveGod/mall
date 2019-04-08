@@ -34,6 +34,7 @@ Route::post('/delCollect' , 'UserCollectController@delCollect');//删除收藏�
 //购物车
 Route::post('/addShoppingCart' , 'ShoppingCartController@addShoppingCart');//加入购物车
 Route::post('/delShoppingCart' , 'ShoppingCartController@delShoppingCart');//删除购物车
+Route::post('/changeNumber' , 'ShoppingCartController@changeNumber');//改变购物车商品数量
 
 //商家申请供应
 //Route::post('/addApply' , 'ApplyAdminController@addApply');//提交申请 放到web里面

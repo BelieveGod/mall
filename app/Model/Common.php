@@ -23,4 +23,7 @@ class Common extends Model
     {
         return date('Y-m-d H:i:s',$this->attributes['updated_at']);
     }
+
+    //显示图片
+
 }

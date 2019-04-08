@@ -7,6 +7,8 @@ use App\Model\Regions;
 use App\Model\Store;
 use App\Http\Controllers\Controller;
 use App\Model\StoreLog;
+use App\Services\Common\ShowPicService;
+use App\Services\Common\ShowPicServices;
 use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -155,12 +157,15 @@ class StoreController extends Controller
         $show->divider();
         $show->business_name('注册实名');
         $show->business_tel('注册电话');
-        $show->regions_id('所属地区')->as(function ($value){
-            return Regions::findArea($value);
-        });
+//        $show->regions_id('所属地区')->as(function ($value){
+//            return Regions::findArea($value);
+//        });
+        $show->identity_card('身份证号');
         $show->address('注册地址');
         $show->post_num('邮政编码');
-        $show->business_pic('核实照片');
+        $show->business_pic('核实照片')->unescape()->as(function ($pic){
+            return ShowPicService::getlineimgs($pic);
+        });
         $show->created_at('创建时间');
         $show->updated_at('更新时间');
 //        $show->deleted_at('Deleted at');
@@ -219,7 +224,7 @@ class StoreController extends Controller
         $grid->disableRowSelector();
         $grid->disableActions();
 
-        $grid->model()->where('id',$id );
+        $grid->model()->where('store_form_id',$id );
 
         $grid->id('ID');
         $grid->action_status('状态')->display(function ($status){

@@ -28,4 +28,11 @@ class Store extends Common
     {
         return Store::pluck('store_name' , 'store_id')->toArray();
     }
+
+//    //修改器 多图上传
+//    public function getBusinessPicAttribute($pictures)
+//    {
+//        return json_decode($pictures, true);
+//    }
+
 }

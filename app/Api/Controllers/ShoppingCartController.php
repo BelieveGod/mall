@@ -50,5 +50,20 @@ class ShoppingCartController
 //        }
     }
 
+    //购物车 改变商品的数量
+    public function changeNumber(Request $request)
+    {
+        $shoppingCart_id = $request->post('shoppingCart_id');
+        $type = $request->post('type');
+        $shoppingCart = ShoppingCart::find($shoppingCart_id);
+        if($type=='+'){
+            $shoppingCart->num = $shoppingCart->num + 1;
+        }else if($type=='-'){
+            $shoppingCart->num = $shoppingCart->num - 1;
+        }
+        $shoppingCart->save();
+
+        return $shoppingCart->num;
+    }
 
 }

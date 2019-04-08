@@ -22,6 +22,10 @@ class ProductDetailedController extends HomeController
                 case 'about_product':
                     //处理 产品详情 这个字段 为不破坏样式最多只能显示9个
                     $about_product = $product['about_product'];
+                    if(empty($about_product)){
+                        $product[$key] = [];
+                        break;
+                    }
                     foreach ($about_product as $k=>$v){
                         $temp[$k] = explode(',' , $v);
                     }
