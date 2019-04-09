@@ -50,4 +50,7 @@ Route::get('applySuccess' , 'ApplyAdminController@applySuccess');//商家提交�
 Route::get('findApplyAdmin' , 'ApplyAdminController@findApplyAdmin');//商家查询申请结果
 Route::get('updatedApplyAdmin/{id?}' , 'ApplyAdminController@updatedApplyAdmin');//商家修改
 
+//提交商品订单
+Route::get('orders' , 'OrdersController@index');//提交商品订单
+
 

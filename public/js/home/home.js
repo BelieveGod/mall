@@ -49,6 +49,10 @@ function updatenum(obj)
     }
 }
 
+/**
+ * 更改 购物车商品的数量
+ * @param obj
+ */
 function shopUpdatenum(obj)
 {
     var data = {};
@@ -56,7 +60,7 @@ function shopUpdatenum(obj)
     var num = $(obj).parent().find('input').val();
     var price = $(obj).parent().parent().parent().find('.title_width2').find('i').text();
     data.shoppingCart_id = $(obj).parent().attr('shoppingCart_id');
-    // console.log(price);
+    console.log(Number(price.toString().match(/^\d+(?:\.\d{0,2})?/)));
     //todo 输入件数不能为空或者负数 (或者直接在input框里判断更为合理)
     if(!num || num < 0){
         num = 0;
@@ -65,7 +69,7 @@ function shopUpdatenum(obj)
         data.type = '+';
         $.post('/api/changeNumber',data,function(res){
             $(obj).parent().find('input').val(parseInt(num)+1);
-            $(obj).parent().parent().next().find('span').text(res * Math.round(price));
+            $(obj).parent().parent().next().find('span').text( Math.floor( res * price* 100) / 100);
         });
     }else{
         //商品件数不可能为负数，所以小于1就不可以减
@@ -73,7 +77,7 @@ function shopUpdatenum(obj)
             data.type = '-';
             $.post('/api/changeNumber',data,function(res){
                 $(obj).parent().find('input').val(parseInt(num)-1);
-                $(obj).parent().parent().next().find('span').text(res * Math.round(price));
+                $(obj).parent().parent().next().find('span').text(Math.floor( res * price* 100) / 100);
             });
         }
     }

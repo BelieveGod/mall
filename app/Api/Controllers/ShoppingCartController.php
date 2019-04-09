@@ -42,12 +42,12 @@ class ShoppingCartController
     //删除购物车
     public function delShoppingCart(Request $request)
     {
-//        $collect_id = $request->post('collect_id');
-//        $collect = UserCollect::findOrFail($collect_id);
-//        $collect->delete();
-//        if ($collect->trashed()) {
-//            return '该记录已删除';
-//        }
+        $shoppingCart_id = $request->post('shoppingCart_id');
+        $shoppingCart = ShoppingCart::findOrFail($shoppingCart_id);
+        $shoppingCart->delete();
+        if ($shoppingCart->trashed()) {
+            return '该记录已删除';
+        }
     }
 
     //购物车 改变商品的数量

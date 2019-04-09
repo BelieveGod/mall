@@ -413,11 +413,11 @@
 .cart_btn{}
 .cart_operating_style .cart_price{ margin-left:10px; font-family:"新宋体"; text-align:right ; float: right ; line-height: 43px;}
 .cart_operating_style .cart_price b{ font-size:18px; color:#F00; font-weight:normal; font-family:"Microsoft YaHei"}
-.cart_btn a{ background:url(/image/home/Complex_img.png) no-repeat; width:138px; height:43px; display:block; float:right; margin-left:10px;}
-.cart_btn a.payment_btn{ background-position: left -367px}
-.cart_btn a.continue_btn{ background-position:-138px -367px}
-.cart_btn a.payment_btn:hover{background-position: left -410px}
-.cart_btn a.continue_btn:hover{background-position: -138px -410px}
+.cart_btn button{ background:url(/image/home/Complex_img.png) no-repeat; width:138px; height:43px; display:block; float:right; margin-left:10px;}
+.cart_btn button.payment_btn{ background-position: left -367px}
+.cart_btn button.continue_btn{ background-position:-138px -367px}
+.cart_btn button.payment_btn:hover{background-position: left -410px}
+.cart_btn button.continue_btn:hover{background-position: -138px -410px}
 /************************************************积分商城样式属性*********************************************/
 .integral_style{ margin:30px 0px;}
 .integral_style .integral_title{ font-size:24px; color:#666}

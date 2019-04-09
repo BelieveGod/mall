@@ -24,6 +24,17 @@ class ShoppingCart extends Common
         //涉及到的商店 SELECT store_id FROM mall_shopping_cart GROUP BY store_id
         $store = ShoppingCart::select('store_id')->where('user_id' , $user_id)->groupBy('store_id')->get()->toArray();
         //数据处理 方便前台打印数据
+        return ShoppingCart::displayProduct($store , $product);
+    }
+
+    /**
+     * 数据处理 方便前台打印数据
+     * @param $store
+     * @param $product
+     * @return array
+     */
+    public static function displayProduct($store , $product)
+    {
         $data = [];
         foreach ($store as $value){
             $temp = [];

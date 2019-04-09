@@ -7,13 +7,13 @@
 #Orders .Orders_style .address .adderss_list .title_name a{ float:right; padding-right:10px; color:#C00}
 .address .adderss_list .list{ margin:0 auto; width:1200px;}
 .address .adderss_list .list  ul{float:left;  width:360px; margin:20px; position:relative}
-.user_address{ position:relative;cursor: pointer; width:320px ; padding:20px;background: url("../images/xf_bg.png") no-repeat; height:180px; z-index:-1}
-.address .adderss_list .list ul.active{height:220px; width:360px; background:url("../images/confirm.png") no-repeat;}
+.user_address{ position:relative;cursor: pointer; width:320px ; padding:20px;background: url("/image/home/xf_bg.png") no-repeat; height:180px; z-index:-1}
+.address .adderss_list .list ul.active{height:220px; width:360px; background:url(/image/home/tm_img.png) no-repeat;}
 .address .adderss_list .list .user_address li{ font-size:14px; line-height:30px;}
 .address .adderss_list .list ul .adderss_operating{ display:none}
 .address .adderss_list .list ul .default{ 
 	position:absolute; 
-	background:url(../images/bg.png) repeat; 
+	background:url(/image/home/bg.png) repeat;
 	height:30px; 
 	width:100px; 
 	top:0px; 
@@ -23,9 +23,9 @@
 	line-height:30px;
 	font-size:16px
 }
-.address .adderss_list .list ul.hover .adderss_operating{ display:block; background:url(../images/bg.png); width:360px; height:220px; position:absolute;top:0px; left:0px;}
-.address .adderss_list .list ul.hover .adderss_operating .delete_btn{ background:url(../images/button_icon.png)  no-repeat; height:50px; width:45px; display:block; float:left; margin-right:30px}
-.address .adderss_list .list ul.hover .adderss_operating .modify_btn{ background:url(../images/button_icon.png) -45px 0px no-repeat ; height:50px; width:45px; display:block; float:left}
+.address .adderss_list .list ul.hover .adderss_operating{ display:block; background:url(/image/home/bg.png); width:360px; height:220px; position:absolute;top:0px; left:0px;}
+.address .adderss_list .list ul.hover .adderss_operating .delete_btn{ background:url(/image/home/button_icon.png)  no-repeat; height:50px; width:45px; display:block; float:left; margin-right:30px}
+.address .adderss_list .list ul.hover .adderss_operating .modify_btn{ background:url(/image/home/button_icon.png) -45px 0px no-repeat ; height:50px; width:45px; display:block; float:left}
 .address .adderss_list .list ul.hover .adderss_operating .Operate{ margin:0 auto; width:130px; height:50px; margin-top:80px;}
 .address .adderss_list .list .user_address li.Postcode{ position:absolute; bottom:15px;letter-spacing:22px; text-align:center; left:25px;}
 .express_delivery{ background:#ededed; padding:5px;}
@@ -47,7 +47,7 @@
   box-shadow:0px 0px 6px 2px #999
 }
 .express_delivery .dowebok li.hover .description .Note{ color:#F30; font-size:16px}
-.express_delivery .dowebok li.hover .description .arrow{ background:url(../images/button_icon.png) left -99px; position:absolute; z-index:22; display:block; top:-7px; height:10px; width:15px;}
+.express_delivery .dowebok li.hover .description .arrow{ background:url(/image/home/button_icon.png) left -99px; position:absolute; z-index:22; display:block; top:-7px; height:10px; width:15px;}
 /******************************地址样式属性*****************************/
 .Shipping_address{ border-left:1px solid #ddd; border-right:1px solid #ddd;border-bottom:1px solid #ddd; margin-bottom:20px;}
 .Shipping_address li{ width:50%; float:left; border-top:1px solid #ddd; border-left:1px solid #ddd; height:40px; line-height:40px; margin-left:-1px;}
@@ -114,7 +114,7 @@
 .Product_List  .price_style ul .shiji_price span{ font-size:18px; font-weight:bold}
 .Product_List  .price_style  .btn{ float:right; margin:10px 0px; font-size:18px}
 .Product_List  .price_style .integral span{ color:#F00; font-size:14px}
-.Product_List  .price_style  .btn input{ background:url(../images/Button_img.png) no-repeat; width:152px; height:36px; border:0px; float:left; color:#FFF; margin-left:20px; cursor:pointer}
+.Product_List  .price_style  .btn input{ background:url(/image/home/Button_img.png) no-repeat; width:152px; height:36px; border:0px; float:left; color:#FFF; margin-left:20px; cursor:pointer}
 .Product_List  .price_style  .btn input.submit_btn{ background-position: left -75px;}
 .Product_List  .price_style  .btn input.submit_btn:hover{background-position: -151px  -75px;}
 .Product_List  .price_style  .btn input.return_btn{background-position: left -112px;}
@@ -193,10 +193,10 @@ input.labelauty:checked + label > span.labelauty-unchecked{display: none;}
 input.labelauty:checked + label > span.labelauty-checked{display: inline-block;}
 input.labelauty.no-label:checked + label > span.labelauty-checked{display: block;}
 input.labelauty[disabled] + label{opacity: 0.5;}
-input.labelauty + label > span.labelauty-unchecked-image{background-image: url( ../images/iconfont-kuaidi.png );}
-.invoice_style input.labelauty + label > span.labelauty-unchecked-image{background-image: url( ../images/input-checked-hui.png );}
-.payment input.labelauty + label > span.labelauty-unchecked-image{background-image: url( ../images/iconfont-zhifuicon2.png );}
-input.labelauty + label > span.labelauty-checked-image{background-image: url( ../images/input-checked.png );}
+input.labelauty + label > span.labelauty-unchecked-image{background-image: url( /image/home/iconfont-kuaidi.png );}
+.invoice_style input.labelauty + label > span.labelauty-unchecked-image{background-image: url( /image/home/input-checked-hui.png );}
+.payment input.labelauty + label > span.labelauty-unchecked-image{background-image: url( /image/home/iconfont-zhifuicon2.png );}
+input.labelauty + label > span.labelauty-checked-image{background-image: url( /image/home/input-checked.png );}
 /*****************下拉框样式属性*****************/
 .SlectBox, .SlectBoxa { width: 150px; padding: 5px; }
 .SumoSelect > .optWrapper > .options > li { -moz-transition: 200ms ease; -webkit-transition: 200ms ease; transition: 200ms ease; }
@@ -216,7 +216,7 @@ input.labelauty + label > span.labelauty-checked-image{background-image: url( ..
 .SumoSelect > .CaptionCont > span.placeholder { color: #ccc; }
 .SumoSelect > .CaptionCont > label { position: absolute; top: 0px; right: 0px; bottom: 0px; width: 30px; background-color: #ddd; }
 .SumoSelect > .CaptionCont > label > i { 
-	background-image: url('../images/iconfont-jiantou.png'); 
+	background-image: url('/image/home/iconfont-jiantou.png');
 	background-position: center center; 
 	width: 16px;
 	height: 16px; 
@@ -269,4 +269,17 @@ input.labelauty + label > span.labelauty-checked-image{background-image: url( ..
 	-khtml-opacity: 0.5; /* Good browsers */ 
 	opacity: 0.5; 
 }
+
+/******************************************************************************/
+.ord_list{width: 1200px;height: 150px;padding: 10px;}
+.ord_list .addr{display: inline-block;vertical-align: top;position: relative;width: 237px;margin: 0 14px 14px 0;color: #666;cursor: pointer;}
+.ord_list .addr .inner{z-index: 2;position: relative;padding: 11px 15px;background: url(/image/home/tm_img_none.png) no-repeat;overflow: hidden;}
+.curMarker{z-index: 3;position: absolute;background-position: 0 -272px;width: 28px;height: 28px;top: 77px;right: 1px;visibility: hidden;}
+.setDefault{color: #666;background: #fff;}
+.addr-hd{width: 100%;border-bottom: 1px solid #f2f2f2;padding: 0 0 5px;margin-bottom: 5px;line-height: 18px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
+.addr-bd{height: 36px;overflow: hidden;word-break: break-all;word-wrap: break-word;}
+.addr-toolbar a{color: #c97;cursor: pointer;}
+.addr .option{height: 33px;width: 225px;overflow: hidden;position: absolute;top: 73px;left: 6px;border: 1px solid #EBEBEB;border-top: 0;border-bottom: 0;border-radius: 0 0 2px 2px;background: url(/image/home/tm_none.png) 50% 100% no-repeat;z-index: 1;}
+#add_active .inner{background: url(/image/home/tm_img.png)}
+#add_active .curMarker{background: url(/image/home/tm_btn.png)no-repeat;}
 
