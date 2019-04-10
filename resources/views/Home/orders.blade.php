@@ -109,7 +109,8 @@
 
             </div>
 
-            <form class="form" method="post">
+            {{--<form class="form" method="post">--}}
+            <form name=alipayment action='/api/alipay' method=post target="_blank">
                 <fieldset>
                     <!--付款方式-->
                     <div class="payment">
@@ -127,8 +128,8 @@
                             <tr class="title">
                                 <td class="name" style="text-align: left;padding-left: 20px;">{{isset($value['store_id']['store_name'])?$value['store_id']['store_name']:null}}</td>
                                 <td class="price">商品价格</td>
-                                {{--<td class="Preferential">优惠价</td>--}}
                                 <td class="Quantity">购买数量</td>
+                                <td class="Preferential">运费</td>
                                 <td class="Money">金额</td>
                             </tr>
                             </thead>
@@ -139,10 +140,10 @@
                                     <a href="#"><img src="/uploads/{{isset($val['product']['product_master_img'][0])?$val['product']['product_master_img'][0]:null}}"  width="100px" height="100px"/></a>
                                     <a href="#" class="product_name">{{isset($val['product']['product_name'])?$val['product']['product_name']:null}}</a>
                                 </td>
-                                <td><i>￥</i>123.00</td>
-                                {{--<td><i>￥</i>112.00</td>--}}
-                                <td>2</td>
-                                <td class="Moneys"><i>￥</i>224.00</td>
+                                <td><i>￥</i>{{isset($val['product']['present_price'])?$val['product']['present_price']:null}}</td>
+                                <td>{{isset($val['num'])?$val['num']:1}}</td>
+                                <td><i>￥</i><span class="product_freght">{{isset($val['product']['product_freght'])?$val['product']['product_freght']:null}}</span></td>
+                                <td class="Moneys"><i>￥</i><span class="cost_money">{{isset($val['product']['cost'])?$val['product']['cost']:null}}</span></td>
                             </tr>
                             @endforeach
 
@@ -158,16 +159,21 @@
                         <div class="price_style">
                             <div class="right_direction">
                                 <ul>
-                                    <li><label>商品总价</label><i>￥</i><span>448.00</span></li>
-                                    <li><label>优惠金额</label><i>￥</i><span>-23.00</span></li>
-                                    <li><label>配&nbsp;&nbsp;送&nbsp;&nbsp;费</label><i>￥</i><span>0</span></li>
-                                    <li class="shiji_price"><label>实&nbsp;&nbsp;付&nbsp;&nbsp;款</label><i>￥</i><span>425.00</span></li>
+                                    <li><label>商品总价</label><i>￥</i><span class="spzj"></span></li>
+                                    <li><label>配&nbsp;&nbsp;送&nbsp;&nbsp;费</label><i>￥</i><span class="psf">0</span></li>
+                                    <li class="shiji_price"><label>实&nbsp;&nbsp;付&nbsp;&nbsp;款</label><i>￥</i><span class="sfk">425.00</span></li>
                                 </ul>
                                 <div class="btn">
                                     <input name="" type="button" value="返回购物车"  class="return_btn"/>
-                                    <input name="submit" type="submit" value="提交订单" class="submit_btn"/>
+
+                                        <input id="WIDout_trade_no" name="WIDout_trade_no"  type="hidden" value="123"/>
+                                        <input id="WIDsubject" name="WIDsubject" type="hidden" value="123"/>
+                                        <input id="WIDtotal_amount" name="WIDtotal_amount" type="hidden" value="123"/>
+                                        <input id="WIDbody" name="WIDbody" type="hidden"/>
+                                        <input name="submit" type="submit" value="提交订单" class="submit_btn"/>
+                                    </form>
                                 </div>
-                                <div class="integral right">待订单确认后，你将获得<span>345</span>积分</div>
+                                <div class="integral right">待订单确认后，你将获得<span class="jf"></span>积分</div>
                             </div>
                         </div>
                     </div>
@@ -176,6 +182,28 @@
         </div>
     </div>
     <script type="text/javascript">
+        $(document).ready(function (){
+            //商品总价
+            var cost = 0;
+            $('.Product_List').find('.cost_money').each(function (){
+                var cost_pnce = $(this).text();
+                cost += Math.floor(cost_pnce * 100) / 100;
+            });
+            $('.spzj').text(cost);
+            //配送费
+            var freght = 0;
+            $('.Product_List').find('.product_freght').each(function (){
+                var product_freght = $(this).text();
+                freght += Math.floor(product_freght * 100) / 100;
+            });
+            $('.psf').text(freght);
+            //实付款
+            $('.sfk').text(Math.floor( (freght+cost) * 100) / 100);
+            //积分
+            $('.jf').text(parseInt(cost));
+
+        });
+
         function checkLength(which) {
             var maxChars = 50; //
             if(which.value.length > maxChars){

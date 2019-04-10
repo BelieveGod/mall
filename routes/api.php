@@ -41,3 +41,6 @@ Route::post('/changeNumber' , 'ShoppingCartController@changeNumber');//改变购
 Route::post('/applyAdminUploadImg' , 'ApplyAdminController@uploadImg');//图片上传
 Route::get('/applyAdminDeletedImg' , 'ApplyAdminController@deletedImg');//删除图片
 Route::get('/findTheResultByTel' , 'ApplyAdminController@findTheResultByTel');//查询申请结果
+
+//支付宝沙箱支付
+Route::post('/alipay' , 'AlipayController@alipay');
