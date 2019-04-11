@@ -39,6 +39,8 @@ class OrdersController extends HomeController
         }
         $order = ShoppingCart::displayProduct($store , $product);
 
+//        dd($order);
+
         return view('Home.Orders',[
             'user_address' => $user_address ,
             'order' => $order,

@@ -67,7 +67,7 @@
 
                 @foreach($user_address as $value)
                     @if($value['status'] == 1)
-                    <div class="addr" id="add_active" >
+                    <div class="addr" id="add_active" attr="{{isset($value['user_address_id'])?$value['user_address_id']:null}}">
                     @else
                     <div class="addr" id="" >
                     @endif
@@ -125,18 +125,18 @@
                         @foreach($order as $value)
                         <table style="margin-top: 30px;">
                             <thead>
-                            <tr class="title">
+                            <tr class="title each_store">
                                 <td class="name" style="text-align: left;padding-left: 20px;">{{isset($value['store_id']['store_name'])?$value['store_id']['store_name']:null}}</td>
                                 <td class="price">商品价格</td>
                                 <td class="Quantity">购买数量</td>
-                                <td class="Preferential">运费</td>
+                                <td class="Preferential" attr="">运费</td>
                                 <td class="Money">金额</td>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($value['product'] as $val)
                             <tr>
-                                <td class="Product_info">
+                                <td class="Product_info" attr="{{isset($val['shopping_cart_id'])?$val['shopping_cart_id']:null}}">
                                     <a href="#"><img src="/uploads/{{isset($val['product']['product_master_img'][0])?$val['product']['product_master_img'][0]:null}}"  width="100px" height="100px"/></a>
                                     <a href="#" class="product_name">{{isset($val['product']['product_name'])?$val['product']['product_name']:null}}</a>
                                 </td>
@@ -165,13 +165,11 @@
                                 </ul>
                                 <div class="btn">
                                     <input name="" type="button" value="返回购物车"  class="return_btn"/>
-
-                                        <input id="WIDout_trade_no" name="WIDout_trade_no"  type="hidden" value="123"/>
-                                        <input id="WIDsubject" name="WIDsubject" type="hidden" value="123"/>
-                                        <input id="WIDtotal_amount" name="WIDtotal_amount" type="hidden" value="123"/>
+                                        <input id="WIDout_trade_no" name="WIDout_trade_no"  type="hidden" value="{{'2019'.time()}}"/>
+                                        <input id="WIDsubject" name="WIDsubject" type="hidden" value=""/>
+                                        <input id="WIDtotal_amount" name="WIDtotal_amount" type="hidden" value=""/>
                                         <input id="WIDbody" name="WIDbody" type="hidden"/>
-                                        <input name="submit" type="submit" value="提交订单" class="submit_btn"/>
-                                    </form>
+                                        <input name="submit" type="button" value="提交订单" class="submit_btn" onclick="inputOrder(this)"/>
                                 </div>
                                 <div class="integral right">待订单确认后，你将获得<span class="jf"></span>积分</div>
                             </div>
@@ -199,8 +197,12 @@
             $('.psf').text(freght);
             //实付款
             $('.sfk').text(Math.floor( (freght+cost) * 100) / 100);
+            $('#WIDtotal_amount').val(Math.floor( (freght+cost) * 100) / 100);
             //积分
             $('.jf').text(parseInt(cost));
+
+            var pro_name = $('.Product_List').find('.Product_info').eq(0).find('.product_name').text();
+            $('#WIDsubject').val(pro_name);
 
         });
 
@@ -217,6 +219,31 @@
                 return true;
             }
         }
+
+        function inputOrder(obj)
+        {
+            //订单应该分商店，可以是同一个订单号，但是涉及到的商家应该都能看到这个订单和对商品相应地发货
+            var data = {};
+            data.user_id = $('#top_cullom_user_id').attr('attr');
+            data.address_id = $('#add_active').attr('attr');
+            var shopping_cart = new Array();
+            // data.shopping_cart =
+            $('.Product_List').find('.Product_info').each(function(){
+                var temp = $(this).attr('attr');
+                shopping_cart.push(temp);
+            });
+            data.shopping_cart = shopping_cart;
+            data.spzj = $('.spzj').text();
+            data.psf = $('.psf').text();
+            data.sfk = $('.sfk').text();
+            console.log(data);
+
+            $.post('/api/saveOrders' , data , function(res){
+                console.log(res);
+            });
+        }
+
+
     </script>
     <script>
         $(function(){

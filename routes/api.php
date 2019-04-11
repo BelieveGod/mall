@@ -44,3 +44,9 @@ Route::get('/findTheResultByTel' , 'ApplyAdminController@findTheResultByTel');//
 
 //支付宝沙箱支付
 Route::post('/alipay' , 'AlipayController@alipay');
+
+//写入订单
+Route::post('/saveOrders' , 'OrdersController@saveOrders');
+
+
+

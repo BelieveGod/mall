@@ -2,10 +2,6 @@
 
 namespace App\Api\Controllers;
 
-use App\Model\Member;
-use App\Model\Suggest;
-use Illuminate\Http\Request;
-
 class AlipayController
 {
     public function alipay()
@@ -48,6 +44,5 @@ class AlipayController
         //输出表单
         var_dump($response);
     }
-
 
 }
