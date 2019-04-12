@@ -56,10 +56,47 @@ class ProductForm extends Common
         return ProductForm::pluck('post_num' , 'form_id')->toArray();
     }
 
+    /**
+     * 前台用户查看订单
+     * @param $user_id
+     * @return array
+     */
+    public static function findOrderByUser($user_id)
+    {
+        $productForm = ProductForm::where('user_id',$user_id)->get()->toArray();
+        //做相应的数据处理
+        $userProOrder = [];
+        foreach ($productForm as $value){
+            foreach ($value as $k=>$v){
+                if($k == 'product_id'){
+                    $temp = [];
+                    foreach ($v as $val){
+                        $temp[] = Product::where('product_id',$val)->first()->toArray();
+                    }
+                    $value['pro'] = $temp;
+                }
+            }
+            $userProOrder[] = $value;
+        }
+        return $userProOrder;
+    }
+
+
     //pay_time过滤器
     public function getPayTimeAttribute()
     {
         return date('Y-m-d H:i:s',$this->attributes['pay_time']);
+    }
+
+    //product_id 修改器
+    public function getProductIdAttribute($val)
+    {
+        return json_decode($val, true);
+    }
+    //num 修改器
+    public function getNumAttribute($val)
+    {
+        return json_decode($val, true);
     }
 
 }

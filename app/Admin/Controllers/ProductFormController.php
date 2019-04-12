@@ -7,6 +7,9 @@ use App\Model\Product;
 use App\Model\ProductForm;
 use App\Http\Controllers\Controller;
 use App\Model\ProductSku;
+use App\Model\Regions;
+use App\Model\UserAddress;
+use App\User;
 use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -89,7 +92,10 @@ class ProductFormController extends Controller
 //        $grid->form_id('ID');
         $grid->model()->orderBy('status');
         $grid->form_num('订单号');
-        $grid->product_id('商品')->using(Product::findProductNameById());
+//        $grid->product_id('商品')->using(Product::findProductNameById());
+        $grid->product_id('商品')->display(function ($product_arr){
+            return $product_arr[0];
+        })->using(Product::findProductNameById());
 
         $grid->form_cost('订单总价');
         $grid->status('状态')->using(ProductForm::productFormSatus())->display(function ($text){
@@ -142,17 +148,46 @@ class ProductFormController extends Controller
 
         $show->form_id('ID');
         $show->form_num('订单号');
-        $show->product_id('商品')->using(Product::findProductNameById());
-        $show->sku_id('商品规格')->as(function ($val) {
-            return ProductSku::findskuvaluebyskuid($val);
+//        $show->product_id('商品')->using(Product::findProductNameById());
+//        $show->sku_id('商品规格')->as(function ($val) {
+//            return ProductSku::findskuvaluebyskuid($val);
+//        });
+//        $show->num('商品件数');
+        $show->column('商品')->unescape()->as(function () use($id){
+            $str = '';
+            $pro_form = ProductForm::find($id);
+            $pro_arr = $pro_form->product_id;
+            $pro_num = $pro_form->num;
+            $pro = array_combine($pro_arr,$pro_num);
+
+            foreach ($pro as $k=>$v){
+                $p = Product::find($k);
+                $str .= '<p><span>'.$p->product_name.'</span>-------------<label class="label-danger">'.$v.$p->unit.'</label></p>';
+            }
+            return $str;
         });
-        $show->num('商品件数');
+
         $show->divider();
         $show->product_cost('商品总价');
         $show->form_freght('订单运费');
         $show->form_cost('订单总价');
         $show->divider();
-        $show->form_address_id('收货地址');
+        $show->user_id('购买用户')->using(User::findNameByUserId());
+        $show->column('收货人')->as(function () use($id){
+            $user_address_id = ProductForm::find($id)->form_address_id;
+            $user_address = UserAddress::findOnceUserAddUseInPluck($user_address_id);
+            return $user_address->name;
+        });
+        $show->column('收货人联系方式')->as(function () use($id){
+            $user_address_id = ProductForm::find($id)->form_address_id;
+            $user_address = UserAddress::findOnceUserAddUseInPluck($user_address_id);
+            return $user_address->tell;
+        });
+        $show->form_address_id('收货地址')->as(function ($val){
+            $user_address = UserAddress::findOnceUserAddUseInPluck($val);
+            $zheng = Regions::finNameById($user_address->region);
+            return $zheng.'&nbsp;&nbsp;'.$user_address->address;
+        });
         $show->bussiness_address_id('发货地址')->using(BusinessAddress::findaddressbyid());
         $show->status('状态')->using(ProductForm::productFormSatus())->unescape()->as(function ($val){
             return "<span class='label bg-green'>$val</span>";

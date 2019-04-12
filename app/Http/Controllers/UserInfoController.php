@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Model\Advertisement;
 use App\Model\Member;
+use App\Model\Product;
+use App\Model\ProductForm;
 use App\Model\Regions;
 use App\Model\UserAddress;
 use App\Model\UserCollect;
@@ -30,7 +32,15 @@ class UserInfoController extends HomeController
     //我的订单
     public function userForm()
     {
-        return view('Home.userForm',['userInfo'=>$this->userInfo()]);
+        //todo 根据productForm表查找
+        //查出所有有关与于这个用户的订单
+        $user_id = Auth::user()->id;
+        $allOrder = ProductForm::findOrderByUser($user_id);
+//        dd($allOrder);
+        return view('Home.userForm',[
+            'userInfo' => $this->userInfo(),
+            'allOrder' => $allOrder,
+            ]);
     }
     //我的积分
     public  function userIntegral()

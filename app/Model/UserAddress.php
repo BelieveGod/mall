@@ -20,4 +20,14 @@ class UserAddress extends Common
         }
         return $data;
     }
+
+    /**
+     * 查找所有用户地址 pluck
+     * @param $address_id
+     * @return mixed
+     */
+    public static function findOnceUserAddUseInPluck($address_id)
+    {
+        return UserAddress::where('user_address_id' , $address_id)->first();
+    }
 }

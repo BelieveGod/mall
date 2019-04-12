@@ -74,64 +74,35 @@
                     <td class="list_name_title5">订单状态</td>
                     <td class="list_name_title6">操作</td>
                     </thead>
-                    <tbody>
-                    <tr><td colspan="6" class="Order_form_time">2015-12-3 订单号：445454654654654</td></tr>
-                    <tr>
-                        <td colspan="3">
-                            <table class="Order_product_style">
-                                <tr>
-                                    <td>
-                                        <div class="product_name clearfix">
-                                            <a href="#"><img src="/image/test/2.jpg"  width="80px" height="80px"/></a>
-                                            <a href="3">天然绿色多汁香甜无污染水蜜桃</a>
-                                            <p class="specification">礼盒装20个/盒</p>
-                                        </div>
-                                    </td>
-                                    <td>5</td>
-                                    <td>2</td>
-                                </tr>
-                            </table>
-                        </td>
-                        <td class="split_line">100</td>
-                        <td class="split_line">已发货，待收货</td>
-                        <td></td>
-                    </tr>
-                    </tbody>
-                    <tbody>
-                    <tr><td colspan="6" class="Order_form_time">2015-12-3 订单号：445454654654654</td></tr>
-                    <tr>
-                        <td colspan="3">
-                            <table class="Order_product_style">
-                                <tr>
-                                    <td>
-                                        <div class="product_name clearfix">
-                                            <a href="#"><img src="/image/test/2.jpg"  width="80px" height="80px"/></a>
-                                            <a href="3">天然绿色多汁香甜无污染水蜜桃</a>
-                                            <p class="specification">礼盒装20个/盒</p>
-                                        </div>
-                                    </td>
-                                    <td>5</td>
-                                    <td>2</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="product_name clearfix">
-                                            <a href="#"><img src="/image/test/2.jpg"  width="80px" height="80px"/></a>
-                                            <a href="3">天然绿色多汁香甜无污染水蜜桃</a>
-                                            <p class="specification">礼盒装20个/盒</p>
-                                        </div>
-                                    </td>
-                                    <td>5</td>
-                                    <td>2</td>
-                                </tr>
-                            </table>
-                        </td>
+                    @foreach($allOrder as $value)
+                        <tbody>
+                        <tr><td colspan="6" class="Order_form_time">订单号：{{isset($value['form_num'])?$value['form_num']:null}}</td></tr>
+                        <tr>
+                            <td colspan="3">
+                                <table class="Order_product_style">
+                                    @foreach($value['pro'] as $val)
+                                    <tr>
+                                        <td>
+                                            <div class="product_name clearfix">
+                                                <a href="/productDetailed/{{isset($val['product_id'])?$val['product_id']:null}}"><img src="/uploads/{{isset($val['product_master_img'][0])?$val['product_master_img'][0]:null}}"  width="80px" height="80px"/></a>
+                                                <a href="/productDetailed/{{isset($val['product_id'])?$val['product_id']:null}}" style="max-width: 15em;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">{{isset($val['product_name'])?$val['product_name']:null}}</a>
+                                                {{--<p class="specification">礼盒装20个/盒</p>--}}
+                                            </div>
+                                        </td>
+                                        <td>5</td>
+                                        <td>2</td>
+                                    </tr>
+                                    @endforeach
+                                </table>
+                            </td>
 
-                        <td class="split_line">100</td>
-                        <td class="split_line">已发货，待收货</td>
-                        <td></td>
-                    </tr>
-                    </tbody>
+                            <td class="split_line">100</td>
+                            <td class="split_line">已发货，待收货</td>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    @endforeach
+
                 </table>
             </div>
         </div>

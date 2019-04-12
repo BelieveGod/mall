@@ -53,12 +53,25 @@ class OrdersController
            $temp['form_cost'] = $product_cost+$form_freght;
            $temp['form_address_id'] = $form_address_id;
            $temp['status'] = ProductForm::PLACE_ORDER;
-           $order[] = $temp;
+           $temp['pay_type'] = ProductForm::PAY_ON_LINE;
+//           $order[] = $temp;
+
+           //存入数据库
+           $productForm = new ProductForm();
+           $productForm->user_id = $temp['user_id'];
+           $productForm->product_id = $temp['product_id'];
+           $productForm->num = $temp['num'];
+           $productForm->form_num = $temp['form_num'];
+           $productForm->product_cost = $temp['product_cost'];
+           $productForm->form_freght = $temp['form_freght'];
+           $productForm->form_cost = $temp['form_cost'];
+           $productForm->form_address_id = $temp['form_address_id'];
+           $productForm->status = $temp['status'];
+           $productForm->store_id = $temp['store_id'];
+           $productForm->pay_type = $temp['pay_type'];
+           $productForm->save();
        }
 
-       var_dump($product);
-       var_dump($order);
-       dd();
-
+       return '保存订单成功';
    }
 }

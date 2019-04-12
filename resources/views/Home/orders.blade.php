@@ -69,7 +69,7 @@
                     @if($value['status'] == 1)
                     <div class="addr" id="add_active" attr="{{isset($value['user_address_id'])?$value['user_address_id']:null}}">
                     @else
-                    <div class="addr" id="" >
+                    <div class="addr" id="" attr="{{isset($value['user_address_id'])?$value['user_address_id']:null}}">
                     @endif
                         <div class="inner">
                             <div class="addr-hd">
@@ -113,13 +113,13 @@
             <form name=alipayment action='/api/alipay' method=post target="_blank">
                 <fieldset>
                     <!--付款方式-->
-                    <div class="payment">
-                        <div class="title_name">支付方式</div>
-                        <ul>
-                            <li><input type="radio" name="radio" data-labelauty="支付宝"></li>
-                            <li><input type="radio" name="radio" data-labelauty="货到付款"></li>
-                        </ul>
-                    </div>
+                    {{--<div class="payment">--}}
+                        {{--<div class="title_name">支付方式</div>--}}
+                        {{--<ul>--}}
+                            {{--<li><input type="radio" name="radio" data-labelauty="支付宝"></li>--}}
+                            {{--<li><input type="radio" name="radio" data-labelauty="货到付款"></li>--}}
+                        {{--</ul>--}}
+                    {{--</div>--}}
                     <!--产品列表-->
                     <div class="Product_List">
                         @foreach($order as $value)
@@ -169,7 +169,7 @@
                                         <input id="WIDsubject" name="WIDsubject" type="hidden" value=""/>
                                         <input id="WIDtotal_amount" name="WIDtotal_amount" type="hidden" value=""/>
                                         <input id="WIDbody" name="WIDbody" type="hidden"/>
-                                        <input name="submit" type="button" value="提交订单" class="submit_btn" onclick="inputOrder(this)"/>
+                                        <input name="submit" type="submit" value="提交订单" class="submit_btn" onclick="inputOrder(this)"/>
                                 </div>
                                 <div class="integral right">待订单确认后，你将获得<span class="jf"></span>积分</div>
                             </div>
@@ -237,7 +237,6 @@
             data.psf = $('.psf').text();
             data.sfk = $('.sfk').text();
             console.log(data);
-
             $.post('/api/saveOrders' , data , function(res){
                 console.log(res);
             });
