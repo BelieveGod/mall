@@ -8,15 +8,15 @@
         </div>
         <!--积分样式-->
         <div class="user_integral_style slideTxtBox">
-            <div class="hd">
-                <ul>
+            {{--<div class="hd">--}}
+                {{--<ul>--}}
                     {{--<li>积分获取记录</li>--}}
-                    <li>积分兑换</li>
-                </ul>
-            </div>
+                    {{--<li>积分兑换</li>--}}
+                {{--</ul>--}}
+            {{--</div>--}}
             <div class="bd">
                 <ul>
-                    <div class="Integral_Number"><em></em>你当前的积分：<b>3434</b></div>
+                    <div class="Integral_Number"><em></em>你当前的积分：<b>{{$countUserIntegral['count_num']}}</b></div>
                     <table>
                         <thead>
                         <tr>
@@ -27,24 +27,14 @@
                         </tr>
                         </thead>
                         <tbody>
+                        @foreach($integral_list as $value)
                         <tr>
                             <td>4546546546454</td>
                             <td>￥345</td>
                             <td>455</td>
                             <td>2019-3-12 12:23:34</td>
                         </tr>
-                        <tr>
-                            <td>4546546546454</td>
-                            <td>￥345</td>
-                            <td>455</td>
-                            <td>2019-3-12 12:23:34</td>
-                        </tr>
-                        <tr>
-                            <td>4546546546454</td>
-                            <td>￥345</td>
-                            <td>455</td>
-                            <td>2019-3-12 12:23:34</td>
-                        </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </ul>

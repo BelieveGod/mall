@@ -170,6 +170,7 @@
                                         <input id="WIDtotal_amount" name="WIDtotal_amount" type="hidden" value=""/>
                                         <input id="WIDbody" name="WIDbody" type="hidden"/>
                                         <input name="submit" type="submit" value="提交订单" class="submit_btn" onclick="inputOrder(this)"/>
+                                    {{--<input name="submit" type="button" value="提交订单" class="submit_btn" onclick="inputOrder(this)"/>--}}
                                 </div>
                                 <div class="integral right">待订单确认后，你将获得<span class="jf"></span>积分</div>
                             </div>
@@ -236,6 +237,7 @@
             data.spzj = $('.spzj').text();
             data.psf = $('.psf').text();
             data.sfk = $('.sfk').text();
+            data.integral = $('.jf').text();
             console.log(data);
             $.post('/api/saveOrders' , data , function(res){
                 console.log(res);

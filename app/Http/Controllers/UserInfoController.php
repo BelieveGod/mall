@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Model\Advertisement;
+use App\Model\Integral;
 use App\Model\Member;
 use App\Model\Product;
 use App\Model\ProductForm;
@@ -19,8 +20,13 @@ class UserInfoController extends HomeController
         $user_id = Auth::user()->id;
         return Member::findUserInfoByUserId($user_id);
     }
-    //个人信息
+    //首页
     public function index()
+    {
+        return $this->userForm();
+    }
+    //个人信息
+    public function info()
     {
         return view('Home.userInfo',['userInfo'=>$this->userInfo()]);
     }
@@ -36,32 +42,68 @@ class UserInfoController extends HomeController
         //查出所有有关与于这个用户的订单
         $user_id = Auth::user()->id;
         $status = \request('status');
+        $status_arr = [];
         if($status){
-            $status = [$status];
+            $status_arr[] = $status;
             if($status == ProductForm::FORM_REFUND){
-                $status[] = ProductForm::RETURN_GOODS;
+                $status_arr[] = ProductForm::RETURN_GOODS;
+                $status_arr[] = ProductForm::FORN_ABNORMAL;
+            }else if($status == ProductForm::FORN_ABNORMAL){
+                $status_arr[] = ProductForm::WAIT_DELIVER_GOODS;
+                $status_arr[] = ProductForm::DELETED_ORDER_NO_PAY;
+                $status_arr[] = ProductForm::DELETED_ORDER_NO_DELIVER;
+                $status_arr[] = ProductForm::DELIVER_GOODS;
+                $status_arr[] = ProductForm::SIGN_FOR_GOOD;
+                $status_arr[] = ProductForm::FORM_REFUND;
+                $status_arr[] = ProductForm::RETURN_GOODS;
+                $status_arr[] = ProductForm::PLACE_ORDER;
             }
-            $allOrder = ProductForm::findOrderByUser($user_id , [$status]);
-
+            $allOrder = ProductForm::findOrderByUser($user_id , $status_arr);
         }else{
             $allOrder = ProductForm::findOrderByUser($user_id);
         }
 
         //计算每种状态的情况
-//        $order_num = ProductForm::countOrder($user_id);
-        $dfh = ProductForm::countOrder($user_id , ProductForm::WAIT_DELIVER_GOODS);
-
-//        dd($dfh);
+        $order_num = ProductForm::countOrder($user_id);
+        //初始化
+        $dfh = 0;
+        $dsh = 0;
+        $shouhou = 0;
+        $ddpj = 0;
+        foreach ($order_num as $value){
+            if($value['status'] == ProductForm::WAIT_DELIVER_GOODS){
+                $dfh = $value['order_num'];//代发货
+            }else if($value['status'] == ProductForm::DELIVER_GOODS){
+                $dsh = $value['order_num'];//待收货
+            }else if($value['status'] == ProductForm::SIGN_FOR_GOOD){
+                $ddpj = $value['order_num'];//商品评价
+            }else if($value['status'] == ProductForm::FORM_REFUND||$value['status'] == ProductForm::RETURN_GOODS||$value['status'] == ProductForm::FORN_ABNORMAL){
+                $shouhou += $value['order_num'];//售后
+            }
+        }
 
         return view('Home.userForm',[
             'userInfo' => $this->userInfo(),
             'allOrder' => $allOrder,
+            'dfh' => $dfh,
+            'dsh' => $dsh,
+            'ddpj' => $ddpj,
+            'shouhou' => $shouhou,
             ]);
     }
     //我的积分
     public  function userIntegral()
     {
-        return view('Home.userIntegral',['userInfo'=>$this->userInfo()]);
+        $user_id = Auth::user()->id;
+        $countUserIntegral = Integral::countUserIntegral($user_id);
+        $integral_list = Integral::findUserAllIntegral($user_id);
+//        dd($countUserIntegral);
+
+        return view('Home.userIntegral',[
+            'userInfo'=>$this->userInfo(),
+            'countUserIntegral'=>$countUserIntegral,
+            'integral_list'=>$integral_list,
+            ]);
     }
     //我的收藏
     public function userCollect()

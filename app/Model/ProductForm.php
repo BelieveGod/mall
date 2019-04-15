@@ -87,17 +87,15 @@ class ProductForm extends Common
         return $userProOrder;
     }
 
-    public static function countOrder($user_id , $status)
+    /**
+     * @param $user_id
+     * @return mixed
+     */
+    public static function countOrder($user_id)
     {
         //SELECT count(1)as num , `status` FROM mall_product_form WHERE user_id=2 GROUP BY `status`
-        $order_num = ProductForm::select('status',DB::raw('count(1) as order_num'))
+        return ProductForm::select('status',DB::raw('count(1) as order_num'))
             ->where('user_id',$user_id)->groupBy('status')->get()->toArray();
-        foreach ($order_num as $value){
-            if($value['status'] == $status){
-                $count = $value['order_num'];
-            }
-        }
-        return $count;
     }
 
     //pay_time过滤器

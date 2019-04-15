@@ -45,19 +45,19 @@
         <ul class="user_center_info">
             <li>
                 <img src="/image/home/user_img_04.png" />
-                <a href="/userForm/1">待发货（3）</a>
+                <a href="/userForm/1">待发货（{{$dfh}}）</a>
             </li>
             <li>
                 <img src="/image/home/user_img_04.png" />
-                <a href="/userForm/4">待收货（1）</a>
+                <a href="/userForm/4">待收货（{{$dsh}}）</a>
             </li>
             <li>
                 <img src="/image/home/user_img_05.png" />
-                <a href="/userForm/6">售后（1）</a>
+                <a href="/userForm/6">售后（{{$shouhou}}）</a>
             </li>
             <li>
                 <img src="/image/home/user_img_03.png" />
-                <a href="#">订单评价（5）</a>
+                <a href="/userForm/5">订单评价（{{$ddpj}}）</a>
             </li>
         </ul>
     </div>
@@ -65,7 +65,7 @@
         <div class="user_Borders">
             <div class="title_name">
                 <span class="name">我的订单</span>
-                <a href="#">更多订单&gt;&gt;</a>
+                <a href="/userForm/8">更多订单&gt;&gt;</a>
             </div>
             <div class="Order_form_list">
                 <table>

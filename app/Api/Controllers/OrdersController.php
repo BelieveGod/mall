@@ -2,6 +2,7 @@
 
 namespace App\Api\Controllers;
 
+use App\Model\Integral;
 use App\Model\Product;
 use App\Model\ProductForm;
 use App\Model\ShoppingCart;
@@ -16,10 +17,11 @@ class OrdersController
 
        $user_id = $request->post('user_id');
        $form_address_id = $request->post('address_id');
-       $form_freght = $request->post('psf');
-       $form_cost = $request->post('sfk');
-       $product_cost = $request->post('spzj');
+//       $form_freght = $request->post('psf');
+//       $form_cost = $request->post('sfk');
+//       $product_cost = $request->post('spzj');
        $cart_id = $request->post('shopping_cart');
+       $integral = $request->post('integral');
 
        foreach ($cart_id as $value){
            $product[] = ShoppingCart::where('shopping_cart_id' , $value)->first()->toArray();
@@ -54,7 +56,6 @@ class OrdersController
            $temp['form_address_id'] = $form_address_id;
            $temp['status'] = ProductForm::PLACE_ORDER;
            $temp['pay_type'] = ProductForm::PAY_ON_LINE;
-//           $order[] = $temp;
 
            //存入数据库
            $productForm = new ProductForm();
@@ -71,6 +72,14 @@ class OrdersController
            $productForm->pay_type = $temp['pay_type'];
            $productForm->save();
        }
+
+       //写入积分表
+       $created_integral = new Integral;
+       $created_integral->user_id = $user_id;
+       $created_integral->integral = $integral;
+       $created_integral->product_form_id = $productForm->form_id;
+       $created_integral->save();
+
        return $productForm;
    }
 

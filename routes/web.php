@@ -20,7 +20,8 @@ Route::get('home_index' , 'IndexController@index');
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 //用户信息
-Route::get('userInfo' , 'UserInfoController@index');//个人信息
+Route::get('user_index' , 'UserInfoController@index');//个人信息
+Route::get('userInfo' , 'UserInfoController@info');//个人信息
 Route::get('resetPassword' , 'UserInfoController@resetPassword');//修改密码
 Route::get('userForm/{status?}' , 'UserInfoController@userForm');//我的订单
 Route::get('userIntegral' , 'UserInfoController@userIntegral');//我的积分
