@@ -71,7 +71,14 @@ class OrdersController
            $productForm->pay_type = $temp['pay_type'];
            $productForm->save();
        }
-
-       return '保存订单成功';
+       return $productForm;
    }
+
+    public function updateFormStatus(Request $request)
+    {
+        $form_id = $request->get('id');
+        $order = ProductForm::find($form_id);
+        $order->status = ProductForm::WAIT_DELIVER_GOODS;
+        $order->save();
+    }
 }

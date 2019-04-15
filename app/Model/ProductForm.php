@@ -2,6 +2,8 @@
 
 namespace App\Model;
 
+use Illuminate\Support\Facades\DB;
+
 class ProductForm extends Common
 {
     protected $table = 'product_form';
@@ -61,9 +63,9 @@ class ProductForm extends Common
      * @param $user_id
      * @return array
      */
-    public static function findOrderByUser($user_id)
+    public static function findOrderByUser($user_id , $status = [ProductForm::DELIVER_GOODS])
     {
-        $productForm = ProductForm::where('user_id',$user_id)->get()->toArray();
+        $productForm = ProductForm::where('user_id',$user_id)->whereIn('status' , $status)->orderBy('status')->get()->toArray();
         //做相应的数据处理
         $userProOrder = [];
         foreach ($productForm as $value){
@@ -75,12 +77,28 @@ class ProductForm extends Common
                     }
                     $value['pro'] = $temp;
                 }
+                if($k == 'status'){
+                    $arr = self::productFormSatus();
+                    $value['status_name'] = $arr[$v];
+                }
             }
             $userProOrder[] = $value;
         }
         return $userProOrder;
     }
 
+    public static function countOrder($user_id , $status)
+    {
+        //SELECT count(1)as num , `status` FROM mall_product_form WHERE user_id=2 GROUP BY `status`
+        $order_num = ProductForm::select('status',DB::raw('count(1) as order_num'))
+            ->where('user_id',$user_id)->groupBy('status')->get()->toArray();
+        foreach ($order_num as $value){
+            if($value['status'] == $status){
+                $count = $value['order_num'];
+            }
+        }
+        return $count;
+    }
 
     //pay_time过滤器
     public function getPayTimeAttribute()

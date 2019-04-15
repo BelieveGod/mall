@@ -35,8 +35,24 @@ class UserInfoController extends HomeController
         //todo 根据productForm表查找
         //查出所有有关与于这个用户的订单
         $user_id = Auth::user()->id;
-        $allOrder = ProductForm::findOrderByUser($user_id);
-//        dd($allOrder);
+        $status = \request('status');
+        if($status){
+            $status = [$status];
+            if($status == ProductForm::FORM_REFUND){
+                $status[] = ProductForm::RETURN_GOODS;
+            }
+            $allOrder = ProductForm::findOrderByUser($user_id , [$status]);
+
+        }else{
+            $allOrder = ProductForm::findOrderByUser($user_id);
+        }
+
+        //计算每种状态的情况
+//        $order_num = ProductForm::countOrder($user_id);
+        $dfh = ProductForm::countOrder($user_id , ProductForm::WAIT_DELIVER_GOODS);
+
+//        dd($dfh);
+
         return view('Home.userForm',[
             'userInfo' => $this->userInfo(),
             'allOrder' => $allOrder,

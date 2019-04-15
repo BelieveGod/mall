@@ -22,7 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 //用户信息
 Route::get('userInfo' , 'UserInfoController@index');//个人信息
 Route::get('resetPassword' , 'UserInfoController@resetPassword');//修改密码
-Route::get('userForm' , 'UserInfoController@userForm');//我的订单
+Route::get('userForm/{status?}' , 'UserInfoController@userForm');//我的订单
 Route::get('userIntegral' , 'UserInfoController@userIntegral');//我的积分
 Route::get('userCollect' , 'UserInfoController@userCollect');//我的收藏
 Route::get('userAddress/{id?}' , 'UserInfoController@userAddress');//收货地址

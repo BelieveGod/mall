@@ -44,21 +44,24 @@
         </div>
         <ul class="user_center_info">
             <li>
+                <img src="/image/home/user_img_04.png" />
+                <a href="/userForm/1">待发货（3）</a>
+            </li>
+            <li>
+                <img src="/image/home/user_img_04.png" />
+                <a href="/userForm/4">待收货（1）</a>
+            </li>
+            <li>
                 <img src="/image/home/user_img_05.png" />
-                <h4 class="Money">余额￥34</h4>
+                <a href="/userForm/6">售后（1）</a>
             </li>
-            <li><img src="/image/home/user_img_04.png" />
-                <a href="#">代收货（3）</a>
-            </li>
-            <li><img src="/image/home/user_img_06.png" />
-                <a href="#">积分234分</a>
-            </li>
-            <li><img src="/image/home/user_img_03.png" />
+            <li>
+                <img src="/image/home/user_img_03.png" />
                 <a href="#">订单评价（5）</a>
             </li>
         </ul>
     </div>
-    <div class="Order_form">
+    <div class="Order_form" style="margin-bottom: 100px;">
         <div class="user_Borders">
             <div class="title_name">
                 <span class="name">我的订单</span>
@@ -80,25 +83,32 @@
                         <tr>
                             <td colspan="3">
                                 <table class="Order_product_style">
-                                    @foreach($value['pro'] as $val)
+                                    @for ($i = 0; $i < count($value['pro']); $i++)
+                                    {{--@foreach($value['pro'] as $val)--}}
                                     <tr>
                                         <td>
                                             <div class="product_name clearfix">
-                                                <a href="/productDetailed/{{isset($val['product_id'])?$val['product_id']:null}}"><img src="/uploads/{{isset($val['product_master_img'][0])?$val['product_master_img'][0]:null}}"  width="80px" height="80px"/></a>
-                                                <a href="/productDetailed/{{isset($val['product_id'])?$val['product_id']:null}}" style="max-width: 15em;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">{{isset($val['product_name'])?$val['product_name']:null}}</a>
-                                                {{--<p class="specification">礼盒装20个/盒</p>--}}
+                                                <a href="/productDetailed/{{isset($value['pro'][$i]['product_id'])?$value['pro'][$i]['product_id']:null}}"><img src="/uploads/{{isset($value['pro'][$i]['product_master_img'][0])?$value['pro'][$i]['product_master_img'][0]:null}}"  width="80px" height="80px"/></a>
+                                                <a href="/productDetailed/{{isset($value['pro'][$i]['product_id'])?$value['pro'][$i]['product_id']:null}}" style="max-width: 11em;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">{{isset($value['pro'][$i]['product_name'])?$value['pro'][$i]['product_name']:null}}</a>
                                             </div>
                                         </td>
-                                        <td>5</td>
-                                        <td>2</td>
+                                        <td>{{isset($value['pro'][$i]['present_price'])?$value['pro'][$i]['present_price']:null}}</td>
+                                        <td>{{isset($value['num'][$i])?$value['num'][$i]:null}}</td>
                                     </tr>
-                                    @endforeach
+                                    {{--@endforeach--}}
+                                    @endfor
                                 </table>
                             </td>
 
-                            <td class="split_line">100</td>
-                            <td class="split_line">已发货，待收货</td>
-                            <td></td>
+                            <td class="split_line">{{isset($value['form_cost'])?$value['form_cost']:null}}</td>
+                            <td class="split_line">{{isset($value['status_name'])?$value['status_name']:null}}</td>
+                            @if($value['status'] == \App\Model\ProductForm::SIGN_FOR_GOOD)
+                                <td><a href="javascript:void(0);">评价</a></td>
+                            @elseif($value['status'] == \App\Model\ProductForm::WAIT_DELIVER_GOODS)
+                                <td><a href="javascript:void(0);">提醒发货</a></td>
+                            @elseif($value['status'] == \App\Model\ProductForm::DELIVER_GOODS)
+                                <td><a href="javascript:void(0);">查看物流</a></td>
+                            @endif
                         </tr>
                         </tbody>
                     @endforeach
