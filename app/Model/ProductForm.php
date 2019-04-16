@@ -18,9 +18,13 @@ class ProductForm extends Common
     const FORM_REFUND = 6; //退款
     const RETURN_GOODS = 7; //退货
     const FORN_ABNORMAL = 8; //订单异常
+    const READY_GOOG = 9;//评价完商品，交易完成
 
     const PAY_ON_LINE = 1; //线上付款
     const PAY_UNDER_LINE = 2; //货到付款
+
+    const DISPLAY = 1; //显示
+    const UN_DISPLAY = 0; //不显示
 
     /**
      * 订单状态
@@ -37,6 +41,7 @@ class ProductForm extends Common
             self::FORM_REFUND => '退款',
             self::RETURN_GOODS => '退货',
             self::FORN_ABNORMAL => '订单异常',
+            self::READY_GOOG => '交易完成',
         ];
     }
 
@@ -88,6 +93,7 @@ class ProductForm extends Common
     }
 
     /**
+     * 计算不同状态订单的数量
      * @param $user_id
      * @return mixed
      */
@@ -96,6 +102,18 @@ class ProductForm extends Common
         //SELECT count(1)as num , `status` FROM mall_product_form WHERE user_id=2 GROUP BY `status`
         return ProductForm::select('status',DB::raw('count(1) as order_num'))
             ->where('user_id',$user_id)->groupBy('status')->get()->toArray();
+    }
+
+    public static function findProductByFormId($form_id)
+    {
+        $order = ProductForm::where('form_id' , $form_id)->first()->toArray();
+        //数据过滤
+        $product = [];
+        foreach ($order['product_id'] as $value){
+            $product[] = Product::where('product_id' , $value)->first()->toArray();
+        }
+        $order['pro'] = $product;
+        return $order;
     }
 
     //pay_time过滤器

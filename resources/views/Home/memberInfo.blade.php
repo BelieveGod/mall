@@ -22,7 +22,7 @@
                     <li><a href="/userInfo"><em></em><span>个人信息</span></a></li>
                     <li><a href="/resetPassword"><em></em><span>修改密码</span></a></li>
                     <li><a href="/userForm"><em></em><span>我的订单</span></a></li>
-                    <li><a href="#"><em></em><span>我的评论</span></a></li>
+                    <li><a href="/user_comment"><em></em><span>我的评论</span></a></li>
                     <li><a href="/userIntegral"><em></em><span>我的积分</span></a></li>
                     <li><a href="/userCollect"><em></em><span>我的收藏</span></a></li>
                     <li><a href="/userAddress"><em></em><span>收货地址管理</span></a></li>

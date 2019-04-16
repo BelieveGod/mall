@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\Product;
-use App\Model\Regions;
 use App\Model\ShoppingCart;
 use App\Model\UserAddress;
 use Illuminate\Support\Facades\Auth;

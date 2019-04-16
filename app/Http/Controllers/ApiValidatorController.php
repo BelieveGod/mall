@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Model\Advertisement;
+use App\Model\Product;
 use App\Model\Store;
 use App\Model\StoreLog;
 use Illuminate\Http\Request;
@@ -90,5 +91,41 @@ class ApiValidatorController extends Controller
 
         //成功后 返回查询页面
         return redirect('/applySuccess');
+    }
+
+    /**
+     * 修改密码api
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function postReset(Request $request)
+    {
+        $oldPassword = $request->input('oldpassword');
+        $password = $request->input('password');
+        $data = $request->all();
+
+        $rules = [
+            'oldpassword'=>'required|between:6,20',
+            'password'=>'required|between:6,20|confirmed',
+        ];
+        $messages = [
+            'oldpassword.required' => '原密码不能为空',
+            'password.required' => '新密码不能为空',
+            'between' => '密码必须是6~20位之间',
+            'password.confirmed' => '新密码和确认密码不匹配'
+        ];
+        $validator = Validator::make($data, $rules , $messages);
+        $user = Auth::user();
+        $validator->after(function($validator) use ($oldPassword, $user) {
+            if (!Hash::check($oldPassword, $user->password)) {
+                $validator->errors()->add('oldpassword', '原密码错误');
+            }
+        });
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+        $user->password = bcrypt($password);
+        $user->save();
+        return redirect( '/userInfo');
     }
 }

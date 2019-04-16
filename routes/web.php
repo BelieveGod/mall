@@ -27,6 +27,9 @@ Route::get('userForm/{status?}' , 'UserInfoController@userForm');//我的订单
 Route::get('userIntegral' , 'UserInfoController@userIntegral');//我的积分
 Route::get('userCollect' , 'UserInfoController@userCollect');//我的收藏
 Route::get('userAddress/{id?}' , 'UserInfoController@userAddress');//收货地址
+Route::post('postResetPsw' , 'ApiValidatorController@postReset');//修改密码提交表单
+Route::get('user_comment' , 'UserInfoController@userComment');//我的收藏
+Route::get('add_user_comment/{id?}' , 'UserInfoController@createdComment');//添加商品评论
 
 //购物车
 Route::get('shoppingCart' , 'ShoppingCartController@index');//显示购物车样式
@@ -53,5 +56,6 @@ Route::get('updatedApplyAdmin/{id?}' , 'ApplyAdminController@updatedApplyAdmin')
 
 //提交商品订单
 Route::get('orders' , 'OrdersController@index');//提交商品订单
+
 
 

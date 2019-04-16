@@ -54,47 +54,4 @@ class UserInfoController
         }
     }
 
-    //todo 重置密码
-    public function postReset(Request $request)
-    {
-        $oldPassword = $request->input('oldpassword');
-        $password = $request->input('password');
-        $data = $request->all();
-        $credentials = $request->only(['oldpassword', 'password']);
-        $rules = [
-//            'oldPassword'=>'required|between:6,20',
-//            'password'=>'required|between:6,20|confirmed',
-            'oldpassword'=>'required',
-            'password'=>'required',
-        ];
-        $messages = [
-            'oldPassword.required' => '密码不能为空',
-            'between' => '密码必须是6~20位之间',
-            'password.confirmed' => '新密码和确认密码不匹配'
-        ];
-        $validator = Validator::make($credentials, $rules)->validate();
-//        if($validator->fails()){
-//            return Redirect::back()->withErrors($validator)->withInput(Input::get());
-//        }
-//        $user = Auth::user();
-//        $validator->after(function($validator) use ($oldPassword, $user) {
-//            if (!Hash::check($oldPassword, $user->password)) {
-//                $validator->errors()->add('oldpassword', '原密码错误');
-//            }
-//        });
-//        if ($validator->fails()) {
-//            return back()->withErrors($validator);
-//        }
-        if ($validator->fails()) {
-//            $errors = $validator->errors()->getMessages();
-//            dd($errors);
-            return back()->withErrors($validator)->withInput();
-        }
-
-
-        echo '111';
-//        $user->password = bcrypt($password);
-//        $user->save();
-//        return redirect( '/userInfo');
-    }
 }

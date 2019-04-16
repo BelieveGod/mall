@@ -49,5 +49,9 @@ Route::post('/alipay' , 'AlipayController@alipay');
 Route::post('/saveOrders' , 'OrdersController@saveOrders');
 Route::post('/updateFormStatus/{$id}' , 'OrdersController@updateFormStatus');//支付成功后修改订单状态
 
+//评论商品
+Route::post('/created_comment' , 'UserCommentController@createdComment');//提交评论
+Route::post('/user_comment_uploadImg' , 'UserCommentController@uploadImg');//用户评论上传图片
+Route::get('/user_comment_deletedImg' , 'UserCommentController@deletedImg');//删除图片
 
 

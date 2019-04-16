@@ -333,146 +333,46 @@
                     </ul>
                 </div>
                 <div class="tab-con">
-                    <div class="comment-item">
-                        <div class="user-column">
-                            <div class="user-info">
-                                <img src="/image/test/2.jpg" width="30" height="30"/>陈*迅
-                            </div>
-                            <div class="user-level">
-                                <span style="color: rgb(136,136,136);"></span>
-                            </div>
-                        </div>
-                        <div class="comment-column J-comment-column">
-                            <div class="comment-star star5"></div>
-                            <p class="comment-con">
-                                昨晚拍的商品，今天上午快递就送到了，京东物流的确给力！东西刚刚收到，包装完好，就是奶粉的日期是去年2016年12月份生产的，没有防伪辨识卡，小孩还没有喝，等喝了再评价。
-                            </p>
-                            <div class="pic-list">
-                                <a class="J-thumb-img">
-                                    <img src="/image/test/1.jpg" width="48" height="48"/>
-                                </a>
-                                <a class="J-thumb-img">
-                                    <img src="/image/test/2.jpg" width="48" height="48"/>
-                                </a>
-                                <a class="J-thumb-img">
-                                    <img src="/image/test/1.jpg" width="48" height="48"/>
-                                </a>
-                            </div>
-                            <div class="cursor-small" style="display: none">
-                                <img src="/image/test/1.jpg" width="50%" />
-                            </div>
-                            <div class="comment-message">
-                                <div class="order-info">
-                                    <span>2019-3-28 15:53:01</span>
+                    @if(!empty($comment))
+                        @foreach($comment as $value)
+                            <div class="comment-item">
+                                <div class="user-column">
+                                    <div class="user-info">
+                                        <img src="/image/test/2.jpg" width="30" height="30"/>{{isset($value['user'][''])}}
+                                    </div>
+                                    <div class="user-level">
+                                        <span style="color: rgb(136,136,136);"></span>
+                                    </div>
+                                </div>
+                                <div class="comment-column J-comment-column">
+                                    <div class="comment-star star5"></div>
+                                    <p class="comment-con">
+                                        昨晚拍的商品，今天上午快递就送到了，京东物流的确给力！东西刚刚收到，包装完好，就是奶粉的日期是去年2016年12月份生产的，没有防伪辨识卡，小孩还没有喝，等喝了再评价。
+                                    </p>
+                                    <div class="pic-list">
+                                        <a class="J-thumb-img">
+                                            <img src="/image/test/1.jpg" width="48" height="48"/>
+                                        </a>
+                                        <a class="J-thumb-img">
+                                            <img src="/image/test/2.jpg" width="48" height="48"/>
+                                        </a>
+                                        <a class="J-thumb-img">
+                                            <img src="/image/test/1.jpg" width="48" height="48"/>
+                                        </a>
+                                    </div>
+                                    <div class="cursor-small" style="display: none">
+                                        <img src="/image/test/1.jpg" width="50%" />
+                                    </div>
+                                    <div class="comment-message">
+                                        <div class="order-info">
+                                            <span>2019-3-28 15:53:01</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="comment-item">
-                        <div class="user-column">
-                            <div class="user-info">
-                                <img src="/image/test/2.jpg" width="30" height="30"/>陈*迅
-                            </div>
-                            <div class="user-level">
-                                <span style="color: rgb(136,136,136);"></span>
-                            </div>
-                        </div>
-                        <div class="comment-column J-comment-column">
-                            <div class="comment-star star5"></div>
-                            <p class="comment-con">
-                                昨晚拍的商品，今天上午快递就送到了，京东物流的确给力！东西刚刚收到，包装完好，就是奶粉的日期是去年2016年12月份生产的，没有防伪辨识卡，小孩还没有喝，等喝了再评价。
-                            </p>
-                            <div class="pic-list">
-                                {{--<a href="" class="J-thumb-img current">--}}
-                                    {{--<img src="/image/test/1.jpg" width="48" height="48"/>--}}
-                                {{--</a>--}}
-                                {{--<a href="" class="J-thumb-img">--}}
-                                    {{--<img src="/image/test/1.jpg" width="48" height="48"/>--}}
-                                {{--</a>--}}
-                                {{--<a href="" class="J-thumb-img">--}}
-                                    {{--<img src="/image/test/1.jpg" width="48" height="48"/>--}}
-                                {{--</a>--}}
-                            </div>
-                            <div class="cursor-small">
-                                {{--<img src="/image/test/1.jpg" width="50%" />--}}
-                            </div>
-                            <div class="comment-message">
-                                <div class="order-info">
-                                    <span>2019-3-28 15:53:01</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="comment-item">
-                        <div class="user-column">
-                            <div class="user-info">
-                                <img src="/image/test/2.jpg" width="30" height="30"/>陈*迅
-                            </div>
-                            <div class="user-level">
-                                <span style="color: rgb(136,136,136);"></span>
-                            </div>
-                        </div>
-                        <div class="comment-column J-comment-column">
-                            <div class="comment-star star5"></div>
-                            <p class="comment-con">
-                                昨晚拍的商品，今天上午快递就送到了，京东物流的确给力！东西刚刚收到，包装完好，就是奶粉的日期是去年2016年12月份生产的，没有防伪辨识卡，小孩还没有喝，等喝了再评价。
-                            </p>
-                            <div class="pic-list">
-                                <a class="J-thumb-img">
-                                    <img src="/image/test/2.jpg" width="48" height="48"/>
-                                </a>
-                                <a class="J-thumb-img">
-                                    <img src="/image/test/1.jpg" width="48" height="48"/>
-                                </a>
-                                <a class="J-thumb-img">
-                                    <img src="/image/test/1.jpg" width="48" height="48"/>
-                                </a>
-                            </div>
-                            <div class="cursor-small"style="display: none">
-                                <img src="/image/test/2.jpg" width="50%" />
-                            </div>
-                            <div class="comment-message">
-                                <div class="order-info">
-                                    <span>2019-3-28 15:53:01</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="comment-item">
-                        <div class="user-column">
-                            <div class="user-info">
-                                <img src="/image/test/2.jpg" width="30" height="30"/>陈*迅
-                            </div>
-                            <div class="user-level">
-                                <span style="color: rgb(136,136,136);"></span>
-                            </div>
-                        </div>
-                        <div class="comment-column J-comment-column">
-                            <div class="comment-star star5"></div>
-                            <p class="comment-con">
-                                昨晚拍的商品，今天上午快递就送到了，京东物流的确给力！东西刚刚收到，包装完好，就是奶粉的日期是去年2016年12月份生产的，没有防伪辨识卡，小孩还没有喝，等喝了再评价。
-                            </p>
-                            <div class="pic-list">
-                                <a class="J-thumb-img">
-                                    <img src="/image/test/1.jpg" width="48" height="48"/>
-                                </a>
-                                <a class="J-thumb-img">
-                                    <img src="/image/test/1.jpg" width="48" height="48"/>
-                                </a>
-                                <a class="J-thumb-img">
-                                    <img src="/image/test/1.jpg" width="48" height="48"/>
-                                </a>
-                            </div>
-                            <div class="cursor-small" style="display: none">
-                                <img src="/image/test/1.jpg" width="50%" />
-                            </div>
-                            <div class="comment-message">
-                                <div class="order-info">
-                                    <span>2019-3-28 15:53:01</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        @endforeach
+                    @endif
+
                 </div>
             </div>
 

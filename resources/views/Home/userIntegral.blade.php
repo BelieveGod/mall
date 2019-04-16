@@ -29,10 +29,10 @@
                         <tbody>
                         @foreach($integral_list as $value)
                         <tr>
-                            <td>4546546546454</td>
-                            <td>￥345</td>
-                            <td>455</td>
-                            <td>2019-3-12 12:23:34</td>
+                            <td>{{$value['form_num']}}</td>
+                            <td>￥{{$value['cost']}}</td>
+                            <td>{{$value['integral']}}</td>
+                            <td>{{$value['created_at']}}</td>
                         </tr>
                         @endforeach
                         </tbody>

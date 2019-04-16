@@ -103,7 +103,7 @@
                             <td class="split_line">{{isset($value['form_cost'])?$value['form_cost']:null}}</td>
                             <td class="split_line">{{isset($value['status_name'])?$value['status_name']:null}}</td>
                             @if($value['status'] == \App\Model\ProductForm::SIGN_FOR_GOOD)
-                                <td><a href="javascript:void(0);">评价</a></td>
+                                <td><a href="/add_user_comment/{{isset($value['form_id'])?$value['form_id']:null}}">评价</a></td>
                             @elseif($value['status'] == \App\Model\ProductForm::WAIT_DELIVER_GOODS)
                                 <td><a href="javascript:void(0);">提醒发货</a></td>
                             @elseif($value['status'] == \App\Model\ProductForm::DELIVER_GOODS)

@@ -20,6 +20,11 @@ class Integral extends Common
         return Integral::select(DB::raw('sum(integral)as count_num'))->where('user_id' , $user_id)->groupBy('user_id')->first()->toArray();
     }
 
+    /**
+     * 输出整理好的积分列表
+     * @param $user_id
+     * @return array
+     */
     public static function findUserAllIntegral($user_id)
     {
         $data = [];
@@ -28,7 +33,9 @@ class Integral extends Common
         foreach ($integral as $value){
             foreach ($value as $k=>$v){
                 if($k == 'product_form_id'){
-                    $value['form_num'] = ProductForm::where('form_id' , $v)->value('form_num');
+                    $product_form = ProductForm::where('form_id' , $v)->first();
+                    $value['form_num'] = $product_form->form_num;
+                    $value['cost'] = $product_form->form_cost;
                 }
             }
             $data[] = $value;

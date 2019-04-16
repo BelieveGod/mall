@@ -6,12 +6,15 @@ use App\Model\Advertisement;
 use App\Model\Integral;
 use App\Model\Member;
 use App\Model\Product;
+use App\Model\ProductComment;
 use App\Model\ProductForm;
 use App\Model\Regions;
 use App\Model\UserAddress;
 use App\Model\UserCollect;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class UserInfoController extends HomeController
 {
@@ -57,6 +60,7 @@ class UserInfoController extends HomeController
                 $status_arr[] = ProductForm::FORM_REFUND;
                 $status_arr[] = ProductForm::RETURN_GOODS;
                 $status_arr[] = ProductForm::PLACE_ORDER;
+                $status_arr[] = ProductForm::READY_GOOG;
             }
             $allOrder = ProductForm::findOrderByUser($user_id , $status_arr);
         }else{
@@ -97,7 +101,7 @@ class UserInfoController extends HomeController
         $user_id = Auth::user()->id;
         $countUserIntegral = Integral::countUserIntegral($user_id);
         $integral_list = Integral::findUserAllIntegral($user_id);
-//        dd($countUserIntegral);
+//        dd($integral_list);
 
         return view('Home.userIntegral',[
             'userInfo'=>$this->userInfo(),
@@ -135,5 +139,22 @@ class UserInfoController extends HomeController
             'list'=>$list,
             'user_address'=>$user_address,
             ]);
+    }
+    //我的评论
+    public function userComment()
+    {
+        $user_id = Auth::user()->id;
+        $comment = ProductComment::findCommentByUserId($user_id);
+//        dd($comment);
+
+        return view('Home.userComment',['userInfo'=>$this->userInfo(),'comment'=>$comment]);
+    }
+
+    //添加评论商品
+    public function createdComment()
+    {
+        $form_id = \request('id');
+        $comment_list = ProductForm::findProductByFormId($form_id);
+        return view('Home.addUserComment',['userInfo'=>$this->userInfo(),'comment_list'=>$comment_list]);
     }
 }

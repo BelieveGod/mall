@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 
 use App\Model\Category;
 use App\Model\Product;
+use App\Model\ProductComment;
+use App\Model\ProductForm;
 
 class ProductDetailedController extends HomeController
 {
@@ -42,11 +44,16 @@ class ProductDetailedController extends HomeController
             }
         }
 //        dd($product);
+        //查看评论详情
+        $comment = ProductComment::findCommentByProductId($id);
+
+        dd($comment);
 
         return view('Home.productDetailed',
             [
                 'topProduct' => $topProduct,
                 'product' => $product,
+                'comment' => $comment,
             ]);
     }
 }
