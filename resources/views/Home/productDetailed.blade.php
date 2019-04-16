@@ -338,34 +338,32 @@
                             <div class="comment-item">
                                 <div class="user-column">
                                     <div class="user-info">
-                                        <img src="/image/test/2.jpg" width="30" height="30"/>{{isset($value['user'][''])}}
+                                        <img src="{{isset($value['menber']['member_pic'])?$value['menber']['member_pic']:'/image/test/2.jpg'}}" width="30" height="30"/>{{isset($value['user']['name'])?$value['user']['name']:null}}
                                     </div>
                                     <div class="user-level">
                                         <span style="color: rgb(136,136,136);"></span>
                                     </div>
                                 </div>
                                 <div class="comment-column J-comment-column">
-                                    <div class="comment-star star5"></div>
+                                    <div class="comment-star star{{isset($value['haoping'])?$value['haoping']:null}}"></div>
                                     <p class="comment-con">
-                                        昨晚拍的商品，今天上午快递就送到了，京东物流的确给力！东西刚刚收到，包装完好，就是奶粉的日期是去年2016年12月份生产的，没有防伪辨识卡，小孩还没有喝，等喝了再评价。
+                                        {{isset($value['comment'])?$value['comment']:null}}
                                     </p>
                                     <div class="pic-list">
-                                        <a class="J-thumb-img">
-                                            <img src="/image/test/1.jpg" width="48" height="48"/>
-                                        </a>
-                                        <a class="J-thumb-img">
-                                            <img src="/image/test/2.jpg" width="48" height="48"/>
-                                        </a>
-                                        <a class="J-thumb-img">
-                                            <img src="/image/test/1.jpg" width="48" height="48"/>
-                                        </a>
+                                        @if($value['comment_pic'])
+                                            @foreach($value['comment_pic'] as $val)
+                                                <a class="J-thumb-img">
+                                                    <img src="{{$val}}" width="48" height="48"/>
+                                                </a>
+                                            @endforeach
+                                        @endif
                                     </div>
                                     <div class="cursor-small" style="display: none">
                                         <img src="/image/test/1.jpg" width="50%" />
                                     </div>
                                     <div class="comment-message">
                                         <div class="order-info">
-                                            <span>2019-3-28 15:53:01</span>
+                                            <span>{{isset($value['created_at'])?$value['created_at']:null}}</span>
                                         </div>
                                     </div>
                                 </div>

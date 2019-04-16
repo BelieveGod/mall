@@ -25,7 +25,8 @@
                                 </div>
                             </div>
                             <div class="comment-column J-comment-column" style="padding-left: 300px;">
-                                <div class="">好评</div>
+                                <div class="comment-star star{{isset($value['haoping'])?$value['haoping']:null}}"></div>
+                                {{--<div class="">好评</div>--}}
                                 <p class="comment-con">
                                     {{$value['comment']}}
                                 </p>

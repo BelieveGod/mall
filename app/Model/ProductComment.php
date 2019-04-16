@@ -79,12 +79,19 @@ class ProductComment extends Common
                 if($k == 'menber_id'){
                     $menber = Member::where('users_id' , $v)->first();
                     $user = User::where('id' , $v)->first();
-                    $value['user'] = $user;
+                    if(empty($user)){
+                        $value['user'] = '';
+                    }else{
+                        $value['user'] = $user->toArray();
+                    }
                     if(empty($menber)){
                         $value['menber'] = '';
                     }else{
-                        $value['menber'] = $menber;
+                        $value['menber'] = $menber->toArray();
                     }
+                }
+                if($k == 'comment_pic'){
+                    $value['comment_pic'] = json_decode($v);
                 }
             }
             $data[] = $value;

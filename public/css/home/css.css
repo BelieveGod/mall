@@ -736,7 +736,10 @@
 .user-column img{border-radius: 50% ;margin-right: 5px;}
 .user-level{padding-top: 3px}
 .comment-column{padding-left: 150px}
-.comment-star{width: 78px ; height: 14px;background: url(//static.360buyimg.com/item/unite/1.0.70/components/default/comment/i/star.png) no-repeat;}
+/*.comment-star*/
+.star3{width: 78px ; height: 14px;background: url(/image/home/star5.png) no-repeat;}
+.star2{width: 78px ; height: 14px;background: url(/image/home/star5.png) -32px 0 no-repeat;}
+.star1{width: 78px ; height: 14px;background: url(/image/home/star5.png) -64px 0 no-repeat;}
 .comment-con{font-size: 14px;padding: 10px 0;line-height: 180%;color: #333;}
 .J-thumb-img {cursor:pointer; }
 .J-thumb-img img{border: 1px solid #e2e2e2;padding: 1px;margin-right: 6px;}

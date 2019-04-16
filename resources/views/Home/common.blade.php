@@ -21,7 +21,9 @@
 <div class="top_header">
     <em class="left_img"></em>
     <div class="header clearfix" id="header">
-        <a href="/home_index" class="logo_img"><img src="" style="width: 375px;height: 95px"/></a>
+        <a href="/home_index" class="logo_img">
+            <img src="/image/home/logo.png" style="width: 375px;height: 95px"/>
+        </a>
         <div class="header_Section" style="width: 760px;">
             <div class="shortcut">
                 <ul>

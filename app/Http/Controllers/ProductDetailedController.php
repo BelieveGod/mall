@@ -47,7 +47,7 @@ class ProductDetailedController extends HomeController
         //查看评论详情
         $comment = ProductComment::findCommentByProductId($id);
 
-        dd($comment);
+//        dd($comment);
 
         return view('Home.productDetailed',
             [
