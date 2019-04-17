@@ -10,7 +10,10 @@ Route::group([
     'middleware'    => config('admin.route.middleware'),
 ], function (Router $router) {
 
-    $router->get('/', 'HomeController@index');
+//    $router->get('/', 'HomeController@index');
+
+    $router->get('/', 'DataController@index');
+    $router->get('essential', 'HomeController@index');
 
     //商品模块
     $router->resource('categroy', CategoryController::class);//商品分类
@@ -48,4 +51,7 @@ Route::group([
     //Api 图片上传
     $router->post('api/uploadImg' , 'UploadImgController@upload');
     $router->get('api/deletedImg' , 'UploadImgController@deletedImg');
+
+    //图标统计
+    $router->get('api/count_order_num_by_store' , 'UploadImgController@countOrderNumByStore');//统计用户
 });
