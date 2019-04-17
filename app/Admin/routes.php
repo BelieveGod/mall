@@ -53,5 +53,5 @@ Route::group([
     $router->get('api/deletedImg' , 'UploadImgController@deletedImg');
 
     //图标统计
-    $router->get('api/count_order_num_by_store' , 'UploadImgController@countOrderNumByStore');//统计用户
+    $router->get('api/count_order_num_by_store' , 'DataController@countOrderNumByStore');//统计用户
 });

@@ -69,7 +69,7 @@
                     <li class=""><a href="/home_index">首页</a></li>
                     <li class=""><a href="/product">所有商品</a></li>
                     {{--<li class=""><a href="/groupBuy">活动专区</a></li>--}}
-                    <li class=""><a href="">采购中心</a></li>
+                    <li class=""><a href="/show_topic_list">采购中心</a></li>
                     <li class=""><a href="/applyAdmin">我要供应</a></li>
                     <li class=""><a href="/user_index">会员中心</a></li>
                     <li class=""><a href="/callAboutUs">联系我们</a></li>

@@ -58,5 +58,8 @@ Route::get('updatedApplyAdmin/{id?}' , 'ApplyAdminController@updatedApplyAdmin')
 Route::get('orders' , 'OrdersController@index');//提交商品订单
 Route::get('buyNowOrder/{id?}/{num?}' , 'OrdersController@buyNowOrder');//立即购买表单提交
 
+//求购页面
+Route::get('show_topic_list' , 'TopicController@index');//显示求购列表
+
 
 
