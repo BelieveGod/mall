@@ -46,14 +46,27 @@ class ProductDetailedController extends HomeController
 //        dd($product);
         //查看评论详情
         $comment = ProductComment::findCommentByProductId($id);
+        //计算好评、中评、差评的数量
+        $haoping = ProductComment::counthaoping($id , ProductComment::HAOPING);
+        $zhongping = ProductComment::counthaoping($id , ProductComment::ZHONGPING);
+        $chaping = ProductComment::counthaoping($id , ProductComment::CHAPING);
+        $fenmu = $haoping+$zhongping+$chaping;
+        if($fenmu){
+            $haopingdu = round($haoping/$fenmu*100);
+        }else{
+            $haopingdu = 100;
+        }
 
-//        dd($comment);
 
         return view('Home.productDetailed',
             [
                 'topProduct' => $topProduct,
                 'product' => $product,
                 'comment' => $comment,
+                'haoping' => $haoping,
+                'zhongping' => $zhongping,
+                'chaping' => $chaping,
+                'haopingdu' => $haopingdu,
             ]);
     }
 }

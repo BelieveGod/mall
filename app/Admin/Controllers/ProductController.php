@@ -77,7 +77,7 @@ class ProductController extends Controller
 
         $store_id = Auth::guard('admin')->user()->id;
 
-        $grid->model()->where('store_id',$store_id);
+        $grid->model()->where('store_id',$store_id)->orderBy('created_at','desc');
 
         $grid->product_id('ID');
         $grid->product_name('商品名称');
@@ -282,6 +282,7 @@ class ProductController extends Controller
     /**
      * 管理员能见的列表管理
      */
+    /*
     public function adminproductlidt(Content $content)
     {
         return $content
@@ -295,7 +296,7 @@ class ProductController extends Controller
 
         $store_id = Auth::guard('admin')->user()->id;
 
-        $grid->model()->where('store_id',$store_id);
+        $grid->model()->where('store_id',$store_id)->orderBy('created_at','desc');
 
         $grid->product_id('ID');
         $grid->product_name('商品名称');
@@ -323,5 +324,6 @@ class ProductController extends Controller
 
         return $grid;
     }
+    */
 
 }

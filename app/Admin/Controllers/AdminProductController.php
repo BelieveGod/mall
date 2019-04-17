@@ -82,7 +82,7 @@ class AdminProductController extends Controller
     {
         $grid = new Grid(new Product);
 
-        $grid->model()->where('is_show' , 1);
+        $grid->model()->where('is_show' , 1)->orderBy('created_at','desc');
 
         $grid->product_id('ID');
         $grid->store_id('商店名称')->using(Store::getStoreNameByStoreId());

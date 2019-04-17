@@ -549,23 +549,23 @@
 .productList_pages_Collect a{ display:block; padding:10px; border:1px solid #ddd; color:#999; float:left; margin-right:10px; width:20px; text-align:center; font-size:14px}
 .productList_pages_Collect a.on{ color:#FFF; background:#F60; border:1px solid #F60}
 /**************************************团购界面样式属性************************************/
-.Group_buy .Group_list .left_Group .Group_info,
+.Group_buy  .left_Group .Group_info,
 .Group_buy .Group_list .right_Group .left_Group_name{width:220px; float:left; margin-right:22px; position:relative; font-size:14px; line-height:24px; color:#999}
 .Group_buy{ margin:30px 0px;}
 .Group_buy .Group_title{ font-size:24px; color:#666}
 .Group_buy .Group_title em{ display:block; width:5px; height:30px; background:#85c12e; float:left; margin-right:10px;}
 .Group_buy .Group_title span{ font-size:16px; color:#999; padding-left:10px;}
 .Group_buy .Group_list{ margin-top:20px;}
-.Group_buy .Group_list .left_Group{ width:630px; margin-right:10px; float:left}
-.Group_buy .Group_list .left_Group .Group_prodcut{ height:238px; border:1px solid #ddd; padding:10px; margin-bottom:15px;}
-.Group_buy .Group_list .left_Group .Group_info{ height:195px; }
-.Group_buy .Group_list .left_Group .Group_info .Group_p_about{ color:#333}
-.Group_buy .Group_list .left_Group .Group_info .Group_p_buy,
+.Group_buy  .left_Group{ width:1300px; margin-right:10px; float:left;padding-bottom: 100px;}
+.Group_buy  .left_Group .Group_prodcut{ height:238px; border:1px solid #ddd; padding:10px; margin-bottom:15px;float: left;margin-right:10px;}
+.Group_buy  .left_Group .Group_info{ height:195px; }
+.Group_buy  .left_Group .Group_info .Group_p_about{ color:#333}
+.Group_buy  .left_Group .Group_info .Group_p_buy,
 .Group_buy .Group_list .right_Group .left_Group_name .Group_p_buy{ margin-top:20px; font-size:16px; display:block}
-.Group_buy .Group_list .left_Group .Group_info .Group_Number,
+.Group_buy  .left_Group .Group_info .Group_Number,
 .Group_buy .Group_list .right_Group .left_Group_name .Group_Number{ display:block; float:left; margin-top:5px;}
-.Group_buy .Group_list .left_Group .Group_info .Group_Number em,
-.Group_buy .Group_list .right_Group .left_Group_name .Group_Number em{ 
+.Group_buy  .left_Group .Group_info .Group_Number em,
+.Group_buy .Group_list .right_Group .left_Group_name .Group_Number em{
 	background:url(/image/home/Complex_img.png) right -98px;
 	display:block; 
 	width:12px; 
@@ -574,21 +574,21 @@
 	margin-right:3px; 
 	margin-top:5px;
 }
-.Group_buy .Group_list .left_Group .Group_info .buy_button,
+.Group_buy  .left_Group .Group_info .buy_button,
 .Group_buy .Group_list .right_Group .left_Group_name .buy_button{ background:url(/image/home/Complex_img.png) left 0px no-repeat; height:32px; width:90px; display:block;}
-.Group_buy .Group_list .left_Group .Group_info .Group_price,
+.Group_buy  .left_Group .Group_info .Group_price,
 .Group_buy .Group_list .right_Group .left_Group_name .Group_price{margin-top:15px; border-bottom:1px dashed #CCC; padding-bottom:15px;}
-.Group_buy .Group_list .left_Group .Group_info .Current_price,
+.Group_buy  .left_Group .Group_info .Current_price,
 .Group_buy .Group_list .right_Group .left_Group_name .Current_price{ font-size:24px; color: #F60}
-.Group_buy .Group_list .left_Group .Group_info .Current_price i,
+.Group_buy  .left_Group .Group_info .Current_price i,
 .Group_buy .Group_list .right_Group .left_Group_name .Current_price i{ font-size:14px}
-.Group_buy .Group_list .left_Group .Group_info .Group_List,
+.Group_buy  .left_Group .Group_info .Group_List,
 .Group_buy .Group_list .right_Group .left_Group_name .Group_List{ margin-left:20px; color:#CCC}
-.Group_buy .Group_list .left_Group .Group_info .Group_p_name a{ margin-bottom:5px; color:#693; font-size:18px}
-.Group_buy .Group_list .left_Group .Group_img{ width:365px;float:left; height:195px;}
-.Group_buy .Group_list .left_Group .Group_time,
+.Group_buy  .left_Group .Group_info .Group_p_name a{ margin-bottom:5px; color:#693; font-size:18px}
+.Group_buy  .left_Group .Group_img{ width:365px;float:left; height:195px;}
+.Group_buy  .left_Group .Group_time,
 .Group_buy .Group_list .right_Group .Group_time{ height:32px; background: #EEE; line-height:32px; text-align:center; font-size:14px; margin-top:10px;}
-.Group_buy .Group_list .left_Group .Group_time em,
+.Group_buy  .left_Group .Group_time em,
 .Group_buy .Group_list .right_Group .Group_time em{ 
 	background:url(/image/home/Complex_img.png) right -120px;
 	float:left; 

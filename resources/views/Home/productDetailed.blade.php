@@ -154,7 +154,7 @@
                     <div class="product_name"><h2>{{isset($product['product_name'])?$product['product_name']:null}}</h2><span>产地：{{isset($product['product_origin'])?$product['product_origin']:null}}</span></div>
                     <div class="product_price">
                         <div class="price"><label>优惠价：</label>￥{{isset($product['present_price'])?$product['present_price']:null}} <b>元/{{isset($product['unit'])?$product['unit']:null}}</b></div>
-                        <div class="jyScore-fra"><span><em style="width:60px;"></em></span><b>4.5</b><a href="#">共有16条评论</a></div>
+                        <div class="jyScore-fra"><span><em style="width:60px;"></em></span><b></b><a href="#">共有{{$haoping+$zhongping+$chaping}}条评论</a></div>
                     </div>
                     <div class="productDL">
                         <dl style="height: 100px;">
@@ -178,13 +178,13 @@
                                     <input id="number" name="number" type="text" value="1" class="number_text">
                                     <a href="javascript:void(0);" onclick="updatenum(this)" class="jia">+</a>
                                 </div>
-                            </dd><dd class="left Quantity">(库存：30000)</dd>
+                            </dd><dd class="left Quantity">(库存：{{$product['product_num']}})</dd>
                         </dl>
                     </div>
                     <div class="product_Quantity">销量：3440</div>
                     <div class="add_collect">加入收藏夹</div>
                     <div class="operating">
-                        <a href="javascript:void(0);" class="buy_btn "></a>
+                        <a href="/buyNowOrder/{{isset($product['product_id'])?$product['product_id']:null}}/1" class="buy_btn "></a>
                         <a href="javascript:void(0);" class="Join_btn  addcar orange " attr="{{isset($product['product_id'])?$product['product_id']:null}}" store_id ="{{isset($product['store_id'])?$product['store_id']:null}}"></a>
                         {{--<a href="/addCollect/{{$product['product_id']}}" class="Collect_btn"></a>--}}
                         <a href="javascript:void(0);" class="Collect_btn"></a>
@@ -195,7 +195,7 @@
             <div class="mainListRight ">
                 <ul class="fixed_bar " style="">
                     <li class="status_on active" onclick="status1()"><a>产品介绍</a></li>
-                    <li class="status_on" onclick="status2()"><a>商品评价<span>(100)</span></a></li>
+                    <li class="status_on" onclick="status2()"><a>商品评价<span>({{$haoping+$zhongping+$chaping}})</span></a></li>
                     <li class="status_on" onclick="status3()"><a>售后服务</a></li>
                     <div class="statusBtn" style="display: none;"><a href="javascript:addToCart_bak(77)" class="statusBtn1" title="加入购物车"></a></div>
                 </ul>
@@ -306,29 +306,29 @@
                 <div class="comment-info">
                     <div class="comment-percent">
                         <strong class="percent-tit">好评度</strong>
-                        <div class="percent-con">99<span>%</span></div>
+                        <div class="percent-con">{{$haopingdu}}<span>%</span></div>
                     </div>
                     <div class="percent-info">
                         <div class="tag-list ">
-                            <span>好评（99）</span>
-                            <span>中评（0）</span>
-                            <span>差评（1）</span>
+                            <span>好评（{{$haoping}}）</span>
+                            <span>中评（{{$zhongping}}）</span>
+                            <span>差评（{{$chaping}}）</span>
                         </div>
                     </div>
                 </div>
                 <div class="tab-main small">
                     <ul class="filter-list">
                         <li style="width: 120px;">
-                            <a href="">全部评论（1000）</a>
+                            <a href="javascript:void(0);">全部评论（{{$haoping+$zhongping+$chaping}}）</a>
                         </li>
                         <li style="width: 100px;">
-                            <a href="">好评（1000）</a>
+                            <a href="javascript:void(0);">好评（{{$haoping}}）</a>
                         </li>
                         <li style="width: 100px;">
-                            <a href="">中评（1000）</a>
+                            <a href="javascript:void(0);">中评（{{$zhongping}}）</a>
                         </li>
                         <li style="width: 100px;">
-                            <a href="">差评（1000）</a>
+                            <a href="javascript:void(0);">差评（{{$chaping}}）</a>
                         </li>
                     </ul>
                 </div>
@@ -369,6 +369,10 @@
                                 </div>
                             </div>
                         @endforeach
+                    @else
+                        <div style="text-align: center;padding-top: 30px;">
+                            <a >暂无评论！</a>
+                        </div>
                     @endif
 
                 </div>

@@ -116,6 +116,7 @@ class AdvertisementController extends Controller
         $form->switch('is_show', '是否显示')->states($states);
         $form->text('sort', '排序')->help('数字越大排序越后');
         $form->select('used', '显示的位置')->options(Advertisement::advertisementUsed());
+        $form->url('http' , '图片链接')->help('如果图片与链接  无关，此项可以为空');
         $form->select('product_id' , '对应商品')->options(Product::findProductNameById())->help('如果图片与商品无关，此项可以为空');
         //去掉脚部多余的按钮
         $form->footer(function ($footer) {

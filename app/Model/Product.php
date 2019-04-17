@@ -19,6 +19,7 @@ class Product extends Common
     const NEW_PRODUCT = 2; //最新商品
     const RECOMMEND_PRODUCT = 3 ; //推荐商品
     const ORDINARY_PRODUCT = 4 ; //普通商品
+    const SS_PRODUCT = 5; //特价商品
 
     public static function productStatic()
     {
@@ -27,6 +28,7 @@ class Product extends Common
             self::NEW_PRODUCT => '最新',
             self::RECOMMEND_PRODUCT => '推荐',
             self::ORDINARY_PRODUCT => '普通',
+            self::SS_PRODUCT => '特价',
         ];
     }
 
@@ -83,5 +85,36 @@ class Product extends Common
         $category_id = Product::where('product_id' , $id)->value('category_id');
         $topProduct = Product::where([['category_id' , $category_id] , ['is_show' , self::DISPLAY]])->orderBy('sales_volume' , 'desc')->limit($limit)->get()->toArray();
         return $topProduct;
+    }
+
+    /**
+     * 立即购买商品订单查看
+     * @param $product_id
+     * @param int $num
+     * @return array
+     */
+    public static function buyProductNow($product_id , $num = 2)
+    {
+        $arr = [];
+        $brr = [];
+        $product = Product::where('product_id' , $product_id)->first()->toArray();
+        $store_id = Store::where('store_id' , $product['store_id'])->first()->toArray();
+        $arr['store_id'] = $store_id;
+        $brr['num'] = $num;
+        $brr['product'] = $product;
+        $brr['product']['cost'] = $product['present_price']*$num;
+        $arr['product'][] = $brr;
+        $order[] = $arr;
+        return $order;
+    }
+
+    /**
+     * 活动特价页面
+     * @return mixed
+     */
+    public static function todayDeal($type)
+    {
+        $product = Product::where('status' , $type)->get()->toArray();
+        return $product;
     }
 }

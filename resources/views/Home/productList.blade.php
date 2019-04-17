@@ -146,11 +146,13 @@
                                 <b>￥</b>{{isset($value['present_price'])?$value['present_price']:null}}<span style="font-size: 14px;">/{{isset($value['unit'])?$value['unit']:null}}</span>
                             </p>
                             <p class="btn_style">
-                                <a href="javascript:void(0);" class="buy_btn"></a>
+                                {{--<a href="/buyNowOrder/{{isset($value['product_id'])?$value['product_id']:null}}/2" class="buy_btn"></a>--}}
                                 {{--判断是否已经登陆 如果没有登陆 不能加入购物车--}}
                                 @guest
+                                    <a href="/addShoppingCartLogin/{{$menu_title['category_id']}}" class="buy_btn"></a>
                                     <a  href="/addShoppingCartLogin/{{$menu_title['category_id']}}" class="Join_btn orange"></a>
                                 @else
+                                    <a href="/buyNowOrder/{{isset($value['product_id'])?$value['product_id']:null}}/2" class="buy_btn"></a>
                                     <a href="javascript:void(0);" class="Join_btn addcar orange" attr="{{isset($value['product_id'])?$value['product_id']:null}}" store_id ="{{isset($value['store_id'])?$value['store_id']:null}}"></a>
                                 @endguest
                             </p>

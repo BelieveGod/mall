@@ -24,7 +24,7 @@
         <a href="/home_index" class="logo_img">
             <img src="/image/home/logo.png" style="width: 375px;height: 95px"/>
         </a>
-        <div class="header_Section" style="width: 760px;">
+        <div class="header_Section" style="width: 700px;">
             <div class="shortcut">
                 <ul>
                     @guest
@@ -68,10 +68,10 @@
                 <ul class="Navigation_name">
                     <li class=""><a href="/home_index">首页</a></li>
                     <li class=""><a href="/product">所有商品</a></li>
-                    <li class=""><a href="/groupBuy">活动专区</a></li>
-                    <li class=""><a href="">文章话题</a></li>
-                    <li class=""><a href="/user_index">会员中心</a></li>
+                    {{--<li class=""><a href="/groupBuy">活动专区</a></li>--}}
+                    <li class=""><a href="">采购中心</a></li>
                     <li class=""><a href="/applyAdmin">我要供应</a></li>
+                    <li class=""><a href="/user_index">会员中心</a></li>
                     <li class=""><a href="/callAboutUs">联系我们</a></li>
                 </ul>
             </div>

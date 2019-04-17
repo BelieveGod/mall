@@ -41,7 +41,7 @@ Route::get('productList/{id}' , 'ProductListController@index');//商品列表
 Route::get('productDetailed/{id}' , 'ProductDetailedController@detailed');//商品详情
 
 //活动中心
-Route::get('groupBuy' , 'GroupBuyController@index');//商品详情
+Route::get('groupBuy/{type?}' , 'GroupBuyController@index');//今日特价
 
 //联系我们
 Route::get('callAboutUs' , 'CallAboutUsController@index');//联系我们
@@ -56,6 +56,7 @@ Route::get('updatedApplyAdmin/{id?}' , 'ApplyAdminController@updatedApplyAdmin')
 
 //提交商品订单
 Route::get('orders' , 'OrdersController@index');//提交商品订单
+Route::get('buyNowOrder/{id?}/{num?}' , 'OrdersController@buyNowOrder');//立即购买表单提交
 
 
 

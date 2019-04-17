@@ -35,14 +35,14 @@
 <div class="recommend_style ">
     <em class="ye_img"></em>
     <div class="mian">
-        <div class="title_name"><a href="#" class="link_name">最新促销</a></div>
+        <div class="title_name"><a href="groupBuy/2" class="link_name">最新促销</a></div>
         <div class="carouFredSel">
             <script type="text/javascript" src="./js/home/slider.js"></script>
             <div id="center">
                 <div id="slider">
                     @foreach($ad_nd as $value)
                     <div class="slide">
-                        <a href="#" title="" target="_blank">
+                        <a href="{{isset($value['product_id'])?'/productDetailed/'.$value['product_id']:null}}" title="">
                             <img class="diapo" border="0" src="./uploads/{{$value['ad_img']}}" style="opacity: 1; visibility: visible;">
                         </a>
                         <div class="backgroundText_name" >
@@ -52,7 +52,7 @@
                                 <p>原价：<b>￥{{$value['product']['prime_cost']}}</b></p>
                             </div>
                             <div class="product_price">
-                                <a href="#" class="price_btn">
+                                <a href="{{isset($value['product_id'])?'/productDetailed/'.$value['product_id']:null}}" class="price_btn">
                                     <p class="left_title_p"></p>
                                     <p class="zj_bf"><em>￥</em>{{$value['product']['present_price']}}</p>
                                     <p class="right_buf"></p>
@@ -78,7 +78,14 @@
         <div id="slideBox_list" class="slideBox_list">
             <div class="hd">
                 <div class="title_name"></div>
-                <div class="list_title"><ul><li><h3>01</h3><a href="#">水果</a></li><li><h3>02</h3><a href="#">蔬菜</a></li><li><h3>03</h3><a href="#">干果</a></li><li><h3>04</h3><a href="#">其他</a></li></ul></div>
+                <div class="list_title">
+                    <ul>
+                        <li><h3>01</h3><a href="#">水果</a></li>
+                        <li><h3>02</h3><a href="#">蔬菜</a></li>
+                        <li><h3>03</h3><a href="#">畜牧水产</a></li>
+                        <li><h3>04</h3><a href="#">粮油</a></li>
+                    </ul>
+                </div>
             </div>
 
             <div class="bd">
@@ -87,23 +94,43 @@
                 </div>
                 <ul class="">
                     <li class="advertising">
+                        <div class="AD1">
+                            <a href="#"><img src="./image/test/2.jpg" /></a>
+                        </div>
+                        <div class="AD2">
+                            <a href="#"><img src="./image/test/1.jpg" /></a>
+                            <a href="#"><img src="./image/test/2.jpg" /></a>
+                        </div>
+                        <div class="AD3">
+                            <a href="#"><img src="./image/test/2.jpg" /></a>
+                        </div>
+                    </li>
+                    <li class="advertising">
+                        <div class="AD1">
+                            <a href="#"><img src="./image/test/2.jpg" /></a>
+                        </div>
+                        <div class="AD2">
+                            <a href="#"><img src="./image/test/2.jpg" /></a>
+                            <a href="#"><img src="./image/test/1.jpg" /></a>
+                        </div>
+                        <div class="AD3">
+                            <a href="#"><img src="./image/test/1.jpg" /></a>
+                        </div>
+                    </li>
+                    <li class="advertising">
                         <div class="AD1"><a href="#"><img src="./image/test/2.jpg" /></a></div>
-                        <div class="AD2"><a href="#"><img src="./image/test/1.jpg" /></a><a href="#"><img src="./image/test/2.jpg" /></a></div>
+                        <div class="AD2">
+                            <a href="#"><img src="./image/test/2.jpg" /></a>
+                            <a href="#"><img src="./image/test/2.jpg" /></a>
+                        </div>
                         <div class="AD3"><a href="#"><img src="./image/test/2.jpg" /></a></div>
                     </li>
                     <li class="advertising">
                         <div class="AD1"><a href="#"><img src="./image/test/2.jpg" /></a></div>
-                        <div class="AD2"><a href="#"><img src="./image/test/2.jpg" /></a><a href="#"><img src="./image/test/1.jpg" /></a></div>
-                        <div class="AD3"><a href="#"><img src="./image/test/1.jpg" /></a></div>
-                    </li>
-                    <li class="advertising">
-                        <div class="AD1"><a href="#"><img src="./image/test/2.jpg" /></a></div>
-                        <div class="AD2"><a href="#"><img src="./image/test/2.jpg" /></a><a href="#"><img src="./image/test/2.jpg" /></a></div>
-                        <div class="AD3"><a href="#"><img src="./image/test/2.jpg" /></a></div>
-                    </li>
-                    <li class="advertising">
-                        <div class="AD1"><a href="#"><img src="./image/test/2.jpg" /></a></div>
-                        <div class="AD2"><a href="#"><img src="./image/test/2.jpg" /></a><a href="#"><img src="./image/test/2.jpg" /></a></div>
+                        <div class="AD2">
+                            <a href="#"><img src="./image/test/2.jpg" /></a>
+                            <a href="#"><img src="./image/test/2.jpg" /></a>
+                        </div>
                         <div class="AD3"><a href="#"><img src="./image/test/1.jpg" /></a></div>
                     </li>
                 </ul>
