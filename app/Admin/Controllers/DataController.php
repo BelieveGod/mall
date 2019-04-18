@@ -3,7 +3,10 @@
 namespace App\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Model\ProductForm;
+use App\Model\Store;
 use Encore\Admin\Controllers\HasResourceActions;
+use Encore\Admin\Facades\Admin;
 use Encore\Admin\Grid;
 use Encore\Admin\Layout\Column;
 use Encore\Admin\Layout\Content;
@@ -11,6 +14,8 @@ use Encore\Admin\Layout\Row;
 use Encore\Admin\Widgets\Box;
 use Encore\Admin\Widgets\Echarts\Echarts;
 use Encore\Admin\Widgets\InfoBox;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class DataController extends Controller
 {
@@ -24,15 +29,29 @@ class DataController extends Controller
      */
     public function index(Content $content)
     {
+        //今天的时间
+        $start = strtotime(date('Y/m/d' , time()));
+        $end = $start + 86400;
+        $store = Auth::guard('admin')->user()->id;
+        $business = Store::select(DB::raw("count(*) as num"))
+            ->where('status' , Store::PENDING_APPLICATION)->groupBy("status")->first();
+        $pro_form = ProductForm::select(DB::raw("count(*) as num"))->where('store_id' , $store)
+            ->whereBetween('created_at' ,[$start , $end])
+            ->groupBy("store_id")->first();
 
+        $business_num = isset($business->num)?$business->num:0;
+        $order = isset($pro_form->num)?$pro_form->num:0;
 
+//        dd($order);
 
         return $content
-            ->header('Chartjs')
-            ->row(function (Row $row) {
-                $row->column(3, new InfoBox('New Users', 'users', 'aqua', '/demo/users', '1024'));
-                $row->column(3, new InfoBox('New Orders', 'shopping-cart', 'green', '/demo/orders', '150%'));
-                $row->column(3, new InfoBox('Articles', 'book', 'yellow', '/demo/articles', '2786'));
+            ->header('消息')
+            ->row(function (Row $row) use($business_num,$order) {
+                if (Admin::user()->can('*')) {
+                    $row->column(3, new InfoBox('供应商申请待审核', 'users', 'aqua', '/admin/store', $business_num));
+                }
+                $row->column(3, new InfoBox('今日订单', 'shopping-cart', 'green', '/admin/productform', $order));
+                $row->column(3, new InfoBox('今日', 'book', 'yellow', '/admin/product_comment', '2786'));
             })
             ->row(function(Row $row){
                 $row->column(5, function (Column $column) {
@@ -43,47 +62,45 @@ class DataController extends Controller
                     $column->row(new Box('本月收入', view('Admin.incomeChartjs')));
                 });
             });
-//            ->body(new Box('Bar chart', view('Admin.chartjs')));
-//        return $content
-//            ->header('Index')
-//            ->description('description')
-//            ->body($this->grid());
+
     }
 
-    /**
-     * Make a grid builder.
-     *
-     * @return Grid
-     */
-    protected function grid()
-    {
-//        $grid = new Grid(new Topic);
-//
-//        $grid->topic_id('Topic id');
-//        $grid->topic_name('Topic name');
-//        $grid->topic_dec('Topic dec');
-//        $grid->used_id('Used id');
-//        $grid->topic_follow('Topic follow');
-//        $grid->topic_pic('Topic pic');
-//        $grid->status('Status');
-//        $grid->created_at('Created at');
-//        $grid->updated_at('Updated at');
-//        $grid->deleted_at('Deleted at');
-//
-//        return $grid;
-    }
 
     public function countOrderNumByStore()
     {
-        //SELECT count(*)as order_num , created_at FROM mall_product_form WHERE store_id = 1 and created_at>1554048000 and created_at<1556640000 GROUP BY created_at;
         $data = [];
+        $store_id = Auth::guard('admin')->user()->id;
+        $y_m = date('Ym',time());
         $firstday = date('Y-m-01',time());
         $start = strtotime($firstday);//本月开始的时间戳
         $end = strtotime("$firstday +1 month -1 day");//本月结束的时间戳
         $lastday = date('d' , $end);
+        //一个月的天数
+        $month_date = range(1,$lastday);
+        //获取传过来的状态
+        $type = request('type');
 
-        $month_date = json_encode(range(1,$lastday));
 
+        if($type==1){//一个月每天的订单数
+            $monthAllData = ProductForm::select(DB::raw("FROM_UNIXTIME(created_at,'%Y%m%d') as date, count(*) as num"))
+                ->where('store_id' , $store_id)->groupBy("date")->get();
+        }else if($type == 2){
+            $monthAllData = ProductForm::select(DB::raw("FROM_UNIXTIME(created_at,'%Y%m%d') as date, sum(product_cost) as num"))
+                ->where('store_id' , $store_id)->groupBy("date")->get();
+        }
+        $res = [];
+        for($i=1 ; $i<= $lastday ; $i++){
+            $res[] = 0;
+            foreach ($monthAllData as $value){
+                if(substr($value->date,0,6) == $y_m){
+                    $day = substr($value->date,-2);
+                    if($i == $day) {
+                        $res[$i] = $value->num;
+                    }
+                }
+            }
+        }
+        $data['count_num'] = $res;
         $data['month_date'] = $month_date;
 
         return $data;
