@@ -38,20 +38,24 @@ class DataController extends Controller
         $pro_form = ProductForm::select(DB::raw("count(*) as num"))->where('store_id' , $store)
             ->whereBetween('created_at' ,[$start , $end])
             ->groupBy("store_id")->first();
+        $money = ProductForm::select(DB::raw("sum(product_cost) as num"))->where('store_id' , $store)
+            ->whereBetween('created_at' ,[$start , $end])
+            ->groupBy("store_id")->first();
 
         $business_num = isset($business->num)?$business->num:0;
         $order = isset($pro_form->num)?$pro_form->num:0;
+        $money = isset($money->num)?$money->num:0;
 
 //        dd($order);
 
         return $content
             ->header('消息')
-            ->row(function (Row $row) use($business_num,$order) {
+            ->row(function (Row $row) use($business_num,$order,$money) {
                 if (Admin::user()->can('*')) {
                     $row->column(3, new InfoBox('供应商申请待审核', 'users', 'aqua', '/admin/store', $business_num));
                 }
                 $row->column(3, new InfoBox('今日订单', 'shopping-cart', 'green', '/admin/productform', $order));
-                $row->column(3, new InfoBox('今日', 'book', 'yellow', '/admin/product_comment', '2786'));
+                $row->column(3, new InfoBox('今日营业额', 'book', 'yellow', '/admin/productform', $money));
             })
             ->row(function(Row $row){
                 $row->column(5, function (Column $column) {
