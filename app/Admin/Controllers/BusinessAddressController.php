@@ -137,6 +137,7 @@ class BusinessAddressController extends Controller
             return Regions::findAddress($id);
         });
         $show->address('详细地址');
+        $show->tell('联系电话');
 
 //        $show->store_id('Store id');
         $show->created_at('创建时间');
@@ -168,6 +169,8 @@ class BusinessAddressController extends Controller
             }
         });
         $form->text('address', '详细地址');
+        $form->mobile('tell' , '联系电话')->options(['mask' => '99999999999']);
+//        $form->text('tell' , '联系电话');
         $form->gaodemap('gps' , '地图');
         $states = [
             'on'  => ['value' => 1, 'text' => '是', 'color' => 'success'],
