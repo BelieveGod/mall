@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Model\Advertisement;
+use App\Model\Member;
+use App\Model\Message;
 use App\Model\Product;
 use App\Model\Store;
 use App\Model\StoreLog;
+use App\Model\Topic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -127,5 +130,94 @@ class ApiValidatorController extends Controller
         $user->password = bcrypt($password);
         $user->save();
         return redirect( '/userInfo');
+    }
+
+    /**
+     * 发布求购信息
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function upTopic(Request $request)
+    {
+        $topic_dec = $request->post('topic_dec');
+        $used_id = $request->post('used_id');
+        $topic_type = $request->post('topic_type');
+        $status = Topic::UP_TOPIC;
+        $credentials = $request->all();
+        $rules = [
+            'topic_dec'=>'required',
+            'topic_type'=>'required',
+        ];
+        $messages = [
+            'topic_dec.required' => '内容不能为空',
+            'topic_type.required' => '请选择类型',
+        ];
+        Validator::make($credentials , $rules , $messages)->validate();//验证
+        $member = Member::where('users_id' , $used_id)->first();
+        $topic = new Topic;
+        $topic->user_id = $used_id;
+        $topic->topic_dec = $topic_dec;
+        $topic->topic_follow = 0;
+        $topic->topic_type = $topic_type;
+        $topic->status = $status;
+        $topic->user_pic = isset($member->member_pic)?$member->member_pic:null;
+        $topic->save();
+        return redirect( '/show_topic_list');
+    }
+
+    /**
+     * 留言
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function upMessage(Request $request)
+    {
+        $message_text = $request->post('message');
+        $topic_id = $request->post('topic_id');
+        $user_id = $request->post('user_id');
+        $credentials = $request->all();
+        $rules = [
+            'message'=>'required',
+        ];
+        $messages = [
+            'message.required' => '内容不能为空',
+        ];
+        Validator::make($credentials , $rules , $messages)->validate();//验证
+        $message = new Message;
+        $message->user_id = $user_id;
+        $message->topic_id = $topic_id;
+        $message->message = $message_text;
+        $message->save();
+
+        $topic = Topic::find($topic_id);
+        $topic->topic_follow = (int)$topic->topic_follow + 1;
+        $topic->save();
+
+        return redirect( '/show_topic_detail/'.$topic_id);
+    }
+
+    /**
+     * 回复留言
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function upReply(Request $request)
+    {
+        $reply = $request->post('reply');
+        $message_id = $request->post('message_id');
+        $topic_id = $request->post('topic_id');
+        $credentials = $request->all();
+        $rules = [
+            'reply'=>'required',
+        ];
+        $messages = [
+            'reply.required' => '回复的内容不能为空',
+        ];
+        Validator::make($credentials , $rules , $messages)->validate();//验证
+        $message = Message::find($message_id);
+        $message->reply = $reply;
+        $message->save();
+
+        return redirect( '/show_topic_detail/'.$topic_id);
     }
 }

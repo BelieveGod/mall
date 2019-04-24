@@ -59,7 +59,11 @@ Route::get('orders' , 'OrdersController@index');//提交商品订单
 Route::get('buyNowOrder/{id?}/{num?}' , 'OrdersController@buyNowOrder');//立即购买表单提交
 
 //求购页面
-Route::get('show_topic_list' , 'TopicController@index');//显示求购列表
+Route::get('show_topic_list/{id?}' , 'TopicController@index');//显示求购列表
+Route::post('web/api/upTopic' , 'ApiValidatorController@upTopic');//发起求购
+Route::get('show_topic_detail/{id?}' , 'TopicController@topicDetail');//显示求购详细页面
+Route::post('web/api/upMessage' , 'ApiValidatorController@upMessage');//留言
+Route::post('web/api/upReply' , 'ApiValidatorController@upReply');//回复留言
 
 
 

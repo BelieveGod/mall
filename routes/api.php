@@ -54,4 +54,7 @@ Route::post('/created_comment' , 'UserCommentController@createdComment');//提�
 Route::post('/user_comment_uploadImg' , 'UserCommentController@uploadImg');//用户评论上传图片
 Route::get('/user_comment_deletedImg' , 'UserCommentController@deletedImg');//删除图片
 
+//更改求购信息状态
+Route::get('/update_topic_status' , 'TopicController@updateTopicStatus');//提交评论
+
 

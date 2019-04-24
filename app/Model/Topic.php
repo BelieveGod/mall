@@ -2,26 +2,62 @@
 
 namespace App\Model;
 
-use Illuminate\Database\Eloquent\Model;
-
-class Topic extends Model
+class Topic extends Common
 {
     //
     protected $table = 'topic';
     protected $primaryKey = 'topic_id';
 
-    const HOT_TOPIC = 1; //热门话题
-    const NEW_TOPIC = 2; //最新话题
-    const RECOMMEND_TOPIC = 3 ; //推荐话题
-    const ORDINARY_TOPIC = 4 ; //普通话题
+    const UP_TOPIC = 1;//提交
+    const ALREADY_DONE = 2;//已经解决
+
+    const BUY = 1;//求购
+    const SELL = 2;//供应
+    const MINE = 3;//我的
 
     public static function topicStatic()
     {
         return [
-            self::HOT_TOPIC => '热门话题',
-            self::NEW_TOPIC => '最新话题',
-            self::RECOMMEND_TOPIC => '推荐话题',
-            self::ORDINARY_TOPIC => '普通话题',
+            self::UP_TOPIC => '',
+            self::ALREADY_DONE => '已解决',
         ];
+    }
+
+    public static function topicType()
+    {
+        return [
+            self::BUY => '求购',
+            self::SELL => '供应',
+            self::MINE => '我的',
+        ];
+    }
+
+    /**
+     * 查找所有求购信息
+     * @return mixed
+     */
+    public static function findAllTopicList()
+    {
+        return Topic::orderBy('topic_id', 'desc')->paginate(10);
+    }
+
+    /**
+     * 查找求购或供应
+     * @param $topic_type
+     * @return mixed
+     */
+    public static function findTopicListByType($topic_type)
+    {
+        return Topic::where('topic_type',$topic_type)->orderBy('topic_id', 'desc')->paginate(10);
+    }
+
+    /**
+     * 查找某个用户的求购信息
+     * @param $user_id
+     * @return mixed
+     */
+    public static function findTopicListByUserId($user_id)
+    {
+        return Topic::where('user_id' , $user_id)->orderBy('topic_id' , 'desc')->paginate(10);
     }
 }
