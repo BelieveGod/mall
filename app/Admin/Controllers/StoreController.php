@@ -17,6 +17,7 @@ use Encore\Admin\Layout\Content;
 use Encore\Admin\Layout\Row;
 use Encore\Admin\Show;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class StoreController extends Controller
 {
@@ -203,11 +204,11 @@ class StoreController extends Controller
         });
 
         $form->saved(function (Form $form){
-            $store_log = new StoreLog;
-            $store_log->store_form_id = $form->model()->store_id;
-            $store_log->action_status = $form->model()->status;
-            $store_log->memo = $form->model()->memo;
-            $store_log->save();
+//            $store_log = new StoreLog;
+//            $store_log->store_form_id = $form->model()->store_id;
+//            $store_log->action_status = $form->model()->status;
+//            $store_log->memo = $form->model()->memo;
+//            $store_log->save();
         });
 
 
@@ -270,23 +271,33 @@ class StoreController extends Controller
         $form->text('business_name' , '注册实名');
         $form->mobile('business_tel' ,'注册电话')->options(['mask' => '999 9999 9999']);
         $form->text('identity_card' , '身份证号');
-        $form->select('province', '所属省份')->options(Regions::province())->load('city', '/admin/api/cityorregion');
-        $form->select('city', '所属市')->load('region_id', '/admin/api/cityorregion');
-        $form->select('region_id','区/县');
         $form->text('address' , '注册地址');
         $form->text('post_num' ,'邮政编码');
-        $form->text('business_pic' , '实名拍照核实照片');
+        $form->image('business_pic' , '实名拍照核实照片');
         $form->hidden('memo' , '备注')->default('管理后台添加');
         $form->hidden('status' , '状态')->default(2);
         $form->hidden('blacklist' , '是否是黑名单')->default(0);
 
-        $form->ignore(['province' , 'city' , 'region_id']);
+
         $form->saved( function (Form $form){
-            $region_id = request('region_id');
-            $region_path = Regions::where('region_id' , $region_id)->value('region_path');
-            $store = Store::find($form->model()->store_id);
-            $store->regions_id = $region_path;
-            $store->save();
+            if($form->model()->status == Store::APPLICATION_PASSED){
+                //创建后台用户
+                $data = [
+                    'username' => $form->model()->business_tel,
+                    'password' => bcrypt(123456),
+                    'name' => $form->model()->store_name,
+                    'created_at' => date('Y-m-d H:i:s' , time()),
+                    'updated_at' => date('Y-m-d H:i:s' , time()),
+                ];
+                $user = DB::table('admin_users')->insertGetId($data);
+                //赋予供应商权限
+                DB::table('admin_role_users')->insert(['user_id' => $user , 'role_id' => 2]);
+
+
+                $store = Store::find($form->model()->store_id);
+                $store->admin_id = $user;
+                $store->save();
+            }
 
             $store_log = new StoreLog;
             $store_log->store_form_id = $form->model()->store_id;
