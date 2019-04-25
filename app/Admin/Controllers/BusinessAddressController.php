@@ -26,8 +26,9 @@ class BusinessAddressController extends Controller
     public function index(Content $content)
     {
         return $content
-            ->header('Index')
-            ->description('description')
+            ->header('订单模块')
+            ->description('发货地址')
+            ->breadcrumb(['text' => '发货地址'])
             ->body($this->grid());
     }
 
@@ -41,8 +42,9 @@ class BusinessAddressController extends Controller
     public function show($id, Content $content)
     {
         return $content
-            ->header('Detail')
-            ->description('description')
+            ->header('订单模块')
+            ->description('地址信息')
+            ->breadcrumb(['text' => '发货地址'])
             ->body($this->detail($id));
     }
 
@@ -56,8 +58,9 @@ class BusinessAddressController extends Controller
     public function edit($id, Content $content)
     {
         return $content
-            ->header('Edit')
-            ->description('description')
+            ->header('订单模块')
+            ->description('编辑地址信息')
+            ->breadcrumb(['text' => '发货地址'])
             ->body($this->form()->edit($id));
     }
 
@@ -156,7 +159,7 @@ class BusinessAddressController extends Controller
     {
         $form = new Form(new BusinessAddress);
 
-        $form->text('business_name', '发货人');
+        $form->text('business_name', '发货人')->rules('required',['发货人不能为空']);
         $form->select('province', '省')->options(Regions::province())->load('city', '/admin/api/getregion');
         $form->select('city', '市')->options(function ($city) {
             if($city){
@@ -168,8 +171,8 @@ class BusinessAddressController extends Controller
                 return Regions::areaoptions($county);
             }
         });
-        $form->text('address', '详细地址');
-        $form->mobile('tell' , '联系电话')->options(['mask' => '99999999999']);
+        $form->text('address', '详细地址')->rules('required',['详细地址不能为空']);
+        $form->mobile('tell' , '联系电话')->options(['mask' => '99999999999'])->rules('required',['联系电话不能为空']);
 //        $form->text('tell' , '联系电话');
         $form->gaodemap('gps' , '地图');
         $states = [

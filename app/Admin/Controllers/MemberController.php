@@ -27,8 +27,9 @@ class MemberController extends Controller
     public function index(Content $content)
     {
         return $content
-            ->header('Index')
-            ->description('description')
+            ->header('用户管理')
+            ->description('列表')
+            ->breadcrumb(['text' => '用户管理'])
             ->body($this->grid());
     }
 
@@ -43,8 +44,9 @@ class MemberController extends Controller
     {
         $member_id = Member::where('users_id' , $id)->value('member_id');
         return $content
-            ->header('Detail')
-            ->description('description')
+            ->header('用户管理')
+            ->description('详情')
+            ->breadcrumb(['text' => '用户管理'])
             ->body($this->detail($member_id));
 
 
@@ -81,11 +83,11 @@ class MemberController extends Controller
         $grid->id('用户ID');
         $grid->name('用户昵称');
         $grid->email('注册邮箱');
-        $grid->member_pic('头像')->display(function ($pic) {
-            if($pic){
-                return '<img src="/../storage/'.$pic.'" width="30px" height="30px"  />';
-            }
-        });
+//        $grid->member_pic('头像')->display(function ($pic) {
+//            if($pic){
+//                return '<img src="/../storage/'.$pic.'" width="30px" height="30px"  />';
+//            }
+//        });
         $grid->member_sex('性别')->using(Member::getMemberSexList());
         $states = [
             'on'  => ['value' => 1, 'text' => '是', 'color' => 'primary'],
@@ -131,14 +133,13 @@ class MemberController extends Controller
         $show->member_tel('联系电话');
 //        $show->member_email('邮箱');
 //        $show->member_password('Member password');
-        $show->member_pic('头像')->unescape()->as(function ($pic) {
-            if($pic){
-                return '<img src="/../storage/'.$pic.'" />';
-            }else{
-                return '还没有上传头像！';
-            }
-
-        });
+//        $show->member_pic('头像')->unescape()->as(function ($pic) {
+//            if($pic){
+//                return '<img src="/../storage/'.$pic.'" />';
+//            }else{
+//                return '还没有上传头像！';
+//            }
+//        });
         $show->member_sex('性别')->using(Member::getMemberSexList());
         $show->member_birth('生日')->as(function ($birth){
             return date('Y-m-d' , $birth);

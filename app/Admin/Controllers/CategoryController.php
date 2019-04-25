@@ -26,6 +26,7 @@ class CategoryController extends Controller
     {
         $content->header('商品分类');
         $content->description('列表');
+        $content->breadcrumb(['text' => '商品分类']);
 
         $content->row(function(Row $row) {
             $row->column(6, Category::tree(function ($tree){
@@ -117,9 +118,9 @@ class CategoryController extends Controller
     {
         $form = new Form(new Category);
 
-        $form->text('category_name', '分类名称');
+        $form->text('category_name', '分类名称')->rules('required',['分类名称不能为空']);
 //        $form->number('pid', '父级分类');
-        $form->select('pid', '父级分类')->options(Category::parentsId());
+        $form->select('pid', '父级分类')->options(Category::parentsId())->rules('required',['父级分类不能为空']);
         $form->text('sort_order', '排序');
         $states = [
             'on'  => ['value' => 1, 'text' => '是', 'color' => 'success'],

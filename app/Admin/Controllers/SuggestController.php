@@ -27,8 +27,9 @@ class SuggestController extends Controller
     public function index(Content $content)
     {
         return $content
-            ->header('Index')
-            ->description('description')
+            ->header('信息管理')
+            ->description('意见反馈')
+            ->breadcrumb(['text' => '意见反馈'])
             ->body($this->grid());
     }
 
@@ -42,8 +43,9 @@ class SuggestController extends Controller
     public function edit($id, Content $content)
     {
         return $content
-            ->header('Edit')
-            ->description('description')
+            ->header('意见反馈')
+            ->description('详情')
+            ->breadcrumb(['text' => '意见反馈'])
             ->row(function(Row $row) use($id) {
                 $row->column(6, $this->detail($id));
                 $row->column(6, $this->form()->edit($id));

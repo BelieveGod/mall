@@ -54,7 +54,9 @@ class OrdersController
            $temp['form_freght'] = $form_freght;
            $temp['form_cost'] = $product_cost+$form_freght;
            $temp['form_address_id'] = $form_address_id;
-           $temp['status'] = ProductForm::PLACE_ORDER;
+           //todo 订单提交的状态
+//           $temp['status'] = ProductForm::PLACE_ORDER;
+           $temp['status'] = ProductForm::WAIT_DELIVER_GOODS;
            $temp['pay_type'] = ProductForm::PAY_ON_LINE;
 
            //存入数据库

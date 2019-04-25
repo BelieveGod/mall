@@ -24,8 +24,9 @@ class AdminProductController extends Controller
     public function index(Content $content)
     {
         return $content
-            ->header('Index')
-            ->description('description')
+            ->header('所有商品')
+            ->description('列表')
+            ->breadcrumb(['text' => '所有商品'])
             ->body($this->grid());
     }
 

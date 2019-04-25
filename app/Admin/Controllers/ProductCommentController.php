@@ -32,8 +32,9 @@ class ProductCommentController extends Controller
     public function index(Content $content)
     {
         return $content
-            ->header('Index')
-            ->description('description')
+            ->header('商品管理')
+            ->description('评论统计')
+            ->breadcrumb(['text' => '评论统计'])
             ->body($this->grid());
     }
 
@@ -47,8 +48,9 @@ class ProductCommentController extends Controller
     public function show($id, Content $content)
     {
         return $content
-            ->header('Detail')
-            ->description('description')
+            ->header('商品管理')
+            ->description('评论列表')
+            ->breadcrumb(['text' => '评论列表'])
             ->row(function(Row $row) use($id) {
                 $row->column(8, $this->commentbyproductid($id));
                 $row->column(4, '');
@@ -70,9 +72,9 @@ class ProductCommentController extends Controller
         $grid->product_comment_id('id');
         $grid->product_form_id('订单号')->using(ProductForm::findPostIdByProductFormId());
         $grid->product_id('商品')->using(Product::findProductNameById());
-        $grid->sku_id('属性规格')->display(function ($val){
-            return ProductSku::findskuvaluebyskuid($val);
-        });
+//        $grid->sku_id('属性规格')->display(function ($val){
+//            return ProductSku::findskuvaluebyskuid($val);
+//        });
 
         $grid->haoping('评价')->display(function ($val){
             $feel = ProductComment::productCommentHaoping();
@@ -172,9 +174,9 @@ class ProductCommentController extends Controller
         $show->product_form_id('订单号')->using(ProductForm::findPostIdByProductFormId());
         $show->menber_id('用户')->using(Member::findMemberNameById());
         $show->product_id('商品')->using(Product::findProductNameById());
-        $show->sku_id('属性规格')->as(function ($val){
-            return ProductSku::findskuvaluebyskuid($val);
-        });
+//        $show->sku_id('属性规格')->as(function ($val){
+//            return ProductSku::findskuvaluebyskuid($val);
+//        });
         $show->haoping('评价')->unescape()->as(function ($val){
             $feel = ProductComment::productCommentHaoping();
             switch ($val) {
@@ -192,7 +194,13 @@ class ProductCommentController extends Controller
         });
         $show->comment('评论');
         $show->comment_pic('评论图片')->unescape()->as(function ($img){
-            return '<img src="'.$img.'"/>';
+            $str = '';
+            if($img){
+                foreach ($img as $val){
+                    $str .= '<img src="'.$val.'" height="200px;"/>';
+                }
+            }
+            return $str;
         });
         $show->created_at('评论时间');
 

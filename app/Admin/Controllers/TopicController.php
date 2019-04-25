@@ -4,6 +4,7 @@ namespace App\Admin\Controllers;
 
 use App\Model\Topic;
 use App\Http\Controllers\Controller;
+use App\User;
 use Encore\Admin\Facades\Admin;
 use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Form;
@@ -24,8 +25,9 @@ class TopicController extends Controller
     public function index(Content $content)
     {
         return $content
-            ->header('Index')
-            ->description('description')
+            ->header('求购话题')
+            ->description('列表')
+            ->breadcrumb(['text' => '求购话题'])
             ->body($this->grid());
     }
 
@@ -82,16 +84,22 @@ class TopicController extends Controller
     {
         $grid = new Grid(new Topic);
 
-        $grid->topic_id('Topic id');
-        $grid->topic_name('Topic name');
-        $grid->topic_dec('Topic dec');
-        $grid->used_id('Used id');
-        $grid->topic_follow('Topic follow');
-        $grid->topic_pic('Topic pic');
-        $grid->status('Status');
-        $grid->created_at('Created at');
-        $grid->updated_at('Updated at');
-        $grid->deleted_at('Deleted at');
+        $grid->model()->orderBy('topic_id','desc');
+
+        $grid->topic_id('id');
+        $grid->topic_type('类型')->using(Topic::topicType());
+        $grid->topic_dec('内容');
+        $grid->user_id('发布用户')->using(User::findNameByUserId());
+        $grid->status('是否解决')->using(Topic::topicStatic());
+        $grid->created_at('创建时间');
+
+        //删除多余的按钮
+        $grid->actions(function ($actions) {
+            $actions->disableEdit();
+            $actions->disableView();
+        });
+        $grid->disableExport();
+        $grid->disableCreateButton();
 
         return $grid;
     }

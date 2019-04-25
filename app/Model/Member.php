@@ -2,6 +2,8 @@
 
 namespace App\Model;
 
+use App\User;
+
 class Member extends Common
 {
     protected $table = 'member';
@@ -25,7 +27,7 @@ class Member extends Common
 
     public static function findMemberNameById()
     {
-        return Member::pluck('member_name' , 'member_id')->toArray();
+        return User::pluck('name' , 'id')->toArray();
     }
 
     //home

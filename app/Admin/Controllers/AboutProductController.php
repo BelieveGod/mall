@@ -23,8 +23,9 @@ class AboutProductController extends Controller
     public function index(Content $content)
     {
         return $content
-            ->header('Index')
-            ->description('description')
+            ->header('商品管理')
+            ->description('商品说明')
+            ->breadcrumb(['text' => '商品说明'])
             ->body($this->grid());
     }
 
@@ -38,8 +39,9 @@ class AboutProductController extends Controller
     public function create(Content $content)
     {
         return $content
-            ->header('Create')
-            ->description('description')
+            ->header('商品说明')
+            ->description('添加商品说明')
+            ->breadcrumb(['text' => '商品说明'])
             ->body($this->form());
     }
 
@@ -77,7 +79,7 @@ class AboutProductController extends Controller
     {
         $form = new Form(new AboutProduct);
 
-        $form->text('name', '商品说明关键字');
+        $form->text('name', '商品说明关键字')->rules('required',['商品说明不能为空']);
 
         // 去掉`重置`按钮
         $form->footer(function ($footer) {

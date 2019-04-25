@@ -30,8 +30,9 @@ class ProductFormController extends Controller
     public function index(Content $content)
     {
         return $content
-            ->header('Index')
-            ->description('description')
+            ->header('订单模块')
+            ->description('订单管理')
+            ->breadcrumb(['text' => '订单管理'])
             ->body($this->grid());
     }
 
@@ -45,8 +46,9 @@ class ProductFormController extends Controller
     public function show($id, Content $content)
     {
         return $content
-            ->header('Detail')
-            ->description('description')
+            ->header('订单模块')
+            ->description('订单详情')
+            ->breadcrumb(['text' => '订单管理'])
             ->body($this->detail($id));
     }
 
@@ -60,8 +62,9 @@ class ProductFormController extends Controller
     public function edit($id, Content $content)
     {
         return $content
-            ->header('Edit')
-            ->description('description')
+            ->header('订单模块')
+            ->description('发货')
+            ->breadcrumb(['text' => '订单管理'])
             ->body($this->form()->edit($id));
     }
 

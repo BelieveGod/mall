@@ -98,4 +98,9 @@ class ProductComment extends Common
         }
         return $data;
     }
+
+    public function getCommentPicAttribute($pictures)
+    {
+        return json_decode($pictures, true);
+    }
 }

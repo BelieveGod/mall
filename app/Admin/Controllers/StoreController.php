@@ -32,8 +32,9 @@ class StoreController extends Controller
     public function index(Content $content)
     {
         return $content
-            ->header('Index')
-            ->description('description')
+            ->header('商家管理')
+            ->description('列表')
+            ->breadcrumb(['text' => '商家管理'])
             ->body($this->grid());
     }
 
@@ -47,8 +48,9 @@ class StoreController extends Controller
     public function show($id, Content $content)
     {
         return $content
-            ->header('Detail')
-            ->description('description')
+            ->header('商家管理')
+            ->description('详情')
+            ->breadcrumb(['text' => '商家管理'])
             ->body($this->detail($id))
             ->row($this->storeLog($id));
     }
@@ -62,7 +64,8 @@ class StoreController extends Controller
      */
     public function edit($id, Content $content)
     {
-        return $content->row(function(Row $row) use($id) {
+        return $content->row(function(Row $row) use($id,$content)  {
+            $content->breadcrumb(['text' => '商家管理']);
             $row->column(6, $this->detail($id));
             $row->column(6,function (Column $column) use ($id){
                 $column->row($this->updatestore()->edit($id));

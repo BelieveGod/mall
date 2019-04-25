@@ -23,8 +23,9 @@ class MenuController extends Controller
     public function index(Content $content)
     {
         return $content
-            ->header('Index')
-            ->description('description')
+            ->header('网站管理')
+            ->description('菜单栏管理')
+            ->breadcrumb(['text' => '菜单栏管理'])
             ->body($this->grid());
     }
 
@@ -38,8 +39,9 @@ class MenuController extends Controller
     public function edit($id, Content $content)
     {
         return $content
-            ->header('Edit')
-            ->description('description')
+            ->header('菜单栏管理')
+            ->description('编辑')
+            ->breadcrumb(['text' => '菜单栏管理'])
             ->body($this->form()->edit($id));
     }
 
@@ -52,8 +54,9 @@ class MenuController extends Controller
     public function create(Content $content)
     {
         return $content
-            ->header('Create')
-            ->description('description')
+            ->header('菜单栏管理')
+            ->description('创建')
+            ->breadcrumb(['text' => '菜单栏管理'])
             ->body($this->form());
     }
 

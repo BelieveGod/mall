@@ -120,15 +120,15 @@ class ProductController extends Controller
         $form = new Form(new Product);
 
             $form->select('category_id' , '选择分类')->options(Category::parentsId());
-            $form->text('product_name', '商品名称');
-            $form->text('product_origin' , '商品产地');
+            $form->text('product_name', '商品名称')->rules('required',['商品名称不能为空']);
+            $form->text('product_origin' , '商品产地')->rules('required',['商品产地不能为空']);
             $form->number('product_num', '商品库存');
             $form->text('product_explain', '购买说明');
             $form->text('keyword', '搜索关键词');
-            $form->text('unit' , '计算单位');
-            $form->currency('prime_cost', '商品原价')->symbol('￥');
-            $form->currency('present_price', '商品现价')->symbol('￥');
-            $form->currency('product_freght', '运费')->symbol('￥');
+            $form->text('unit' , '计算单位')->rules('required',['计算单位不能为空']);
+            $form->currency('prime_cost', '商品原价')->symbol('￥')->rules('required',['商品原价不能为空']);
+            $form->currency('present_price', '商品现价')->symbol('￥')->rules('required',['商品现价不能为空']);
+            $form->currency('product_freght', '运费')->symbol('￥')->rules('required',['运费不能为空']);
 
             //todo
             $form->embeds('about_product', '商品说明', function ($form) {

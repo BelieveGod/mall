@@ -24,8 +24,9 @@ class AdvertisementController extends Controller
     public function index(Content $content)
     {
         return $content
-            ->header('Index')
-            ->description('description')
+            ->header('网站管理')
+            ->description('广告')
+            ->breadcrumb(['text' => '广告'])
             ->body($this->grid());
     }
 
@@ -39,8 +40,9 @@ class AdvertisementController extends Controller
     public function edit($id, Content $content)
     {
         return $content
-            ->header('Edit')
-            ->description('description')
+            ->header('广告')
+            ->description('编辑')
+            ->breadcrumb(['text' => '广告'])
             ->body($this->form()->edit($id));
     }
 
@@ -53,8 +55,9 @@ class AdvertisementController extends Controller
     public function create(Content $content)
     {
         return $content
-            ->header('Create')
-            ->description('description')
+            ->header('广告')
+            ->description('创建')
+            ->breadcrumb(['text' => '广告'])
             ->body($this->form());
     }
 
