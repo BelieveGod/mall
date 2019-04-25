@@ -221,28 +221,28 @@
             }
         }
 
-        function inputOrder(obj)
-        {
-            //订单应该分商店，可以是同一个订单号，但是涉及到的商家应该都能看到这个订单和对商品相应地发货
-            var data = {};
-            data.user_id = $('#top_cullom_user_id').attr('attr');
-            data.address_id = $('#add_active').attr('attr');
-            var shopping_cart = new Array();
-            // data.shopping_cart =
-            $('.Product_List').find('.Product_info').each(function(){
-                var temp = $(this).attr('attr');
-                shopping_cart.push(temp);
-            });
-            data.shopping_cart = shopping_cart;
-            data.spzj = $('.spzj').text();
-            data.psf = $('.psf').text();
-            data.sfk = $('.sfk').text();
-            data.integral = $('.jf').text();
-            console.log(data);
-            $.post('/api/saveOrders' , data , function(res){
-                console.log(res);
-            });
-        }
+        // function inputOrder(obj)
+        // {
+        //     //订单应该分商店，可以是同一个订单号，但是涉及到的商家应该都能看到这个订单和对商品相应地发货
+        //     var data = {};
+        //     data.user_id = $('#top_cullom_user_id').attr('attr');
+        //     data.address_id = $('#add_active').attr('attr');
+        //     var shopping_cart = new Array();
+        //     // data.shopping_cart =
+        //     $('.Product_List').find('.Product_info').each(function(){
+        //         var temp = $(this).attr('attr');
+        //         shopping_cart.push(temp);
+        //     });
+        //     data.shopping_cart = shopping_cart;
+        //     data.spzj = $('.spzj').text();
+        //     data.psf = $('.psf').text();
+        //     data.sfk = $('.sfk').text();
+        //     data.integral = $('.jf').text();
+        //     console.log(data);
+        //     $.post('/api/saveOrders' , data , function(res){
+        //         console.log(res);
+        //     });
+        // }
 
 
     </script>

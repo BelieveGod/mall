@@ -32,8 +32,9 @@ class ProductController extends Controller
     public function index(Content $content)
     {
         return $content
-            ->header('Index')
-            ->description('description')
+            ->header('商品管理')
+            ->description('商品列表')
+            ->breadcrumb(['text' => '商品列表'])
             ->body($this->grid());
     }
 
@@ -47,8 +48,9 @@ class ProductController extends Controller
     public function edit($id, Content $content)
     {
         return $content
-            ->header('Edit')
-            ->description('description')
+            ->header('修改商品')
+            ->description('商品详情')
+            ->breadcrumb(['text' => '商品列表','url'=>'/product'],['text' => '添加商品'])
             ->body($this->form()->edit($id));
     }
 
@@ -61,8 +63,9 @@ class ProductController extends Controller
     public function create(Content $content)
     {
         return $content
-            ->header('Create')
-            ->description('description')
+            ->header('添加商品')
+            ->description('商品详情')
+            ->breadcrumb(['text' => '商品列表','url'=>'/product'],['text' => '添加商品'])
             ->body($this->form());
     }
 
@@ -149,6 +152,7 @@ class ProductController extends Controller
             $form->hidden('store_id', '商店id')->default($store_id);
             $form->hidden('store_name', '商店名称')->default('0');
             $form->hidden('auditing', '审核')->default('1');
+            $form->hidden('status', '状态')->default(Product::ORDINARY_PRODUCT);
             $form->multipleImage('product_master_img', '商品主图')->removable();
 //            $form->sku('type_id','商品类型');
 

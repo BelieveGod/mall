@@ -55,7 +55,7 @@ class DataController extends Controller
                     $row->column(3, new InfoBox('供应商申请待审核', 'users', 'aqua', '/admin/store', $business_num));
                 }
                 $row->column(3, new InfoBox('今日订单', 'shopping-cart', 'green', '/admin/productform', $order));
-                $row->column(3, new InfoBox('今日营业额', 'book', 'yellow', '/admin/productform', $money));
+                $row->column(3, new InfoBox('待发货', 'book', 'yellow', '/admin/productform', $money));
             })
             ->row(function(Row $row){
                 $row->column(5, function (Column $column) {

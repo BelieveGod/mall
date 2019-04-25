@@ -49,7 +49,8 @@ class StoreController extends Controller
         return $content
             ->header('Detail')
             ->description('description')
-            ->body($this->detail($id));
+            ->body($this->detail($id))
+            ->row($this->storeLog($id));
     }
 
     /**
@@ -123,7 +124,12 @@ class StoreController extends Controller
             $actions->disableDelete();
             $actions->disableEdit();
             $actions->disableView();
-            $actions->append('<a href="/admin/store/'.$actions->getKey().'/edit"><span class="label label-info">审核</span></a>');
+            if($actions->row['status'] == Store::PENDING_APPLICATION){
+                $actions->append('<a href="/admin/store/'.$actions->getKey().'/edit"><span class="label label-info">审核</span></a>');
+            }else{
+                $actions->append('<a href="/admin/store/'.$actions->getKey().'"><span class="label label-warning">查看</span></a>');
+            }
+
         });
 
         $grid->filter(function($filter){

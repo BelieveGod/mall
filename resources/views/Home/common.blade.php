@@ -48,7 +48,7 @@
 
                     @endguest
                     <li  class="hd_menu_tit"><em class="Collect_img"></em><a href="/userCollect">收藏夹</a></li>
-                    <li  class="hd_menu_tit"><em class="cart_img"></em><a href="/shoppingCart">购物车（0）</a></li>
+                    <li  class="hd_menu_tit"><em class="cart_img"></em><a href="/shoppingCart">购物车</a></li>
                     {{--<li  class="hd_menu_tit list_name" data-addclass="hd_menu_hover"><a href="#">网站导航</a><em class="navigation_img"></em>--}}
 
                     {{--<div class="hd_menu_list">--}}
@@ -100,8 +100,8 @@
             <div class="footer_left">
                 <a href="#"><img src="" /></a>
                 <p class="erwm">
-                    <img src=""  width="80px" height="80px"/>
-                    <img src=""  width="80px" height="80px"/>
+                    {{--<img src=""  width="80px" height="80px"/>--}}
+                    {{--<img src=""  width="80px" height="80px"/>--}}
                 <p>
             </div>
             <div class="helper_right clearfix">

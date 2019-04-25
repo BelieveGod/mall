@@ -18,8 +18,9 @@ class Product extends Common
     const HOT_PRODUCT = 1; //热门商品
     const NEW_PRODUCT = 2; //最新商品
     const RECOMMEND_PRODUCT = 3 ; //推荐商品
-    const ORDINARY_PRODUCT = 4 ; //普通商品
-    const SS_PRODUCT = 5; //特价商品
+    const SS_PRODUCT = 4; //特价商品
+    const ORDINARY_PRODUCT = 5 ; //普通商品
+
 
     public static function productStatic()
     {
@@ -27,8 +28,8 @@ class Product extends Common
             self::HOT_PRODUCT => '热门',
             self::NEW_PRODUCT => '最新',
             self::RECOMMEND_PRODUCT => '推荐',
-            self::ORDINARY_PRODUCT => '普通',
             self::SS_PRODUCT => '特价',
+            self::ORDINARY_PRODUCT => '普通',
         ];
     }
 

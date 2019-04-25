@@ -10,6 +10,8 @@ use App\Model\Store;
 use App\Model\StoreLog;
 use App\Model\Topic;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
