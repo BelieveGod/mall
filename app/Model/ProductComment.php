@@ -54,9 +54,9 @@ class ProductComment extends Common
         $data = [];
         foreach ($comment as $value){
             foreach ($value as $k=>$v){
-                if($k == 'comment_pic'){
-                    $value['comment_pic'] = json_decode($v);
-                }
+//                if($k == 'comment_pic'){
+//                    $value['comment_pic'] = json_decode($v);
+//                }
                 if($k == 'product_id'){
                     $value['pro'] = Product::where('product_id' , $v)->first()->toArray();
                 }
