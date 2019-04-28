@@ -12,13 +12,13 @@
                 @foreach($collect as $value)
                 <li>
                     <div class="Collect_pro_name">
-                        <a href="javascript:void(0);" class="delete_Collect" attr="{{$value['collect_id']}}"></a>
-                        <p class="img center"><a href="/productDetailed/{{$value['product_id']}}">
-                            <img src="/uploads/{{$value['product_master_img'][0]}}" /></a>
+                        <a href="javascript:void(0);" class="delete_Collect" attr="{{isset($value['collect_id'])?$value['collect_id']:null}}"></a>
+                        <p class="img center"><a href="/productDetailed/{{isset($value['product_id'])?$value['product_id']:null}}">
+                            <img src="/uploads/{{isset($value['product_master_img'][0])?$value['product_master_img'][0]:null}}" /></a>
                         </p>
-                        <p><a href="#">{{$value['product_name']}}</a></p>
-                        <p class="Collect_Standard">礼盒装</p>
-                        <p class="Collect_price">￥{{$value['present_price']}}<span style="font-size: 12px;">/{{$value['unit']}}</span></p>
+                        <p style="max-width: 13em;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;"><a href="#">{{$value['product_name']}}</a></p>
+                        <p class="Collect_Standard">产地：{{isset($value['product_origin'])?$value['product_origin']:null}}</p>
+                        <p class="Collect_price">￥{{isset($value['present_price'])?$value['present_price']:null}}<span style="font-size: 12px;">/{{$value['unit']}}</span></p>
                     </div>
                 </li>
                 @endforeach

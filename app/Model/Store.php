@@ -13,6 +13,8 @@ class Store extends Common
     const APPLICATION_PASSED = 2;//申请通过
     const APPLICATION_FAILED = 3;//申请不通过
 
+    const BLACKLIST = 1; // 黑名单
+
     //状态
     public static function StoreStatus()
     {
@@ -27,6 +29,12 @@ class Store extends Common
     public static function getStoreNameByStoreId()
     {
         return Store::pluck('store_name' , 'store_id')->toArray();
+    }
+
+    //查找黑名单商家
+    public static function findBlackListStoreId()
+    {
+        return Store::where('blacklist' , Store::BLACKLIST)->pluck('admin_id');
     }
 
 //    //修改器 多图上传

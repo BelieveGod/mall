@@ -47,25 +47,31 @@ class DataController extends Controller
         $money = isset($money->num)?$money->num:0;
 
 //        dd($order);
-
-        return $content
-            ->header('消息')
-            ->row(function (Row $row) use($business_num,$order,$money) {
-                if (Admin::user()->can('*')) {
-                    $row->column(3, new InfoBox('供应商申请待审核', 'users', 'aqua', '/admin/store', $business_num));
-                }
-                $row->column(3, new InfoBox('今日订单', 'shopping-cart', 'green', '/admin/productform', $order));
-                $row->column(3, new InfoBox('待发货', 'book', 'yellow', '/admin/productform', $money));
-            })
-            ->row(function(Row $row){
-                $row->column(5, function (Column $column) {
-                    $column->row(new Box('本月成交订单', view('Admin.chartjs')));
+        if(Admin::user()->can('Blacklist')) {
+            return $content
+                ->header('消息')
+                ->row(function (Row $row) use ($business_num, $order, $money) {
+                    if (Admin::user()->can('*')) {
+                        $row->column(3, new InfoBox('供应商申请待审核', 'users', 'aqua', '/admin/store', $business_num));
+                    }
+                    $row->column(3, new InfoBox('今日订单', 'shopping-cart', 'green', '/admin/productform', $order));
+                    $row->column(3, new InfoBox('待发货', 'book', 'yellow', '/admin/productform', $money));
+                })
+                ->row(function (Row $row) {
+                    $row->column(5, function (Column $column) {
+                        $column->row(new Box('本月成交订单', view('Admin.chartjs')));
 //                    $column->row(new InfoBox('New Users', 'users', 'aqua', '/demo/users', '1024'));
+                    });
+                    $row->column(5, function (Column $column) {
+                        $column->row(new Box('本月收入', view('Admin.incomeChartjs')));
+                    });
                 });
-                $row->column(5, function (Column $column) {
-                    $column->row(new Box('本月收入', view('Admin.incomeChartjs')));
-                });
-            });
+        }else{
+            $memo = Store::where('admin_id' , $store)->value('memo');
+            return $content
+                ->header('消息')
+                ->withError('你已被关入小黑屋', '原因:'.$memo);
+        }
 
     }
 

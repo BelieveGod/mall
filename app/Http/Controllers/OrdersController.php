@@ -2,15 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Member;
 use App\Model\Product;
+use App\Model\ProductForm;
 use App\Model\ShoppingCart;
-use App\Model\Store;
 use App\Model\UserAddress;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class OrdersController extends HomeController
 {
+    protected function userInfo()
+    {
+        $user_id = Auth::user()->id;
+        return Member::findUserInfoByUserId($user_id);
+    }
     /**
      * 显示订单
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\View\View
@@ -68,5 +73,18 @@ class OrdersController extends HomeController
             'user_address' => $user_address ,
             'order' => $order,
         ]);
+    }
+
+    //查看物流
+    public function showLogistics($id)
+    {
+        $form = ProductForm::where('form_id' , $id)->first();
+
+        $url='http://www.kuaidi100.com/query?type='.$form->logistics_company.'&postid='.$form->post_num;
+        $html = file_get_contents($url);
+        $data = json_decode($html,true);
+//        dd($data);
+
+        return view('Home.findLogistics' , ['userInfo' => $this->userInfo(),'data'=>$data]);
     }
 }

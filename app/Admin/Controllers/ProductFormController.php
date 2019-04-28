@@ -243,6 +243,7 @@ class ProductFormController extends Controller
     {
         $form = new Form(new ProductForm);
         $form->businessaddress('bussiness_address_id', '发货地址');
+        $form->select('logistics_company' , '物流公司')->options(ProductForm::LogisticsCompany());
         $form->text('post_num' , '快递单号');
         //保存后回调
         $form->saved(function (Form $form) {

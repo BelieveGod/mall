@@ -55,6 +55,21 @@ class ProductForm extends Common
             self::PAY_UNDER_LINE => '货到付款',
         ];
     }
+
+    /**
+     *
+     */
+    public static function LogisticsCompany()
+    {
+        return [
+            'yunda ' => '韵达快递',
+            'zhongtong ' => '中通快递',
+            'shentong ' => '申通快递',
+            'yuantong ' => '圆通快递',
+            'baishihuitong ' => '百世汇通',
+        ];
+    }
+
     /**
      * 查找订单号
      */

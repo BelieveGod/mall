@@ -62,12 +62,18 @@ class Product extends Common
     public static function findProductUrlByTopId($id , $limit = 0)
     {
         //todo 优化查询 多带点查询条件
+        //查出黑名单的商家
+        $blacklist_store = Store::findBlackListStoreId();
         if($limit){
-            $product =  Product::where([['category_top_id' , $id] , ['is_show' , self::DISPLAY]])->limit($limit)->get()->toArray();
+            $product =  Product::where([['category_top_id' , $id] , ['is_show' , self::DISPLAY]])
+                ->whereNotIn('store_id',$blacklist_store)
+                ->limit($limit)->get()->toArray();
 //            shuffle($product);
         }else{
             //一页显示20个商品
-            $product =  Product::where([['category_top_id' , $id] , ['is_show' , self::DISPLAY]])->paginate(20);
+            $product =  Product::where([['category_top_id' , $id] , ['is_show' , self::DISPLAY]])
+                ->whereNotIn('store_id',$blacklist_store)
+                ->paginate(20);
         }
         //todo 乱序显示商品
         return $product;
@@ -75,7 +81,10 @@ class Product extends Common
     public static function findProductUrlById($id)
     {
         //一页显示20个商品
-        $product =  Product::where([['category_id' , $id] , ['is_show' , self::DISPLAY]])->paginate(20);
+        $blacklist_store = Store::findBlackListStoreId();
+        $product =  Product::where([['category_id' , $id] , ['is_show' , self::DISPLAY]])
+            ->whereNotIn('store_id',$blacklist_store)
+            ->paginate(20);
         //todo 乱序显示商品
         return $product;
 
@@ -83,8 +92,11 @@ class Product extends Common
     //查找销量前五的商品 同类型的
     public static function findProductTypeSalesVolumeTop($id , $limit=0)
     {
+        $blacklist_store = Store::findBlackListStoreId();
         $category_id = Product::where('product_id' , $id)->value('category_id');
-        $topProduct = Product::where([['category_id' , $category_id] , ['is_show' , self::DISPLAY]])->orderBy('sales_volume' , 'desc')->limit($limit)->get()->toArray();
+        $topProduct = Product::where([['category_id' , $category_id] , ['is_show' , self::DISPLAY]])
+            ->whereNotIn('store_id',$blacklist_store)
+            ->orderBy('sales_volume' , 'desc')->limit($limit)->get()->toArray();
         return $topProduct;
     }
 

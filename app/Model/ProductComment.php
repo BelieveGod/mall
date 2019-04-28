@@ -90,9 +90,9 @@ class ProductComment extends Common
                         $value['menber'] = $menber->toArray();
                     }
                 }
-                if($k == 'comment_pic'){
-                    $value['comment_pic'] = json_decode($v);
-                }
+//                if($k == 'comment_pic'){
+//                    $value['comment_pic'] = json_decode($v);
+//                }
             }
             $data[] = $value;
         }

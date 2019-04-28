@@ -36,8 +36,10 @@ Route::group([
     $router->resource('member' , MemberController::class);//商城用户管理
     $router->post('store/blacklist', 'StoreController@putblacklist');//商家黑名单
     $router->post('member/blacklist', 'MemberController@putblacklist');//用户黑名单管理
-    $router->get('/store/blackliststorelist' , 'StoreController@blackliststorelist');
-    $router->get('menmber/blackliststorelist' , 'MemberController@blacklistmemberlist');
+//    $router->get('/store/blackliststorelist' , 'StoreController@blackliststorelist');
+//    $router->get('menmber/blackliststorelist' , 'MemberController@blacklistmemberlist');
+    $router->get('black_list_store_list' , 'StoreController@blackListStoreList');//展示黑名单列表
+    $router->post('store/out_blacklist', 'StoreController@outBlackList');//放出黑名单商家
 
     //信息模块
     $router->resource('suggest' , SuggestController::class);//意见反馈

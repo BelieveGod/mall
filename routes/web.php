@@ -65,5 +65,8 @@ Route::get('show_topic_detail/{id?}' , 'TopicController@topicDetail');//显示�
 Route::post('web/api/upMessage' , 'ApiValidatorController@upMessage');//留言
 Route::post('web/api/upReply' , 'ApiValidatorController@upReply');//回复留言
 
+//订单物流查询页面
+Route::get('show_logistics/{id?}' , 'OrdersController@showLogistics');//查看物流页面
+
 
 

@@ -3,6 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Admin\Extensions\Tools\BlacklistStore;
+use App\Admin\Extensions\Tools\OutBlacklistStore;
 use App\Model\Regions;
 use App\Model\Store;
 use App\Http\Controllers\Controller;
@@ -324,17 +325,72 @@ class StoreController extends Controller
         foreach (Store::find($arr) as $blacklist) {
             $blacklist->blacklist = 1;
             $blacklist->save();
+            //赋予黑名单权限
+            $role = DB::table('admin_role_users')->where('user_id', $blacklist->admin_id)->update(['role_id' => 3]);
         }
     }
 
-    //商家小黑屋
-    public function blackliststorelist()
+    //放出黑名单
+    public function outBlackList(Request $request)
     {
-//        return $content
-//            ->header('Index')
-//            ->description('description')
-//            ->body($this->grid());
-        return 123;
+        $arr = $request->post('ids');
+        foreach (Store::find($arr) as $blacklist) {
+            $blacklist->blacklist = 0;
+            $blacklist->save();
+            //赋予黑名单权限
+            $role = DB::table('admin_role_users')->where('user_id', $blacklist->admin_id)->update(['role_id' => 2]);
+        }
+    }
+
+    //商家小黑屋 => BlackListController
+    public function blackListStoreList(Content $content)
+    {
+        return $content
+            ->header('商家黑名单')
+            ->description('列表')
+            ->body($this->blackListStoreListGrid());
+    }
+
+    public function blackListStoreListGrid()
+    {
+        $grid = new Grid(new Store);
+        $grid->model()->where('blacklist',Store::BLACKLIST);
+
+        $grid->store_id('ID');
+        $grid->business_name('商家实名');
+        $grid->store_name('店铺名称');
+        $grid->business_tel('商家电话');
+        $grid->blacklist('状态')->display(function (){
+            return "<span class='label label-danger'>黑名单</span>";
+        });
+//        $grid->memo('原因')->editable('textarea');
+        $grid->created_at('申请时间');
+        $grid->updated_at('拉黑时间');
+//        $grid->deleted_at('Deleted at');
+
+        $grid->actions(function ($actions) {
+            $actions->disableDelete();
+            $actions->disableEdit();
+            $actions->disableView();
+            $actions->append('<a href="/admin/store/'.$actions->getKey().'"><span class="label label-warning">查看</span></a>');
+        });
+
+        $grid->filter(function($filter){
+            $filter->disableIdFilter();
+            $filter->like('store_name', '店铺名字');
+            $filter->like('business_name', '商家实名');
+        });
+
+        $grid->tools(function ($tools) {
+            $tools->batch(function ($batch) {
+                $batch->add('放出小黑屋', new OutBlacklistStore(1));
+            });
+        });
+
+        $grid->disableCreateButton();
+        $grid->disableExport();
+
+        return $grid;
     }
 
 }

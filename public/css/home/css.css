@@ -795,4 +795,8 @@
 .gcs-radio:checked+label:after {content: "\2022";font-size: 35px;color: white;}
 .changeSuccessTopic{float: right;display: none}
 
+/***************************************************************************************/
+.wuliu li{margin-top: 20px; list-style-type:disc;color: #8c8c8c;}
+.wuliu li:first-child{color: #ff7a22; }
+
 

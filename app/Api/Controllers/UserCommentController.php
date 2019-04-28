@@ -4,6 +4,7 @@ namespace App\Api\Controllers;
 
 use App\Model\Product;
 use App\Model\ProductComment;
+use App\Model\ProductForm;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -36,6 +37,12 @@ class UserCommentController
 
             $product_comment->save();
         }
+
+        //更改订单状态
+        $order = ProductForm::find($product_form_id);
+        $order->status = ProductForm::READY_GOOG;
+        $order->save();
+
         return redirect('/user_comment');
     }
 

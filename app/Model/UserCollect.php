@@ -10,6 +10,8 @@ class UserCollect extends Common
     protected $table = 'user_collect';
     protected $primaryKey = 'collect_id';
 
+    protected $fillable = ['product_id' , 'user_id'];
+
     public static function findAllUserCollect($user_id)
     {
         //查出 商品
