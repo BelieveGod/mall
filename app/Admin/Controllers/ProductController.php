@@ -128,7 +128,7 @@ class ProductController extends Controller
             $form->text('unit' , '计算单位')->rules('required',['计算单位不能为空']);
             $form->currency('prime_cost', '商品原价')->symbol('￥')->rules('required',['商品原价不能为空']);
             $form->currency('present_price', '商品现价')->symbol('￥')->rules('required',['商品现价不能为空']);
-            $form->currency('product_freght', '运费')->symbol('￥')->rules('required',['运费不能为空']);
+            $form->currency('product_freght', '运费')->symbol('￥');
 
             //todo
             $form->embeds('about_product', '商品说明', function ($form) {
