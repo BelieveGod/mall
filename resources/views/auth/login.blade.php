@@ -13,18 +13,18 @@
                         <label for="email" class="login-label name-label"></label>
                         <input id="email" type="email" class="form-control text" name="email" placeholder="请输入邮箱" value="{{ old('email') }}" required autofocus>
                         @if ($errors->has('email'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('email') }}</strong>
-                            </span>
+                            <p class="help-block">
+                                <strong style="color: #ff7a22">账号密码错误！</strong>
+                            </p>
                         @endif
                     </div>
                     <div class="item item-fore2 form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                         <label for="nloginpwd" class="login-label pwd-label"></label>
                         <input name="password" id="password" type="password" class="text form-control" placeholder="用户密码" required>
                         @if ($errors->has('password'))
-                            <span class="help-block">
+                            <p class="help-block">
                                 <strong>{{ $errors->first('password') }}</strong>
-                            </span>
+                            </p>
                         @endif
                     </div>
                     <div class="auto-login">

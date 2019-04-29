@@ -137,7 +137,7 @@
                     <li class="clearfix">
                         <div class="product_lists clearfix">
                             <a href="/productDetailed/{{isset($value['product_id'])?$value['product_id']:null}}">
-                                <img src="/uploads/{{isset($value['product_master_img'][0])?$value['product_master_img'][0]:null}}" width="210px" height="215px"/>
+                                <img class="list_img" src="/uploads/{{isset($value['product_master_img'][0])?$value['product_master_img'][0]:null}}" width="210px" height="215px"/>
                             </a>
                             <p class="title_p_name">{{isset($value['product_name'])?$value['product_name']:null}}</p>
                             <p class="title_Profile">产地：{{isset($value['product_origin'])?$value['product_origin']:null}}</p>
@@ -172,5 +172,6 @@
             <img src="/image/test/6.jpg" width="100px" id="end" />
         </a>
     </div>
+
 
 @endsection

@@ -130,4 +130,19 @@ class Product extends Common
         $product = Product::where('status' , $type)->get()->toArray();
         return $product;
     }
+
+    /**
+     * 最新上传得10个商品
+     * @param $id
+     * @param int $limit
+     * @return mixed
+     */
+    public static function findProductTypeSalesVolumeNew($id , $limit=0)
+    {
+        $blacklist_store = Store::findBlackListStoreId();
+        $topProduct = Product::where([['category_top_id' , $id] , ['is_show' , self::DISPLAY]])
+            ->whereNotIn('store_id',$blacklist_store)
+            ->orderBy('product_id' , 'desc')->limit($limit)->get()->toArray();
+        return $topProduct;
+    }
 }

@@ -29,6 +29,7 @@ class DataController extends Controller
      */
     public function index(Content $content)
     {
+//        dd(Admin::user()->permissions);
         //今天的时间
         $start = strtotime(date('Y/m/d' , time()));
         $end = $start + 86400;
@@ -47,7 +48,7 @@ class DataController extends Controller
         $money = isset($money->num)?$money->num:0;
 
 //        dd($order);
-        if(Admin::user()->can('Blacklist')) {
+        if(Admin::user()->can('Business')) {
             return $content
                 ->header('消息')
                 ->row(function (Row $row) use ($business_num, $order, $money) {

@@ -30,6 +30,8 @@ Route::group([
     $router->get('api/getregion' , 'RegionsController@getRegion');//选择地区联动
     $router->get('/api/map/{name}/{value?}','GaodeMapController@index');//高德地图
     $router->resource('productform' , ProductFormController::class);//订单管理
+    $router->get('find_logistics/{id}' , 'ProductFormController@findLogistics');//查看物流
+
 
     //商家及用户
     $router->resource('store' , StoreController::class);//商家入驻管理

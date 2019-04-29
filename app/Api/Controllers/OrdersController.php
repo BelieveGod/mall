@@ -85,6 +85,10 @@ class OrdersController
        return $productForm;
    }
 
+    /**
+     * 更改状态为  待发货状态
+     * @param Request $request
+     */
     public function updateFormStatus(Request $request)
     {
         $form_id = $request->get('id');

@@ -327,6 +327,7 @@ class StoreController extends Controller
             $blacklist->save();
             //赋予黑名单权限
             $role = DB::table('admin_role_users')->where('user_id', $blacklist->admin_id)->update(['role_id' => 3]);
+            $role = DB::table('admin_user_permissions')->where('user_id', $blacklist->admin_id)->update(['permission_id' => 7]);
         }
     }
 
@@ -339,6 +340,7 @@ class StoreController extends Controller
             $blacklist->save();
             //赋予黑名单权限
             $role = DB::table('admin_role_users')->where('user_id', $blacklist->admin_id)->update(['role_id' => 2]);
+            $role = DB::table('admin_user_permissions')->where('user_id', $blacklist->admin_id)->update(['permission_id' => 6]);
         }
     }
 

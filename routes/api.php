@@ -47,7 +47,7 @@ Route::post('/alipay' , 'AlipayController@alipay');
 
 //写入订单
 Route::post('/saveOrders' , 'OrdersController@saveOrders');
-Route::post('/updateFormStatus/{$id}' , 'OrdersController@updateFormStatus');//支付成功后修改订单状态
+Route::get('/updateFormStatus/{$id}' , 'OrdersController@updateFormStatus');//支付成功后修改订单状态
 
 //评论商品
 Route::post('/created_comment' , 'UserCommentController@createdComment');//提交评论

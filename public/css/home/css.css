@@ -62,14 +62,14 @@
 .slideBox_list .hd .list_title li h3{ font-size:30px; color:#c3ed87; margin-top:20px; margin-bottom:10px; font-family:Impact}
 .slideBox_list .hd .list_title li.on{ background:#6c9e24;}
 .slideBox_list .bd{ position:relative}
-.slideBox_list .bd .advertising a{ display:block;}
+.slideBox_list .bd .advertising a{ display:block;float: left;margin-right: 10px;margin-bottom: 10px;}
 .slideBox_list .bd .advertising .AD1{ float:left; width:560px; height:510px;}
 .slideBox_list .bd .advertising .AD1 img {width:560px; height:255px;}
-.slideBox_list .bd .advertising .AD2 img{ width:450px;height:255px;}
-.slideBox_list .bd .advertising .AD2{ float:left; width:450px; height:510px;}
+.slideBox_list .bd .advertising .AD2 img{ width:240px;height:255px;}
+.slideBox_list .bd .advertising .AD2{ float:left;height:510px;}
 .slideBox_list .bd .advertising .AD3{ float:left; width:270px; height:510px;}
 .slideBox_list .bd .advertising .AD3 img {width:270px; height:510px;}
-.slideBox_list .fixed_title_name{ background:url(/image/home/xinxian_07.png) no-repeat; width:560px; height:255px; position:absolute; z-index:999; top:255px;}
+/*.slideBox_list .fixed_title_name{ background:url(/image/home/xinxian_07.png) no-repeat; width:560px; height:255px; position:absolute; z-index:999; top:255px;}*/
 .slideBox_list .fixed_title_name span{ display:block; margin-left:300px; color:#FFF; margin-top:130px; font-size:28px}
 /*****************************************推荐样式属性************************************************************/
 .p_Slideshow{ margin-top:50px; margin-bottom:150px;}
@@ -451,7 +451,7 @@
 .Order_form_list table thead td.list_name_title1{ width:80px;}
 .Order_form_list table thead td.list_name_title2{ width:80px;}
 .Order_form_list table thead td.list_name_title4{ width:130px}
-.Order_form_list table thead td.list_name_title5{ width:180px;}
+.Order_form_list table thead td.list_name_title5{ width:150px;}
 .Order_form_list table thead td.list_name_title6{ width:120px;}
 .Order_form_list table  td.Order_form_time{ height:30px; background: #ECFBD7; text-align:left; line-height:30px; padding:0px 10px; color: #333}
 .Order_form_list table  td{ padding:20px 20px; position:relative; text-align:center}

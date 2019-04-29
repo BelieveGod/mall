@@ -7,6 +7,7 @@ use App\Model\Product;
 use App\Model\ProductForm;
 use App\Model\ShoppingCart;
 use App\Model\UserAddress;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class OrdersController extends HomeController
@@ -84,7 +85,21 @@ class OrdersController extends HomeController
         $html = file_get_contents($url);
         $data = json_decode($html,true);
 //        dd($data);
-
         return view('Home.findLogistics' , ['userInfo' => $this->userInfo(),'data'=>$data]);
+    }
+
+    /**
+     * 更改状态为  待发货状态  或是  已经收货
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function updateFormStatus()
+    {
+        $form_id = \request('id');
+        $order = ProductForm::find($form_id);
+        $order->status = ProductForm::SIGN_FOR_GOOD;
+        $order->save();
+
+        return redirect('/userForm');
     }
 }

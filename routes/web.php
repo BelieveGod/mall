@@ -68,5 +68,7 @@ Route::post('web/api/upReply' , 'ApiValidatorController@upReply');//回复留言
 //订单物流查询页面
 Route::get('show_logistics/{id?}' , 'OrdersController@showLogistics');//查看物流页面
 
+Route::get('update_form_status/{id?}' , 'OrdersController@updateFormStatus');//改变订单状态
+
 
 

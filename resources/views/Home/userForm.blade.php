@@ -107,7 +107,10 @@
                             @elseif($value['status'] == \App\Model\ProductForm::WAIT_DELIVER_GOODS)
                                 <td><a href="javascript:void(0);">提醒发货</a></td>
                             @elseif($value['status'] == \App\Model\ProductForm::DELIVER_GOODS)
-                                <td><a href="/show_logistics/{{isset($value['form_id'])?$value['form_id']:null}}" >查看物流</a></td>
+                                <td>
+                                    <a href="/show_logistics/{{isset($value['form_id'])?$value['form_id']:null}}" >查看物流</a>
+                                    <a href="/update_form_status/{{isset($value['form_id'])?$value['form_id']:null}}" >确认收货</a>
+                                </td>
                             @endif
                         </tr>
                         </tbody>

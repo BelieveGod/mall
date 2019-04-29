@@ -13,27 +13,27 @@
                             <label class="name">用户名称：</label>
                             <input id="name" type="text"  class="text_Add" name="name" value="{{ old('name') }}" required autofocus>
                             @if ($errors->has('name'))
-                                <span class="help-block">
+                                <p class="help-block">
                                     <strong>{{ $errors->first('name') }}</strong>
-                                </span>
+                                </p>
                             @endif
                         </li>
                         <li class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label class="name">用户邮箱：</label>
                             <input id="email" type="text"  class="text_Add" name="email" value="{{ old('email') }}" required>
                             @if ($errors->has('email'))
-                                <span class="help-block">
+                                <p class="help-block">
                                     <strong>{{ $errors->first('email') }}</strong>
-                                </span>
+                                </p>
                             @endif
                         </li>
                         <li class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label class="name">设置密码：</label>
                             <input id="password" type="password"  class="text_Add" placeholder="6-20个字符，由字母、数字和符号组成" name="password" required>
                             @if ($errors->has('password'))
-                                <span class="help-block">
+                                <p class="help-block">
                                     <strong>{{ $errors->first('password') }}</strong>
-                                </span>
+                                </p>
                             @endif
                         </li>
                         <li class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">

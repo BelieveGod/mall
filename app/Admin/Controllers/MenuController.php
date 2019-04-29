@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Model\Category;
 use App\Model\Menu;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\HasResourceActions;
@@ -24,7 +25,7 @@ class MenuController extends Controller
     {
         return $content
             ->header('网站管理')
-            ->description('菜单栏管理')
+            ->description('店长推荐菜单栏管理')
             ->breadcrumb(['text' => '菜单栏管理'])
             ->body($this->grid());
     }
@@ -70,10 +71,7 @@ class MenuController extends Controller
         $grid = new Grid(new Menu);
 
         $grid->menu_id('id');
-        $grid->img('图标')->display(function ($img) {
-            return '<i class="fa '.$img.'"></i>';
-        });
-        $grid->menu_name('名称')->editable('text');
+        $grid->menu_name('名称');
         $states = [
             'on'  => ['value' => 1, 'text' => '是', 'color' => 'success'],
             'off' => ['value' => 0, 'text' => '否', 'color' => 'danger'],
@@ -104,8 +102,8 @@ class MenuController extends Controller
     {
         $form = new Form(new Menu);
 
-        $form->text('menu_name', '名称');
-        $form->icon('img', '图标')->help("更多图标请打开 <a href='http://fontawesome.io/icons/'>http://fontawesome.io/icons/</a>");
+        $form->hidden('menu_name', '名称');
+        $form->select('category_id' , '显示分类')->options(Category::parentsId());
         $states = [
             'on'  => ['value' => 1, 'text' => '是', 'color' => 'success'],
             'off' => ['value' => 0, 'text' => '否', 'color' => 'danger'],
@@ -120,6 +118,11 @@ class MenuController extends Controller
             $footer->disableViewCheck();
             $footer->disableEditingCheck();
             $footer->disableCreatingCheck();
+        });
+
+        //保存回调
+        $form->saving(function (Form $form){
+            $form->menu_name = Category::where('category_id' , $form->category_id)->value('category_name');
         });
 
         return $form;

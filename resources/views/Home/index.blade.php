@@ -80,58 +80,67 @@
                 <div class="title_name"></div>
                 <div class="list_title">
                     <ul>
-                        <li><h3>01</h3><a href="#">水果</a></li>
-                        <li><h3>02</h3><a href="#">蔬菜</a></li>
-                        <li><h3>03</h3><a href="#">畜牧水产</a></li>
-                        <li><h3>04</h3><a href="#">粮油</a></li>
+                        <li><h3>01</h3><a href="/productList/2">水果</a></li>
+                        <li><h3>02</h3><a href="/productList/3">蔬菜</a></li>
+                        <li><h3>03</h3><a href="/productList/4">畜牧水产</a></li>
+                        <li><h3>04</h3><a href="/productList/5">粮油</a></li>
                     </ul>
                 </div>
             </div>
 
             <div class="bd">
-                <div class="fixed_title_name">
-                    <span>新鲜</span>
-                </div>
+                {{--<div class="fixed_title_name">--}}
+                    {{--<span>新鲜</span>--}}
+                {{--</div>--}}
                 <ul class="">
                     <li class="advertising">
-                        <div class="AD1">
-                            <a href="#"><img src="./image/test/2.jpg" /></a>
-                        </div>
                         <div class="AD2">
+                            @foreach($fruit as $value)
+                            <a href="/productDetailed/{{isset($value['product_id'])?$value['product_id']:null}}"><img src="/uploads/{{isset($value['product_master_img'][0])?$value['product_master_img'][0]:null}}" /></a>
+                            @endforeach
+                        </div>
+                    </li>
+                    <li class="advertising">
+                        <div class="AD2">
+                            <a href="#"><img src="./image/test/2.jpg" /></a>
                             <a href="#"><img src="./image/test/1.jpg" /></a>
                             <a href="#"><img src="./image/test/2.jpg" /></a>
-                        </div>
-                        <div class="AD3">
+                            <a href="#"><img src="./image/test/2.jpg" /></a>
+                            <a href="#"><img src="./image/test/2.jpg" /></a>
+                            <a href="#"><img src="./image/test/2.jpg" /></a>
+                            <a href="#"><img src="./image/test/2.jpg" /></a>
+                            <a href="#"><img src="./image/test/1.jpg" /></a>
+                            <a href="#"><img src="./image/test/2.jpg" /></a>
                             <a href="#"><img src="./image/test/2.jpg" /></a>
                         </div>
                     </li>
                     <li class="advertising">
-                        <div class="AD1">
-                            <a href="#"><img src="./image/test/2.jpg" /></a>
-                        </div>
                         <div class="AD2">
                             <a href="#"><img src="./image/test/2.jpg" /></a>
                             <a href="#"><img src="./image/test/1.jpg" /></a>
-                        </div>
-                        <div class="AD3">
+                            <a href="#"><img src="./image/test/2.jpg" /></a>
+                            <a href="#"><img src="./image/test/2.jpg" /></a>
+                            <a href="#"><img src="./image/test/2.jpg" /></a>
+                            <a href="#"><img src="./image/test/2.jpg" /></a>
+                            <a href="#"><img src="./image/test/2.jpg" /></a>
                             <a href="#"><img src="./image/test/1.jpg" /></a>
+                            <a href="#"><img src="./image/test/2.jpg" /></a>
+                            <a href="#"><img src="./image/test/2.jpg" /></a>
                         </div>
                     </li>
                     <li class="advertising">
-                        <div class="AD1"><a href="#"><img src="./image/test/2.jpg" /></a></div>
                         <div class="AD2">
+                            <a href="#"><img src="./image/test/2.jpg" /></a>
+                            <a href="#"><img src="./image/test/1.jpg" /></a>
+                            <a href="#"><img src="./image/test/2.jpg" /></a>
+                            <a href="#"><img src="./image/test/2.jpg" /></a>
+                            <a href="#"><img src="./image/test/2.jpg" /></a>
+                            <a href="#"><img src="./image/test/2.jpg" /></a>
+                            <a href="#"><img src="./image/test/2.jpg" /></a>
+                            <a href="#"><img src="./image/test/1.jpg" /></a>
                             <a href="#"><img src="./image/test/2.jpg" /></a>
                             <a href="#"><img src="./image/test/2.jpg" /></a>
                         </div>
-                        <div class="AD3"><a href="#"><img src="./image/test/2.jpg" /></a></div>
-                    </li>
-                    <li class="advertising">
-                        <div class="AD1"><a href="#"><img src="./image/test/2.jpg" /></a></div>
-                        <div class="AD2">
-                            <a href="#"><img src="./image/test/2.jpg" /></a>
-                            <a href="#"><img src="./image/test/2.jpg" /></a>
-                        </div>
-                        <div class="AD3"><a href="#"><img src="./image/test/1.jpg" /></a></div>
                     </li>
                 </ul>
             </div>
@@ -145,16 +154,9 @@
         <div class="title_style">
             <div class="title_img"></div>
             <div class="title_link_name">
-                <a href="#">火龙果</a>
-                <a href="#">香蕉</a>
-                <a href="#">红心蜜柚</a>
-                <a href="#">柠檬</a>
-                <a href="#">火龙果</a>
-                <a href="#">猕猴桃</a>
-                <a href="#">红心蜜 </a>
-                <a href="#">柠檬火龙果</a>
-                <a href="#">西瓜 </a>
-                <a href="#">红心蜜柚</a>
+                @foreach($menu_list as $value)
+                <a href="/productList/{{isset($value['category_id'])?$value['category_id']:null}}">{{isset($value['menu_name'])?$value['menu_name']:null}}</a>
+                @endforeach
             </div>
         </div>
     </div> <!--幻灯片样式-->

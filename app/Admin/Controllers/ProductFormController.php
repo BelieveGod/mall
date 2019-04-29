@@ -11,9 +11,11 @@ use App\Model\Regions;
 use App\Model\UserAddress;
 use App\User;
 use Encore\Admin\Controllers\HasResourceActions;
+use Encore\Admin\Facades\Admin;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
+use Encore\Admin\Layout\Row;
 use Encore\Admin\Show;
 use Illuminate\Support\Facades\Auth;
 
@@ -122,7 +124,7 @@ class ProductFormController extends Controller
             if($actions->row['status'] == ProductForm::PLACE_ORDER || $actions->row['status'] == ProductForm::WAIT_DELIVER_GOODS){
                 $actions->append("<a href='/admin/productform/{$actions->getKey()}/edit'><span class='label label-danger'>发货</span></a>");
             }else if($actions->row['status'] == ProductForm::DELIVER_GOODS) {
-                $actions->append("<a href='/admin/productform/{$actions->getKey()}'><span class='label bg-blue'>查看物流</span></a>");
+                $actions->append("<a href='/admin/find_logistics/{$actions->getKey()}'><span class='label bg-blue'>查看物流</span></a>");
             }
         });
         //去掉右上角的按钮
@@ -149,6 +151,9 @@ class ProductFormController extends Controller
     {
         $show = new Show(ProductForm::findOrFail($id));
 
+        //判断状态
+        $status = ProductForm::where('form_id' , $id)->value('status');
+
         $show->form_id('ID');
         $show->form_num('订单号');
 //        $show->product_id('商品')->using(Product::findProductNameById());
@@ -156,7 +161,7 @@ class ProductFormController extends Controller
 //            return ProductSku::findskuvaluebyskuid($val);
 //        });
 //        $show->num('商品件数');
-        $show->column('商品')->unescape()->as(function () use($id){
+        $show->product_id('商品')->unescape()->as(function () use($id){
             $str = '';
             $pro_form = ProductForm::find($id);
             $pro_arr = $pro_form->product_id;
@@ -204,11 +209,14 @@ class ProductFormController extends Controller
         $show->updated_at('更新时间');
 
         //按钮设置
-        $show->panel()->tools(function ($tools) use($id) {
+        $show->panel()->tools(function ($tools) use($id,$status) {
             $tools->disableEdit();
 //            $tools->disableList();
             $tools->disableDelete();
-            $tools->append("<a href='/admin/productform/".$id."/edit' style='margin-right:5px'><span class='btn btn-sm btn-danger'>发货</span></a>");
+            if($status == ProductForm::PAY_ON_LINE){
+                $tools->append("<a href='/admin/productform/".$id."/edit' style='margin-right:5px'><span class='btn btn-sm btn-danger'>发货</span></a>");
+            }
+
         });
 
         return $show;
@@ -239,6 +247,10 @@ class ProductFormController extends Controller
 //        return $form;
 //    }
 
+    /**
+     * 发货
+     * @return Form
+     */
     protected function form()
     {
         $form = new Form(new ProductForm);
@@ -252,8 +264,6 @@ class ProductFormController extends Controller
             if($post_num){
                 ProductForm::where('form_id' , $id)->update(['status' => ProductForm::DELIVER_GOODS]);
             }
-
-
         });
         //去掉脚部按钮
         $form->footer(function ($footer) {
@@ -267,5 +277,35 @@ class ProductFormController extends Controller
             $tools->disableView();
         });
         return $form;
+    }
+
+    /**
+     * 查看物流信息
+     * @param $id
+     * @param Content $content
+     * @return Content
+     */
+    public function findLogistics($id, Content $content)
+    {
+        return $content
+            ->header('订单模块')
+            ->description('物流详情')
+            ->breadcrumb(['text' => '订单管理'])
+//            ->body($this->findLogisticsDetail($id));
+            ->row(function(Row $row) use($id) {
+                $row->column(6, $this->detail($id));
+                $row->column(6, $this->findLogisticsDetail($id));
+            });
+    }
+
+    protected function findLogisticsDetail($id)
+    {
+        $form = ProductForm::where('form_id' , $id)->first();
+
+        $url='http://www.kuaidi100.com/query?type='.$form->logistics_company.'&postid='.$form->post_num;
+        $html = file_get_contents($url);
+        $data = json_decode($html,true);
+
+        return view('Admin.findLogisticsDetail',['data' => $data]);
     }
 }
