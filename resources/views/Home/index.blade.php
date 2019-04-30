@@ -102,44 +102,23 @@
                     </li>
                     <li class="advertising">
                         <div class="AD2">
-                            <a href="#"><img src="./image/test/2.jpg" /></a>
-                            <a href="#"><img src="./image/test/1.jpg" /></a>
-                            <a href="#"><img src="./image/test/2.jpg" /></a>
-                            <a href="#"><img src="./image/test/2.jpg" /></a>
-                            <a href="#"><img src="./image/test/2.jpg" /></a>
-                            <a href="#"><img src="./image/test/2.jpg" /></a>
-                            <a href="#"><img src="./image/test/2.jpg" /></a>
-                            <a href="#"><img src="./image/test/1.jpg" /></a>
-                            <a href="#"><img src="./image/test/2.jpg" /></a>
-                            <a href="#"><img src="./image/test/2.jpg" /></a>
+                            @foreach($green as $value)
+                                <a href="/productDetailed/{{isset($value['product_id'])?$value['product_id']:null}}"><img src="/uploads/{{isset($value['product_master_img'][0])?$value['product_master_img'][0]:null}}" /></a>
+                            @endforeach
                         </div>
                     </li>
                     <li class="advertising">
                         <div class="AD2">
-                            <a href="#"><img src="./image/test/2.jpg" /></a>
-                            <a href="#"><img src="./image/test/1.jpg" /></a>
-                            <a href="#"><img src="./image/test/2.jpg" /></a>
-                            <a href="#"><img src="./image/test/2.jpg" /></a>
-                            <a href="#"><img src="./image/test/2.jpg" /></a>
-                            <a href="#"><img src="./image/test/2.jpg" /></a>
-                            <a href="#"><img src="./image/test/2.jpg" /></a>
-                            <a href="#"><img src="./image/test/1.jpg" /></a>
-                            <a href="#"><img src="./image/test/2.jpg" /></a>
-                            <a href="#"><img src="./image/test/2.jpg" /></a>
+                            @foreach($fish   as $value)
+                                <a href="/productDetailed/{{isset($value['product_id'])?$value['product_id']:null}}"><img src="/uploads/{{isset($value['product_master_img'][0])?$value['product_master_img'][0]:null}}" /></a>
+                            @endforeach
                         </div>
                     </li>
                     <li class="advertising">
                         <div class="AD2">
-                            <a href="#"><img src="./image/test/2.jpg" /></a>
-                            <a href="#"><img src="./image/test/1.jpg" /></a>
-                            <a href="#"><img src="./image/test/2.jpg" /></a>
-                            <a href="#"><img src="./image/test/2.jpg" /></a>
-                            <a href="#"><img src="./image/test/2.jpg" /></a>
-                            <a href="#"><img src="./image/test/2.jpg" /></a>
-                            <a href="#"><img src="./image/test/2.jpg" /></a>
-                            <a href="#"><img src="./image/test/1.jpg" /></a>
-                            <a href="#"><img src="./image/test/2.jpg" /></a>
-                            <a href="#"><img src="./image/test/2.jpg" /></a>
+                            @foreach($rice   as $value)
+                                <a href="/productDetailed/{{isset($value['product_id'])?$value['product_id']:null}}"><img src="/uploads/{{isset($value['product_master_img'][0])?$value['product_master_img'][0]:null}}" /></a>
+                            @endforeach
                         </div>
                     </li>
                 </ul>

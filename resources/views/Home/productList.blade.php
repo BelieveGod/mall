@@ -132,7 +132,7 @@
             </script>
 
             <DIV class="right_style">
-                <ul class="list_style">
+                <ul class="list_style prolist" >
                     @foreach($product as $value)
                     <li class="clearfix">
                         <div class="product_lists clearfix">
@@ -168,10 +168,11 @@
     </div>
 
     <div class="cailan" >
-        <a href="javascript:void(0);">
+        <a href="/shoppingCart">
             <img src="/image/test/6.jpg" width="100px" id="end" />
         </a>
     </div>
+
 
 
 @endsection

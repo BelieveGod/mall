@@ -20,6 +20,9 @@ class IndexController extends Controller
 
         //最新上传得商品
         $fruit = Product::findProductTypeSalesVolumeNew(2,10);
+        $green = Product::findProductTypeSalesVolumeNew(3,10);
+        $fish = Product::findProductTypeSalesVolumeNew(4,10);
+        $rice = Product::findProductTypeSalesVolumeNew(5,10);
 //        dd($fruit);
 
 //        dd($ad_rd);
@@ -28,7 +31,10 @@ class IndexController extends Controller
             'ad_nd' => $ad_nd,
             'ad_rd' => $ad_rd,
             'menu_list' => $menu_list,
-            'fruit' => $fruit
+            'fruit' => $fruit,
+            'green' => $green,
+            'fish' => $fish,
+            'rice' => $rice,
         ]);
     }
 }

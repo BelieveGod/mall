@@ -15,6 +15,9 @@ class ProductComment extends Common
     const ZHONGPING = 2 ; //中评
     const CHAPING = 1 ; //差评
 
+    const DISPLAY = 1; //显示
+    const UN_DISPLAY = 0; //不显示
+
     /**
      * 用户评价
      */

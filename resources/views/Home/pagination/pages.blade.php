@@ -5,7 +5,7 @@
         {{--不能点击--}}
         <a href="" class="on">《</a>
     @else
-        <a href="" >《</a>
+        <a href="{{$paginator->lastPage()}}" >《</a>
     @endif
     {{-- Pagination Elements --}}
     @foreach ($elements as $element)

@@ -387,7 +387,7 @@
             </div>
         </div>
         <div class="cailan" >
-            <a href="javascript:void(0);">
+            <a href="/shoppingCart">
                 <img src="/image/test/6.jpg" width="100px" id="end" />
             </a>
 

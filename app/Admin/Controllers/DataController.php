@@ -36,27 +36,32 @@ class DataController extends Controller
         $store = Auth::guard('admin')->user()->id;
         $business = Store::select(DB::raw("count(*) as num"))
             ->where('status' , Store::PENDING_APPLICATION)->groupBy("status")->first();
-        $pro_form = ProductForm::select(DB::raw("count(*) as num"))->where('store_id' , $store)
-            ->whereBetween('created_at' ,[$start , $end])
+        $pro_form = ProductForm::select(DB::raw("count(*) as num"))->where([['store_id' , $store],['status',ProductForm::READY_GOOG]])
             ->groupBy("store_id")->first();
-        $money = ProductForm::select(DB::raw("sum(product_cost) as num"))->where('store_id' , $store)
-            ->whereBetween('created_at' ,[$start , $end])
+//        $money = ProductForm::select(DB::raw("sum(product_cost) as num"))->where('store_id' , $store)
+//            ->whereBetween('created_at' ,[$start , $end])
+//            ->groupBy("store_id")->first();
+
+        //SELECT count(*)as num FROM mall_product_form where store_id=2 and `status`=1 GROUP BY store_id
+        $send_to = ProductForm::select(DB::raw("count(*) as num"))->where([['store_id' , $store],['status' , ProductForm::PAY_ON_LINE]])
             ->groupBy("store_id")->first();
 
         $business_num = isset($business->num)?$business->num:0;
         $order = isset($pro_form->num)?$pro_form->num:0;
-        $money = isset($money->num)?$money->num:0;
+//        $money = isset($money->num)?$money->num:0;
+        $send_to = isset($send_to->num)?$send_to->num:0;
 
 //        dd($order);
         if(Admin::user()->can('Business')) {
             return $content
                 ->header('消息')
-                ->row(function (Row $row) use ($business_num, $order, $money) {
+                ->row(function (Row $row) use ($business_num, $order ,$send_to) {
                     if (Admin::user()->can('*')) {
                         $row->column(3, new InfoBox('供应商申请待审核', 'users', 'aqua', '/admin/store', $business_num));
                     }
-                    $row->column(3, new InfoBox('今日订单', 'shopping-cart', 'green', '/admin/productform', $order));
-                    $row->column(3, new InfoBox('待发货', 'book', 'yellow', '/admin/productform', $money));
+                    $row->column(3, new InfoBox('成交订单', 'shopping-cart', 'green', '/admin/productform', $order));
+//                    $row->column(3, new InfoBox('待发货', 'book', 'yellow', '/admin/productform', $money));
+                    $row->column(3, new InfoBox('待发货', 'book', 'yellow', '/admin/productform',$send_to ));
                 })
                 ->row(function (Row $row) {
                     $row->column(5, function (Column $column) {
@@ -96,8 +101,9 @@ class DataController extends Controller
             $monthAllData = ProductForm::select(DB::raw("FROM_UNIXTIME(created_at,'%Y%m%d') as date, count(*) as num"))
                 ->where('store_id' , $store_id)->groupBy("date")->get();
         }else if($type == 2){
-            $monthAllData = ProductForm::select(DB::raw("FROM_UNIXTIME(created_at,'%Y%m%d') as date, sum(product_cost) as num"))
-                ->where('store_id' , $store_id)->groupBy("date")->get();
+            //统计收入 只有再买家确认收货或才算是商家的收入
+            $monthAllData = ProductForm::select(DB::raw("FROM_UNIXTIME(updated_at,'%Y%m%d') as date, sum(product_cost) as num"))
+                ->where([['store_id' , $store_id],['status',ProductForm::READY_GOOG]])->groupBy("date")->get();
         }
         $res = [];
         for($i=1 ; $i<= $lastday ; $i++){

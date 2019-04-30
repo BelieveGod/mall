@@ -35,7 +35,7 @@ class ProductCommentController extends Controller
             ->header('商品管理')
             ->description('评论统计')
             ->breadcrumb(['text' => '评论统计'])
-            ->body($this->grid());
+            ->body($this->commentbyproductid());
     }
 
     /**
@@ -52,7 +52,7 @@ class ProductCommentController extends Controller
             ->description('评论列表')
             ->breadcrumb(['text' => '评论列表'])
             ->row(function(Row $row) use($id) {
-                $row->column(8, $this->commentbyproductid($id));
+                $row->column(8, $this->grid($id));
                 $row->column(4, '');
             });
     }
@@ -63,7 +63,7 @@ class ProductCommentController extends Controller
      * @param Content $content
      * @return Content
      */
-    protected function commentbyproductid($id)
+    protected function grid($id)
     {
         $grid = new Grid(new ProductComment);
 
@@ -97,11 +97,11 @@ class ProductCommentController extends Controller
 
 //        $grid->comment_pic('Comment pic');
 //        $grid->store_id('Store id');
-        $states = [
-            'on'  => ['value' => 1, 'text' => '是', 'color' => 'primary'],
-            'off' => ['value' => 0, 'text' => '否', 'color' => 'default'],
-        ];
-        $grid->is_show('是否显示')->switch($states);
+//        $states = [
+//            'on'  => ['value' => 1, 'text' => '是', 'color' => 'primary'],
+//            'off' => ['value' => 0, 'text' => '否', 'color' => 'default'],
+//        ];
+//        $grid->is_show('是否显示')->switch($states);
         $grid->created_at('评论时间');
 //        $grid->updated_at('Updated at');
 //        $grid->deleted_at('Deleted at');
@@ -127,7 +127,7 @@ class ProductCommentController extends Controller
         return $grid;
     }
 
-    protected function grid()
+    protected function commentbyproductid()
     {
         $grid = new Grid(new ProductComment);
         $store_id = Auth::guard('admin')->user()->id;

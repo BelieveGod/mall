@@ -82,6 +82,9 @@ class OrdersController
        $created_integral->product_form_id = $productForm->form_id;
        $created_integral->save();
 
+       //更改商品表
+
+
        return $productForm;
    }
 
