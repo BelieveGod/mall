@@ -28,19 +28,32 @@ class Advertisement extends Common
     //home
     public static function findAdvertisementImg($data)
     {
-        $ad_img = Advertisement::where([['is_show' , self::DISPLAY],['used' , $data]])->orderBy('sort')->get()->toArray();
+        $ad_img = Advertisement::where([['is_show' , self::DISPLAY],['used' , $data]])->orderBy('sort')->get();
+//        $ad_img = Advertisement::where([['is_show' , self::DISPLAY],['used' , $data]])->orderBy('sort')->get()->toArray();
         if($ad_img[0]['product_id'] == null){
             return $ad_img;
         }
         $data = [];
+//        foreach ($ad_img as $value){
+//            $temp = [];
+//            $temp['product'] = Product::findProductById($value['product_id']);
+//            foreach ($value as $key=>$val){
+//                $temp[$key] = $val;
+//            }
+//            $data[] = $temp;
+//        }
+        //代码优化
         foreach ($ad_img as $value){
-            $temp = [];
-            $temp['product'] = Product::findProductById($value['product_id']);
-            foreach ($value as $key=>$val){
-                $temp[$key] = $val;
-            }
+            $temp = $value->toArray();
+            $temp['product'] = $value->product->toArray();
             $data[] = $temp;
         }
         return $data;
+    }
+
+    //一对一关联关系  关联商品表
+    public function product()
+    {
+        return $this->hasOne(Product::class,'product_id','product_id');
     }
 }

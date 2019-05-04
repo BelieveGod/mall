@@ -83,7 +83,7 @@ class ProductForm extends Common
      * @param $user_id
      * @return array
      */
-    public static function findOrderByUser($user_id , $status = [ProductForm::DELIVER_GOODS])
+    public static function findOrderByUser($user_id , $status = [self::DELIVER_GOODS])
     {
         $productForm = ProductForm::where('user_id',$user_id)->whereIn('status' , $status)->orderBy('status')->get()->toArray();
         //做相应的数据处理
@@ -104,6 +104,7 @@ class ProductForm extends Common
             }
             $userProOrder[] = $value;
         }
+
         return $userProOrder;
     }
 
@@ -147,5 +148,9 @@ class ProductForm extends Common
     {
         return json_decode($val, true);
     }
-
+    //一对一关联关系  关联商品表
+    public function product()
+    {
+        return $this->hasOne(Product::class,'product_id','product_id');
+    }
 }

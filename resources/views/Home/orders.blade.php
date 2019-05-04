@@ -103,40 +103,40 @@
                 @endif
                 </div>
             </div>
-
                 <div id="send-address-back"  style="display:none;position: fixed;left: 0;top: 0;width: 100%;height: 100%;background-color: rgba(0,0,0,0.5);z-index: 10000">
                     <div id="div1"  style="background:#eeeeee;width: 40%;z-index:10001;margin: 12% auto;overflow: auto;">
                         <div id="close" style="padding: 5px;background: #85c12e;">
                             <span id="send-address-close-button" style="color: white;cursor: pointer;padding-right: 15px;float: right;font-size: 30px;" >×</span>
                             <h2 style="margin: 10px 0;color: white;padding-left: 8px; font-size: 18px">添加地址</h2>
                         </div>
-                        <div id="div2" style="background:#eeeeee;margin: auto;height: 300px;padding: 0 20px;">
-                            <form action="" enctype="post">
+                        <div id="div2" style="background:#eeeeee;margin: auto;height: 300px;padding: 0 20px;" class="order-add-address">
+                            <form action="/api/order_add_address" method="post">
                                 <div style="margin-top: 30px;">
                                     <ul>
                                         <li style="margin-top: 10px;">
                                             <label class="user_title_name">收件人姓名：</label>
-                                            <input name="name" type="text" class="add_text" value="{{isset($user_address['name'])?$user_address['name']:null}}">
+                                            <input name="name" type="text" class="add_text" value="">
                                         </li>
                                         <li style="margin-top: 10px;">
                                             <label class="user_title_name">手 机 号：</label>
-                                            <input name="tell" type="text" class="add_text" value="{{isset($user_address['tell'])?$user_address['tell']:null}}">
+                                            <input name="tell" type="text" class="add_text" value="">
                                         </li>
                                         <li style="margin-top: 10px;">
                                             <label class="user_title_name">镇&nbsp;&nbsp;区：</label>
                                             <select style="" class="add_text" name="region">
                                                 <option>请选择</option>
-                                                {{--@foreach($address as $key=>$value)--}}
-                                                {{--<option value="{{$key}}" {{isset($user_address['region'])&&$user_address['region']==$key?'selected':null}}>{{$value}}</option>--}}
-                                                {{--@endforeach--}}
+                                                @foreach($address as $key=>$value)
+                                                <option value="{{$key}}" {{isset($user_address['region'])&&$user_address['region']==$key?'selected':null}}>{{$value}}</option>
+                                                @endforeach
                                             </select>
                                         </li>
                                         <li style="margin-top: 10px;">
                                             <label class="user_title_name">详细地址：</label>
-                                            <input name="address" type="text" class="add_text" value="{{isset($user_address['address'])?$user_address['address']:null}}" >
+                                            <input name="address" type="text" class="add_text" value="" >
                                         </li>
                                     </ul>
                                 </div>
+                                <input type="hidden" name="user_id" value="{{Auth::user()->id}}" />
 
 
                                 <div style="float: right;margin:8px; ">
@@ -169,7 +169,7 @@
             </div>
 
             {{--<form class="form" method="post">--}}
-            <form name=alipayment action='/api/alipay' method=post target="_blank">
+            <form name=alipayment action='/api/alipay' method=post >
                 <fieldset>
                     <!--付款方式-->
                     {{--<div class="payment">--}}

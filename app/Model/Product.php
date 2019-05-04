@@ -145,4 +145,19 @@ class Product extends Common
             ->orderBy('product_id' , 'desc')->limit($limit)->get()->toArray();
         return $topProduct;
     }
+
+    public static function searchProduct($search)
+    {
+        $blacklist_store = Store::findBlackListStoreId();
+        $product =  Product::where([['keyword' ,'like', $search] , ['is_show' , self::DISPLAY]])
+            ->whereNotIn('store_id',$blacklist_store)
+            ->paginate(20);
+        return $product;
+    }
+
+
+    //一对一关联关系  广告表
+    public function advertisement(){
+        return $this->belongsTo(Advertisement::class, 'product_id', 'product_id');
+    }
 }

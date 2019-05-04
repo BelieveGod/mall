@@ -40,10 +40,16 @@ class OrdersController
                $eachProduct = Product::where('product_id',$val['product_id'])->first()->toArray();
               if($val['store_id'] == $value){
                   $pro_temp[] = $val['product_id'];//商品id
-                  $num_temp[] = $val['num'];//商品id
-                  $product_cost += $eachProduct['present_price'];
+                  $num_temp[] = $val['num'];//商品数量
+                  $product_cost += $eachProduct['present_price']*$val['num'];
                   $form_freght += $eachProduct['product_freght'];
               }
+              //改变商品的销量 和 库存
+               Product::where('product_id', $eachProduct['product_id'])
+                   ->update([
+                       'sales_volume' => $eachProduct['sales_volume'] + $val['num'],
+                       'product_num' => $eachProduct['product_num'] - $val['num'],
+                   ]);
            }
 
            $temp['user_id'] = $user_id;
@@ -72,7 +78,7 @@ class OrdersController
            $productForm->status = $temp['status'];
            $productForm->store_id = $temp['store_id'];
            $productForm->pay_type = $temp['pay_type'];
-           $productForm->save();
+//           $productForm->save();
        }
 
        //写入积分表
@@ -80,9 +86,10 @@ class OrdersController
        $created_integral->user_id = $user_id;
        $created_integral->integral = $integral;
        $created_integral->product_form_id = $productForm->form_id;
-       $created_integral->save();
+//       $created_integral->save();
 
        //更改商品表
+
 
 
        return $productForm;

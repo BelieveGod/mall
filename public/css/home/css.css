@@ -798,5 +798,19 @@
 /***************************************************************************************/
 .wuliu li{margin-top: 20px; list-style-type:disc;color: #8c8c8c;}
 .wuliu li:first-child{color: #ff7a22; }
+.order-add-address
+.order-add-address .user_layout{ width:500px; margin:0 auto}
+.order-add-address .call_user_layout{ margin-left: 30px}
+.order-add-address li{ height:40px; margin-bottom:20px; position:relative}
+.order-add-address li .add_text{ height:34px; border:1px solid #ddd; padding:0px 10px;; width:270px;}
+.order-add-address li .add_text_denger{ height:34px; border:1px solid #de3530; padding:0px 10px;; width:270px;}
+.order-add-address .user_title_name{ color:#666; float:left; width:80px; line-height:34px;}
+.order-add-address li .sex{ display:block; float:left; margin-top:7px; margin-right:5px; color:#666; position:relative; width:50px}
+.order-add-address li em{ color:#F00; padding:0px 5px; position:absolute;}
+.order-add-address li .sex span{ position:absolute; top:3px; _top:2px;}
+.order-add-address .operating_btn{ margin-left:80px;}
+.order-add-address .operating_btn .submit—btn{border:0px;background:#85c12e;height:37px;text-align:center;width:291px;font-size:18px;color:#FFF;cursor:pointer}
+.order-add-address .operating_btn .submit—btn:hover{background:#ff7a22}
+
 
 

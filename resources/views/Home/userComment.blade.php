@@ -17,11 +17,11 @@
                                     订单号：<p>{{isset($value['order']['form_num'])?$value['order']['form_num']:null}}</p>
                                 </div>
                                 <div class="user-level">
-                                    <a href="/productDetailed/{{isset($value['pro']['product_id'])?$value['pro']['product_id']:null}}">
-                                        <img src="/uploads/{{isset($value['pro']['product_master_img'][0])?$value['pro']['product_master_img'][0]:null}}" width="60" height="60" style="border-radius: 30px;"/>
+                                    <a href="/productDetailed/{{isset($value['product']['product_id'])?$value['product']['product_id']:null}}">
+                                        <img src="/uploads/{{isset($value['product']['product_master_img'][0])?$value['product']['product_master_img'][0]:null}}" width="60" height="60" style="border-radius: 30px;"/>
                                     </a>
 
-                                    <p><a href="/productDetailed/{{isset($value['pro']['product_id'])?$value['pro']['product_id']:null}}" >{{$value['pro']['product_name']}}</a></p>
+                                    <p><a href="/productDetailed/{{isset($value['product']['product_id'])?$value['product']['product_id']:null}}" >{{$value['product']['product_name']}}</a></p>
                                 </div>
                             </div>
                             <div class="comment-column J-comment-column" style="padding-left: 300px;">

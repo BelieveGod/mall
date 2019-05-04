@@ -46,6 +46,7 @@ class ProductDetailedController extends HomeController
 //        dd($product);
         //查看评论详情
         $comment = ProductComment::findCommentByProductId($id);
+//        dd($comment);
         //计算好评、中评、差评的数量
         $haoping = ProductComment::counthaoping($id , ProductComment::HAOPING);
         $zhongping = ProductComment::counthaoping($id , ProductComment::ZHONGPING);

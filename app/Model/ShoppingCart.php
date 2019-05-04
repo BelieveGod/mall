@@ -41,10 +41,13 @@ class ShoppingCart extends Common
             foreach ($value as $k=>$v){
                 $temp[$k] = Store::where('admin_id' , $v)->first()->toArray();
                 foreach ($product as $pro){
-                    $pro['product'] = Product::where('product_id' , $pro['product_id'])->first()->toArray();
-                    $pro['product']['cost'] = $pro['product']['present_price']*$pro['num'];
-                    if($v == $pro['store_id']){
-                        $temp['product'][] = $pro;
+                    $pro['product'] = Product::where('product_id' , $pro['product_id'])->first();
+                    if($pro['product']){
+                        $pro['product'] = $pro['product']->toArray();
+                        $pro['product']['cost'] = $pro['product']['present_price']*$pro['num'];
+                        if($v == $pro['store_id']){
+                            $temp['product'][] = $pro;
+                        }
                     }
                 }
             }

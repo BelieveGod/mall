@@ -70,5 +70,8 @@ Route::get('show_logistics/{id?}' , 'OrdersController@showLogistics');//查看�
 
 Route::get('update_form_status/{id?}' , 'OrdersController@updateFormStatus');//改变订单状态
 
+//搜索功能
+Route::get('search' , 'SearchController@index');//模糊搜索
+
 
 

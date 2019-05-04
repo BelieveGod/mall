@@ -63,6 +63,7 @@ class UserInfoController extends HomeController
                 $status_arr[] = ProductForm::READY_GOOG;
             }
             $allOrder = ProductForm::findOrderByUser($user_id , $status_arr);
+//            dd($allOrder);
         }else{
             $allOrder = ProductForm::findOrderByUser($user_id);
         }
@@ -155,6 +156,7 @@ class UserInfoController extends HomeController
     {
         $form_id = \request('id');
         $comment_list = ProductForm::findProductByFormId($form_id);
+//        dd($comment_list);
         return view('Home.addUserComment',['userInfo'=>$this->userInfo(),'comment_list'=>$comment_list]);
     }
 }

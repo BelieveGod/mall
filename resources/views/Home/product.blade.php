@@ -23,11 +23,11 @@
         <!--位置-->
         <div class="Bread_crumbs" >
             <div class="Inside_pages clearfix">
-                <div class="left">当前位置：<a href="/home_index">首页</a>&gt;<a href="#">新鲜水果</a></div>
+                <div class="left">当前位置：<a href="/home_index">首页</a>&gt;<a href="/product">所有商品</a></div>
                 <div class="right Search">
-                    <form>
-                        <input name="" type="text"  class="Search_Box"/>
-                        <input name="" type="button"  name="" class="Search_btn"/>
+                    <form action="/search" method="get">
+                        <input name="search" type="text"  class="Search_Box"/>
+                        <input name="up" type="submit" class="Search_btn" value=""/>
                     </form>
                 </div>
             </div>

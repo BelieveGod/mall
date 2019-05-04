@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Model\Member;
 use App\Model\Product;
 use App\Model\ProductForm;
+use App\Model\Regions;
 use App\Model\ShoppingCart;
 use App\Model\UserAddress;
 use Illuminate\Http\Request;
@@ -25,6 +26,8 @@ class OrdersController extends HomeController
     {
         $product = [];
         $store = [];
+        //添加地址
+        $address = Regions::findDongGuan();
         //获取用户id
         $user_id = Auth::user()->id;
         //显示用户地址
@@ -53,6 +56,7 @@ class OrdersController extends HomeController
 
         return view('Home.Orders',[
             'user_address' => $user_address ,
+            'address'=>$address,
             'order' => $order,
         ]);
     }
@@ -62,6 +66,8 @@ class OrdersController extends HomeController
     {
         //获取用户id
         $user_id = Auth::user()->id;
+        //添加地址
+        $address = Regions::findDongGuan();
         //显示用户地址
         $user_address = UserAddress::findUserAddress($user_id);
         $product_id = \request('id');
@@ -73,6 +79,7 @@ class OrdersController extends HomeController
         return view('Home.Orders',[
             'user_address' => $user_address ,
             'order' => $order,
+            'address'=>$address,
         ]);
     }
 

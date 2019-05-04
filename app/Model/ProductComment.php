@@ -52,22 +52,26 @@ class ProductComment extends Common
      */
     public static function findCommentByUserId($user_id)
     {
-        $comment = ProductComment::where('menber_id' , $user_id)->orderBy('created_at','desc')->get()->toArray();
+//        $comment = ProductComment::where('menber_id' , $user_id)->orderBy('created_at','desc')->get()->toArray();
+        $comment = ProductComment::where('menber_id' , $user_id)->orderBy('created_at','desc')->get();
         //数据处理
         $data = [];
-        foreach ($comment as $value){
-            foreach ($value as $k=>$v){
-//                if($k == 'comment_pic'){
-//                    $value['comment_pic'] = json_decode($v);
+//        foreach ($comment as $value){
+//            foreach ($value as $k=>$v){
+//                if($k == 'product_id'){
+//                    $value['product'] = Product::where('product_id' , $v)->first()->toArray();
 //                }
-                if($k == 'product_id'){
-                    $value['pro'] = Product::where('product_id' , $v)->first()->toArray();
-                }
-                if($k == 'product_form_id'){
-                    $value['order'] = ProductForm::where('form_id' , $v)->first()->toArray();
-                }
-            }
-            $data[] = $value;
+//                if($k == 'product_form_id'){
+//                    $value['order'] = ProductForm::where('form_id' , $v)->first()->toArray();
+//                }
+//            }
+//            $data[] = $value;
+//        }
+        //代码优化
+        foreach ($comment as $value) {
+            $value->product;
+            $value->order;
+            $data[] = $value->toArray();
         }
         return $data;
     }
@@ -93,9 +97,6 @@ class ProductComment extends Common
                         $value['menber'] = $menber->toArray();
                     }
                 }
-//                if($k == 'comment_pic'){
-//                    $value['comment_pic'] = json_decode($v);
-//                }
             }
             $data[] = $value;
         }
@@ -105,5 +106,16 @@ class ProductComment extends Common
     public function getCommentPicAttribute($pictures)
     {
         return json_decode($pictures, true);
+    }
+
+    //一对一关联  订单表
+    public function order()
+    {
+        return $this->hasOne(ProductForm::class,'form_id','product_form_id');
+    }
+    //一对一关联关系  关联商品表
+    public function product()
+    {
+        return $this->hasOne(Product::class,'product_id','product_id');
     }
 }

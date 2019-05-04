@@ -20,7 +20,6 @@ class UserAddressController
         $user_id = $request->post('user_id');
         $id = $request->post('id');
 
-
         if($status == 'on'){
             $getAllUserAddress = UserAddress::where('user_id' , $user_id)->get();
             foreach ($getAllUserAddress as $value){
@@ -51,5 +50,26 @@ class UserAddressController
         $user_address = UserAddress::find($id);
         $user_address->delete();
         return redirect( '/userAddress');
+    }
+
+    //订单直接添加收货地址
+    public function orderAddAddress(Request $request)
+    {
+        $name = $request->post('name');
+        $tell = $request->post('tell');
+        $region = $request->post('region');
+        $address = $request->post('address');
+        $user_id = $request->post('user_id');
+
+        $userAddress = new UserAddress;
+        $userAddress->name = $name;
+        $userAddress->tell = $tell;
+        $userAddress->region = $region;
+        $userAddress->address = $address;
+        $userAddress->status = 0;
+        $userAddress->user_id = $user_id;
+        $userAddress->save();
+
+        return back();
     }
 }
