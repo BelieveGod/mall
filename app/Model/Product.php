@@ -146,10 +146,16 @@ class Product extends Common
         return $topProduct;
     }
 
+    /**
+     * 搜索商品
+     * @param $search
+     * @return mixed
+     */
     public static function searchProduct($search)
     {
         $blacklist_store = Store::findBlackListStoreId();
-        $product =  Product::where([['keyword' ,'like', $search] , ['is_show' , self::DISPLAY]])
+        $product =  Product::where([['is_show' , self::DISPLAY],['keyword','like','%'.$search.'%']])
+            ->orWhere([['is_show' , self::DISPLAY],['product_name','like','%'.$search.'%']])
             ->whereNotIn('store_id',$blacklist_store)
             ->paginate(20);
         return $product;

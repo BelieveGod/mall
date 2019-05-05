@@ -23,11 +23,11 @@
     <div >
         <div class="Bread_crumbs">
             <div class="Inside_pages clearfix">
-                <div class="left">当前位置：<a href="/home_index">首页</a>&gt;<a href="/product">所有商品</a>&gt;<a href="/productList/{{isset($menu_title['category_id'])?$menu_title['category_id']:null}}">{{isset($menu_title['category_name'])?$menu_title['category_name']:null}}</a></div>
+                <div class="left">当前位置：<a href="/home_index">首页</a>&gt;<a href="/product">商品</a>&gt;<a href="/productList/{{isset($menu_title['category_id'])?$menu_title['category_id']:null}}">{{isset($menu_title['category_name'])?$menu_title['category_name']:null}}</a></div>
                 <div class="right Search">
-                    <form>
-                        <input name="" type="text"  class="Search_Box"/>
-                        <input name="" type="button"  name="" class="Search_btn"/>
+                    <form action="/search" method="get">
+                        <input name="search" type="text"  class="Search_Box"/>
+                        <input name="up" type="submit" class="Search_btn" value=""/>
                     </form>
                 </div>
             </div>
@@ -110,7 +110,11 @@
                 });
 
             </script>
-
+            @if($product->count()==0)
+                <div class="comment-wrap">
+                    <img src="/image/home/not_fount.jpg" />
+                </div>
+            @else
             {{--<DIV class="right_style">--}}
                 <ul class="list_style prolist" >
                     @foreach($product as $value)
@@ -141,9 +145,9 @@
                     @endforeach
                 </ul>
                 <!--分页-->
-                {{--{{$product->links('Home.pagination.pages')}}--}}
-
+                {{$product->links('Home.pagination.pages')}}
             {{--</DIV>--}}
+            @endif
         </div>
     </div>
 

@@ -11,9 +11,12 @@ class SearchController extends Controller
     //
     public function index()
     {
-        $search = request('search');
-
+        $search = trim(request('search'));
+        if(!$search){
+            return back();
+        }
         $product = Product::searchProduct($search);
+//        dd($product);
         return view('Home.searchList',['product' => $product]);
     }
 }
