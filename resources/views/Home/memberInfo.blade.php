@@ -14,7 +14,7 @@
                 <div class="user_info">
                     <div class="Head_portrait">
                         <!--头像区域-->
-                        <img src="{{isset($userInfo->member_pic)?$userInfo->member_pic:'./image/test/5.jpg'}}" style="border-radius: 40px" width="80px" height="80px"/>
+                        <img src="{{isset($userInfo->member_pic)?$userInfo->member_pic:'/image/home/tx.jpeg'}}" style="border-radius: 40px" width="80px" height="80px"/>
                     </div>
                     <div class="user_name">{{Auth::user()->name}}</div>
                 </div>

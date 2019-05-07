@@ -103,7 +103,9 @@ class DataController extends Controller
         }else if($type == 2){
             //统计收入 只有再买家确认收货或才算是商家的收入
             $monthAllData = ProductForm::select(DB::raw("FROM_UNIXTIME(updated_at,'%Y%m%d') as date, sum(product_cost) as num"))
-                ->where([['store_id' , $store_id],['status',ProductForm::READY_GOOG]])->groupBy("date")->get();
+                ->where('store_id' , $store_id)
+                ->whereIn('status' , [ProductForm::SIGN_FOR_GOOD , ProductForm::READY_GOOG])
+                ->groupBy("date")->get();
         }
         $res = [];
         for($i=1 ; $i<= $lastday ; $i++){

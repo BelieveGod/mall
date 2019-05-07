@@ -77,6 +77,7 @@
                     <td class="list_name_title5">订单状态</td>
                     <td class="list_name_title6">操作</td>
                     </thead>
+                    @if(!empty($allOrder))
                     @foreach($allOrder as $value)
                         <tbody>
                         <tr><td colspan="6" class="Order_form_time">订单号：{{isset($value['form_num'])?$value['form_num']:null}}</td></tr>
@@ -115,6 +116,13 @@
                         </tr>
                         </tbody>
                     @endforeach
+                    @else
+                        <tbody>
+                            <tr>
+                                <td colspan="6" style="color: #8c8c8c;text-align: center;height: 200px;line-height: 200px;">暂无数据!</td>
+                            </tr>
+                        </tbody>
+                    @endif
 
                 </table>
             </div>

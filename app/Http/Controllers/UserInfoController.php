@@ -102,7 +102,7 @@ class UserInfoController extends HomeController
         $user_id = Auth::user()->id;
         $countUserIntegral = Integral::countUserIntegral($user_id);
         $integral_list = Integral::findUserAllIntegral($user_id);
-//        dd($integral_list);
+//        dd($countUserIntegral);
 
         return view('Home.userIntegral',[
             'userInfo'=>$this->userInfo(),

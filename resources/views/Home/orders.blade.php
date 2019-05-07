@@ -169,7 +169,8 @@
             </div>
 
             {{--<form class="form" method="post">--}}
-            <form name=alipayment action='/api/alipay' method=post >
+            <form name=alipayment action='/api/alipay' method=post target="_blank">
+            {{--<form name=alipayment action='/api/alipay' method=post>--}}
                 <fieldset>
                     <!--付款方式-->
                     {{--<div class="payment">--}}
@@ -194,7 +195,7 @@
                             </thead>
                             <tbody>
                             @foreach($value['product'] as $val)
-                            <tr>
+                            <tr class="order_product_id" attr="{{isset($val['product']['product_id'])?$val['product']['product_id']:null}}">
                                 <td class="Product_info" attr="{{isset($val['shopping_cart_id'])?$val['shopping_cart_id']:null}}">
                                     <a href="#"><img src="/uploads/{{isset($val['product']['product_master_img'][0])?$val['product']['product_master_img'][0]:null}}"  width="100px" height="100px"/></a>
                                     <a href="#" class="product_name">{{isset($val['product']['product_name'])?$val['product']['product_name']:null}}</a>
@@ -297,6 +298,8 @@
             data.psf = $('.psf').text();
             data.sfk = $('.sfk').text();
             data.integral = $('.jf').text();
+            data.memo = $('.Pay_info').find('input').val();
+            data.pro = $('.order_product_id').attr('attr');
             console.log(data);
             $.post('/api/saveOrders' , data , function(res){
                 console.log(res);

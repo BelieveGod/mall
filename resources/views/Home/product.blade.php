@@ -137,7 +137,7 @@
                                     <a href="/addShoppingCartLogin/0" class="buy_btn"></a>
                                     <a  href="/addShoppingCartLogin/0" class="Join_btn orange"></a>
                                 @else
-                                    <a href="/buyNowOrder/{{isset($value['product_id'])?$value['product_id']:null}}/2" class="buy_btn"></a>
+                                    <a href="/buyNowOrder/{{isset($value['product_id'])?$value['product_id']:null}}/1" class="buy_btn"></a>
                                     <a href="javascript:void(0);" class="Join_btn addcar orange" attr="{{isset($value['product_id'])?$value['product_id']:null}}" store_id ="{{isset($value['store_id'])?$value['store_id']:null}}"></a>
                                 @endguest
                             </p>
@@ -185,7 +185,7 @@
                                         <a href="/addShoppingCartLogin/0" class="buy_btn"></a>
                                         <a  href="/addShoppingCartLogin/0" class="Join_btn orange"></a>
                                     @else
-                                        <a href="/buyNowOrder/{{isset($value['product_id'])?$value['product_id']:null}}/2" class="buy_btn"></a>
+                                        <a href="/buyNowOrder/{{isset($value['product_id'])?$value['product_id']:null}}/1" class="buy_btn"></a>
                                         <a href="javascript:void(0);" class="Join_btn addcar orange" attr="{{isset($value['product_id'])?$value['product_id']:null}}" store_id ="{{isset($value['store_id'])?$value['store_id']:null}}"></a>
                                     @endguest
                                 </p>
@@ -232,7 +232,7 @@
                                         <a href="/addShoppingCartLogin/0" class="buy_btn"></a>
                                         <a  href="/addShoppingCartLogin/0" class="Join_btn orange"></a>
                                     @else
-                                        <a href="/buyNowOrder/{{isset($value['product_id'])?$value['product_id']:null}}/2" class="buy_btn"></a>
+                                        <a href="/buyNowOrder/{{isset($value['product_id'])?$value['product_id']:null}}/1" class="buy_btn"></a>
                                         <a href="javascript:void(0);" class="Join_btn addcar orange" attr="{{isset($value['product_id'])?$value['product_id']:null}}" store_id ="{{isset($value['store_id'])?$value['store_id']:null}}"></a>
                                     @endguest
                                 </p>
@@ -279,7 +279,7 @@
                                         <a href="/addShoppingCartLogin/0" class="buy_btn"></a>
                                         <a  href="/addShoppingCartLogin/0" class="Join_btn orange"></a>
                                     @else
-                                        <a href="/buyNowOrder/{{isset($value['product_id'])?$value['product_id']:null}}/2" class="buy_btn"></a>
+                                        <a href="/buyNowOrder/{{isset($value['product_id'])?$value['product_id']:null}}/1" class="buy_btn"></a>
                                         <a href="javascript:void(0);" class="Join_btn addcar orange" attr="{{isset($value['product_id'])?$value['product_id']:null}}" store_id ="{{isset($value['store_id'])?$value['store_id']:null}}"></a>
                                     @endguest
                                 </p>
@@ -326,7 +326,7 @@
                                         <a href="/addShoppingCartLogin/0" class="buy_btn"></a>
                                         <a  href="/addShoppingCartLogin/0" class="Join_btn orange"></a>
                                     @else
-                                        <a href="/buyNowOrder/{{isset($value['product_id'])?$value['product_id']:null}}/2" class="buy_btn"></a>
+                                        <a href="/buyNowOrder/{{isset($value['product_id'])?$value['product_id']:null}}/1" class="buy_btn"></a>
                                         <a href="javascript:void(0);" class="Join_btn addcar orange" attr="{{isset($value['product_id'])?$value['product_id']:null}}" store_id ="{{isset($value['store_id'])?$value['store_id']:null}}"></a>
                                     @endguest
                                 </p>
@@ -373,7 +373,7 @@
                                         <a href="/addShoppingCartLogin/0" class="buy_btn"></a>
                                         <a  href="/addShoppingCartLogin/0" class="Join_btn orange"></a>
                                     @else
-                                        <a href="/buyNowOrder/{{isset($value['product_id'])?$value['product_id']:null}}/2" class="buy_btn"></a>
+                                        <a href="/buyNowOrder/{{isset($value['product_id'])?$value['product_id']:null}}/1" class="buy_btn"></a>
                                         <a href="javascript:void(0);" class="Join_btn addcar orange" attr="{{isset($value['product_id'])?$value['product_id']:null}}" store_id ="{{isset($value['store_id'])?$value['store_id']:null}}"></a>
                                     @endguest
                                 </p>
@@ -420,7 +420,7 @@
                                         <a href="/addShoppingCartLogin/0" class="buy_btn"></a>
                                         <a  href="/addShoppingCartLogin/0" class="Join_btn orange"></a>
                                     @else
-                                        <a href="/buyNowOrder/{{isset($value['product_id'])?$value['product_id']:null}}/2" class="buy_btn"></a>
+                                        <a href="/buyNowOrder/{{isset($value['product_id'])?$value['product_id']:null}}/1" class="buy_btn"></a>
                                         <a href="javascript:void(0);" class="Join_btn addcar orange" attr="{{isset($value['product_id'])?$value['product_id']:null}}" store_id ="{{isset($value['store_id'])?$value['store_id']:null}}"></a>
                                     @endguest
                                 </p>
@@ -467,7 +467,7 @@
                                         <a href="/addShoppingCartLogin/0" class="buy_btn"></a>
                                         <a  href="/addShoppingCartLogin/0" class="Join_btn orange"></a>
                                     @else
-                                        <a href="/buyNowOrder/{{isset($value['product_id'])?$value['product_id']:null}}/2" class="buy_btn"></a>
+                                        <a href="/buyNowOrder/{{isset($value['product_id'])?$value['product_id']:null}}/1" class="buy_btn"></a>
                                         <a href="javascript:void(0);" class="Join_btn addcar orange" attr="{{isset($value['product_id'])?$value['product_id']:null}}" store_id ="{{isset($value['store_id'])?$value['store_id']:null}}"></a>
                                     @endguest
                                 </p>

@@ -16,7 +16,7 @@
             {{--</div>--}}
             <div class="bd">
                 <ul>
-                    <div class="Integral_Number"><em></em>你当前的积分：<b>{{$countUserIntegral['count_num']}}</b></div>
+                    <div class="Integral_Number"><em></em>你当前的积分：<b>{{isset($countUserIntegral->count_num)?$countUserIntegral->count_num:0}}</b></div>
                     <table>
                         <thead>
                         <tr>
@@ -27,14 +27,24 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($integral_list as $value)
-                        <tr>
-                            <td>{{$value['form_num']}}</td>
-                            <td>￥{{$value['cost']}}</td>
-                            <td>{{$value['integral']}}</td>
-                            <td>{{$value['created_at']}}</td>
-                        </tr>
-                        @endforeach
+                        @if(empty($integral_list))
+                            <tr style="height: 200px;">
+                                <td colspan="4" style="color: #8c8c8c">你的积分为0
+                                    <a href="/product" style="color: #F60;"> 前往商城》</a>
+                                </td>
+
+                            </tr>
+                        @else
+                            @foreach($integral_list as $value)
+                                <tr>
+                                    <td>{{$value['form_num']}}</td>
+                                    <td>￥{{$value['cost']}}</td>
+                                    <td>{{$value['integral']}}</td>
+                                    <td>{{$value['created_at']}}</td>
+                                </tr>
+                            @endforeach
+                        @endif
+
                         </tbody>
                     </table>
                 </ul>

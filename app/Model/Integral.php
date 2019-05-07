@@ -17,7 +17,7 @@ class Integral extends Common
      */
     public static function countUserIntegral($user_id)
     {
-        return Integral::select(DB::raw('sum(integral)as count_num'))->where('user_id' , $user_id)->groupBy('user_id')->first()->toArray();
+        return Integral::select(DB::raw('sum(integral)as count_num'))->where('user_id' , $user_id)->groupBy('user_id')->first();
     }
 
     /**

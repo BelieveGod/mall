@@ -28,9 +28,9 @@
             <a href="/productList/{{$product['category_top_id']['category_id']}}">{{$product['category_top_id']['category_name']}}</a>
         </div>
         <div class="right Search">
-            <form>
-                <input name="" type="text"  class="Search_Box"/>
-                <input name="" type="button"  name="" class="Search_btn"/>
+            <form action="/search" method="get">
+                <input name="search" type="text"  class="Search_Box"/>
+                <input name="up" type="submit" class="Search_btn" value=""/>
             </form>
         </div>
     </div>
@@ -338,7 +338,7 @@
                             <div class="comment-item">
                                 <div class="user-column">
                                     <div class="user-info">
-                                        <img src="{{isset($value['menber']['member_pic'])?$value['menber']['member_pic']:'/image/test/2.jpg'}}" width="30" height="30"/>{{isset($value['user']['name'])?$value['user']['name']:null}}
+                                        <img src="{{isset($value['menber']['member_pic'])?$value['menber']['member_pic']:'/image/home/tx.jpeg'}}" width="30" height="30"/>{{isset($value['user']['name'])?$value['user']['name']:null}}
                                     </div>
                                     <div class="user-level">
                                         <span style="color: rgb(136,136,136);"></span>

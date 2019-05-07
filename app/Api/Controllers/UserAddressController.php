@@ -66,7 +66,7 @@ class UserAddressController
         $userAddress->tell = $tell;
         $userAddress->region = $region;
         $userAddress->address = $address;
-        $userAddress->status = 0;
+        $userAddress->status = 1;
         $userAddress->user_id = $user_id;
         $userAddress->save();
 

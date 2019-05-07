@@ -174,6 +174,7 @@ class ProductFormController extends Controller
             }
             return $str;
         });
+        $show->memo('说明');
 
         $show->divider();
         $show->product_cost('商品总价');

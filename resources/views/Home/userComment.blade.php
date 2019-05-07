@@ -10,6 +10,7 @@
 
                 <div class="bd">
                     <div class="tab-con">
+                        @if(!empty($comment))
                         @foreach($comment as $value)
                         <div class="comment-item">
                             <div class="user-column">
@@ -50,6 +51,9 @@
                             </div>
                         </div>
                         @endforeach
+                        @else
+                            <div style="color: #8c8c8c;text-align: center;height: 200px;line-height: 200px;">暂无评论!</div>
+                        @endif
                     </div>
 
                 </div>
