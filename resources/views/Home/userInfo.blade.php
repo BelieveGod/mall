@@ -14,7 +14,7 @@
                         <li>
                             <label class="user_title_name">用户头像：</label>
                             <label for="upimg" ><img src="{{isset($userInfo->member_pic)?$userInfo->member_pic:'./image/test/5.jpg'}}" width="50px" /></label>
-                            <input name="member_pic" type="file" id="upimg" style="display:none" onchange="uploadImg(this)"/>
+                            <input name="member_pic" type="file" id="upimg" style="display:none" onchange="uploadImg(this)" accept = "image/*"/>
                             <input type="hidden" value="{{isset($userInfo->member_pic)?$userInfo->member_pic:null}}" name="upload_img" id="uploadImgPath">
                             <div id="uploadImg"></div>
                         </li>

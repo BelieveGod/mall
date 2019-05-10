@@ -122,13 +122,14 @@
                         <div class="product_lists clearfix">
                             <a href="/productDetailed/{{isset($value['product_id'])?$value['product_id']:null}}">
                                 <img src="/uploads/{{isset($value['product_master_img'][0])?$value['product_master_img'][0]:null}}" width="210px" height="215px"/>
+                                <p class="title_p_name">{{isset($value['product_name'])?$value['product_name']:null}}</p>
                             </a>
-                            <p class="title_p_name">{{isset($value['product_name'])?$value['product_name']:null}}</p>
                             <p class="title_Profile">产地：{{isset($value['product_origin'])?$value['product_origin']:null}}</p>
                             <p class="price">
                                 <del class="del_old_price">￥{{isset($value['prime_cost'])?$value['prime_cost']:null}}</del>
                                 <b>￥</b>{{isset($value['present_price'])?$value['present_price']:null}}<span style="font-size: 14px;">/{{isset($value['unit'])?$value['unit']:null}}</span>
                             </p>
+
                             <p class="btn_style">
                                 {{--<a href="/buyNowOrder/{{isset($value['product_id'])?$value['product_id']:null}}/2" class="buy_btn"></a>--}}
                                 {{--<a href="javascript:void(0);" class="Join_btn  addcar orange "></a>--}}

@@ -7,6 +7,7 @@ use App\Model\Product;
 use App\Model\ProductForm;
 use App\Model\ShoppingCart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class OrdersController
 {
@@ -69,6 +70,7 @@ class OrdersController
                $temp['pay_type'] = ProductForm::PAY_ON_LINE;
 
                //存入数据库
+               DB::beginTransaction();
                $productForm = new ProductForm();
                $productForm->user_id = $temp['user_id'];
                $productForm->product_id = $temp['product_id'];
@@ -84,6 +86,7 @@ class OrdersController
                $productForm->memo = $memo;
                $productForm->pay_time = time();
                $productForm->save();
+               DB::commit();
            }
        }else{
            //如果是直接购买
@@ -102,6 +105,7 @@ class OrdersController
                    'product_num' => $eachProduct['product_num'] - 1,
                ]);
            //存入数据库
+           DB::beginTransaction();
            $productForm = new ProductForm();
            $productForm->user_id = $user_id;
            $productForm->product_id = json_encode($pro_temp);
@@ -117,6 +121,7 @@ class OrdersController
            $productForm->memo = $memo;
            $productForm->pay_time = time();
            $productForm->save();
+           DB::commit();
        }
 
        //写入积分表

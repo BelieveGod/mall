@@ -99,8 +99,13 @@ class ProductController extends Controller
 //            3 => '推荐',
 //        ]);
 
-        $grid->updated_at('更新时间');
-        $grid->created_at('创建时间');
+//        $grid->updated_at('更新时间');
+//        $grid->created_at('创建时间');
+
+        $grid->created_at('上架时间');
+        $grid->sales_volume('总销量')->display(function($sales){
+            return isset($sales)?$sales:0;
+        });
 
         //去掉查看按钮
         $grid->actions(function ($actions) {
@@ -119,15 +124,15 @@ class ProductController extends Controller
     {
         $form = new Form(new Product);
 
-            $form->select('category_id' , '选择分类')->options(Category::parentsId());
-            $form->text('product_name', '商品名称')->rules('required',['商品名称不能为空']);
-            $form->text('product_origin' , '商品产地')->rules('required',['商品产地不能为空']);
-            $form->number('product_num', '商品库存');
+            $form->select('category_id' , '选择分类')->options(Category::parentsId())->required();
+            $form->text('product_name', '商品名称')->rules('required',['商品名称不能为空'])->required();
+            $form->text('product_origin' , '商品产地')->rules('required',['商品产地不能为空'])->required();
+            $form->number('product_num', '商品库存')->required();
             $form->text('product_explain', '购买说明');
             $form->text('keyword', '搜索关键词');
-            $form->text('unit' , '计算单位')->rules('required',['计算单位不能为空']);
-            $form->currency('prime_cost', '商品原价')->symbol('￥')->rules('required',['商品原价不能为空']);
-            $form->currency('present_price', '商品现价')->symbol('￥')->rules('required',['商品现价不能为空']);
+            $form->text('unit' , '计算单位')->rules('required',['计算单位不能为空'])->required();
+            $form->currency('prime_cost', '商品原价')->symbol('￥')->rules('required',['商品原价不能为空'])->required();
+            $form->currency('present_price', '商品现价')->symbol('￥')->rules('required',['商品现价不能为空'])->required();
             $form->currency('product_freght', '运费')->symbol('￥');
 
             //todo
@@ -257,8 +262,6 @@ class ProductController extends Controller
 
             $data = [];
             foreach ($res as $val){
-
-
                 $sku_val = $val['sku_val'];
                 $sku_val = explode('_' , $sku_val);
                 $tmp = [];

@@ -51,7 +51,7 @@
                                 <div style="margin-bottom: 150px;">
                                     <label class="user_title_name">晒图 ：</label>
                                     <label for="business_pic" style="background: #F60;color: #fff;padding: 8px;font-size: 16px;border-radius: 3px;cursor:pointer;">上传图片</label>
-                                    <input type="file" id="business_pic" style="display:none" name="business_pic" onchange="uploadFile(this)"/>
+                                    <input type="file" id="business_pic" style="display:none" name="business_pic" onchange="uploadFile(this)" accept = "image/*"/>
                                     <p style="margin-top: 30px;"></p>
                                 </div>
                                 <input type="hidden" name="menber_id" value="{{Auth::id()}}"/>

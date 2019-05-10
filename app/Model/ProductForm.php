@@ -83,7 +83,7 @@ class ProductForm extends Common
      * @param $user_id
      * @return array
      */
-    public static function findOrderByUser($user_id , $status = [self::DELIVER_GOODS])
+    public static function findOrderByUser($user_id , $status = [self::WAIT_DELIVER_GOODS])
     {
         $productForm = ProductForm::where('user_id',$user_id)->whereIn('status' , $status)->orderBy('status')->get()->toArray();
         //做相应的数据处理

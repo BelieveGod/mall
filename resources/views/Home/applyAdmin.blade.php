@@ -98,7 +98,7 @@
                                     <li>
                                         <label class="user_title_name">实名照片：</label>
                                         <label for="business_pic" style="background: #F60;color: #fff;padding: 8px;font-size: 16px;border-radius: 3px;cursor:pointer;">上传图片</label>
-                                        <input type="file" id="business_pic" style="display:none" name="business_pic" onchange="uploadFile(this)"/>
+                                        <input type="file" id="business_pic" style="display:none" name="business_pic" onchange="uploadFile(this)" accept = "image/*"/>
 
                                         <div style="color: #848484;margin-top: 10px;">*上传3张照片：身份证正面，身份证反面，手持身份证照片</div>
                                     </li>

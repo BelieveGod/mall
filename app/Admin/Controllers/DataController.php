@@ -36,7 +36,8 @@ class DataController extends Controller
         $store = Auth::guard('admin')->user()->id;
         $business = Store::select(DB::raw("count(*) as num"))
             ->where('status' , Store::PENDING_APPLICATION)->groupBy("status")->first();
-        $pro_form = ProductForm::select(DB::raw("count(*) as num"))->where([['store_id' , $store],['status',ProductForm::READY_GOOG]])
+        $pro_form = ProductForm::select(DB::raw("count(*) as num"))->where('store_id' , $store)
+            ->whereIn('status' , [ProductForm::SIGN_FOR_GOOD , ProductForm::READY_GOOG])
             ->groupBy("store_id")->first();
 //        $money = ProductForm::select(DB::raw("sum(product_cost) as num"))->where('store_id' , $store)
 //            ->whereBetween('created_at' ,[$start , $end])

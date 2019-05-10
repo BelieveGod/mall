@@ -146,7 +146,7 @@
                 <ul class="heros clearfix">
                     @foreach($ad_rd as $value)
                     <li class="hero">
-                        <a href="#" target="_blank" title="{{$value['dec']}}">
+                        <a href="/productDetailed/{{isset($value['product_id'])?$value['product_id']:null}}"  title="{{$value['dec']}}">
                             <img src="./uploads/{{$value['ad_img']}}" class="thumb" alt="" />
                         </a>
                         <div class="p_title_name">

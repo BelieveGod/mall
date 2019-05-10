@@ -66,7 +66,7 @@
                 {{--<div class="title_name">选择收货地址 <a href="#">+添加地址</a></div>--}}
                 {{--选择收货地址样式 最多显示4个--}}
                 <div class="ord_list">
-                @if(!empty($user_address))
+                {{--@if(!empty($user_address))--}}
                     @foreach($user_address as $value)
                         @if($value['status'] == 1)
                         <div class="addr" id="add_active" attr="{{isset($value['user_address_id'])?$value['user_address_id']:null}}">
@@ -96,11 +96,11 @@
                             <div class="option"></div>
                         </div>
                     @endforeach
-                @else
-                    <div style="width: 200px;height: 80px;border:1px dashed #F60;border-radius: 5px;text-align: center;line-height: 80px; color:#F60;cursor: pointer;" onclick="addAddressOnOrder(this)">
+                {{--@else--}}
+                    <div style="width: 200px;height: 80px;border:1px dashed #F60;border-radius: 5px;text-align: center;line-height: 80px; color:#F60;cursor: pointer;float: left;margin-right: 10px;" onclick="addAddressOnOrder(this)">
                         <b>+</b><span style="margin-left: 5px;">添加地址</span>
                     </div>
-                @endif
+                {{--@endif--}}
                 </div>
             </div>
                 <div id="send-address-back"  style="display:none;position: fixed;left: 0;top: 0;width: 100%;height: 100%;background-color: rgba(0,0,0,0.5);z-index: 10000">
@@ -169,8 +169,8 @@
             </div>
 
             {{--<form class="form" method="post">--}}
-            <form name=alipayment action='/api/alipay' method=post target="_blank">
-            {{--<form name=alipayment action='/api/alipay' method=post>--}}
+            {{--<form name=alipayment action='/api/alipay' method=post target="_blank">--}}
+            <form name=alipayment action='/api/alipay' method=post>
                 <fieldset>
                     <!--付款方式-->
                     {{--<div class="payment">--}}
@@ -229,7 +229,7 @@
                                         <input id="WIDsubject" name="WIDsubject" type="hidden" value=""/>
                                         <input id="WIDtotal_amount" name="WIDtotal_amount" type="hidden" value=""/>
                                         <input id="WIDbody" name="WIDbody" type="hidden"/>
-                                        <input name="submit" type="submit" value="提交订单" class="submit_btn" onclick="inputOrder(this)"/>
+                                        <input name="submit" type="submit" value="提交订单" class="submit_btn" onclick="inputOrder(this)" />
                                     {{--<input name="submit" type="button" value="提交订单" class="submit_btn" onclick="inputOrder(this)"/>--}}
                                 </div>
                                 <div class="integral right">待订单确认后，你将获得<span class="jf"></span>积分</div>
@@ -280,30 +280,34 @@
                 return true;
             }
         }
-
+        //只能点一次 锁
+        var flag = true;
         function inputOrder(obj)
         {
             //订单应该分商店，可以是同一个订单号，但是涉及到的商家应该都能看到这个订单和对商品相应地发货
-            var data = {};
-            data.user_id = $('#top_cullom_user_id').attr('attr');
-            data.address_id = $('#add_active').attr('attr');
-            var shopping_cart = new Array();
-            // data.shopping_cart =
-            $('.Product_List').find('.Product_info').each(function(){
-                var temp = $(this).attr('attr');
-                shopping_cart.push(temp);
-            });
-            data.shopping_cart = shopping_cart;
-            data.spzj = $('.spzj').text();
-            data.psf = $('.psf').text();
-            data.sfk = $('.sfk').text();
-            data.integral = $('.jf').text();
-            data.memo = $('.Pay_info').find('input').val();
-            data.pro = $('.order_product_id').attr('attr');
-            console.log(data);
-            $.post('/api/saveOrders' , data , function(res){
-                console.log(res);
-            });
+            if(flag){
+                var data = {};
+                data.user_id = $('#top_cullom_user_id').attr('attr');
+                data.address_id = $('#add_active').attr('attr');
+                var shopping_cart = new Array();
+                // data.shopping_cart =
+                $('.Product_List').find('.Product_info').each(function(){
+                    var temp = $(this).attr('attr');
+                    shopping_cart.push(temp);
+                });
+                data.shopping_cart = shopping_cart;
+                data.spzj = $('.spzj').text();
+                data.psf = $('.psf').text();
+                data.sfk = $('.sfk').text();
+                data.integral = $('.jf').text();
+                data.memo = $('.Pay_info').find('input').val();
+                data.pro = $('.order_product_id').attr('attr');
+                console.log(data);
+                $.post('/api/saveOrders' , data , function(res){
+                    console.log(res);
+                });
+            }
+            flag = false;
         }
 
 
