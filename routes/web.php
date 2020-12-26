@@ -14,7 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
-//首页
+//首页 嗯嗯
 Route::get('home_index' , 'IndexController@index');
 //登陆
 Auth::routes();
