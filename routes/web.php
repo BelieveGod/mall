@@ -31,7 +31,7 @@ Route::post('postResetPsw' , 'ApiValidatorController@postReset');//修改密码�
 Route::get('user_comment' , 'UserInfoController@userComment');//我的收藏
 Route::get('add_user_comment/{id?}' , 'UserInfoController@createdComment');//添加商品评论
 
-//购物车
+//购物车 很厉害哦
 Route::get('shoppingCart' , 'ShoppingCartController@index');//显示购物车样式
 Route::get('addShoppingCartLogin/{id}' , 'ShoppingCartController@addShoppingCartLogin');//显示购物车样式
 
